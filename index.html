@@ -448,6 +448,11 @@ E<!DOCTYPE html>
   <a href="#s02e01" class="s02">S02E01</a>
   <a href="#s02e02" class="s02">S02E02</a>
   <a href="#s02e03" class="s02">S02E03</a>
+  <a href="#s02e04" class="s02">S02E04</a>
+  <a href="#s02e05" class="s02">S02E05</a>
+  <a href="#s03e01" class="s03">S03E01</a>
+  <a href="#s03e02" class="s03">S03E02</a>
+  <a href="#s03e03" class="s03">S03E03</a>
   <a href="#instrukcje" class="instr">↓ Jak rozwijać</a>
 </nav>
 
@@ -983,6 +988,220 @@ E<!DOCTYPE html>
         <div class="card-run"><span>$</span> <code>npm run lesson8:graph_agents</code></div>
       </div>
 
+    </div>
+  </section>
+
+  <!-- ════════ S02E04 ════════ -->
+  <section class="lesson-section s02" id="s02e04">
+    <div class="session-header">
+      <span class="session-badge">S02E04</span>
+      <span class="session-title">Organizowanie kontekstu dla wielu wątków</span>
+    </div>
+    <p class="session-desc">Architektury wieloagentowe wykraczające poza pojedynczą sesję. Orchestrator deleguje zadania do wyspecjalizowanych agentów.</p>
+    <a class="lesson-link" href="../lekcje/s02e04-organizowanie-kontekstu-dla-wielu-watkow-1773309028.md">
+      Otwórz lekcję S02E04
+    </a>
+    <div class="cards">
+      <div class="card">
+        <div class="card-folder"><span class="folder-icon">📁</span> 02_04_ops</div>
+        <div class="card-title">Daily Ops — Orchestrator Multi-Agent</div>
+        <div class="card-desc">
+          Multi-agent system: orchestrator deleguje zadania do wyspecjalizowanych agentów (mail, calendar, tasks, notes) przez narzędzie delegate. Każdy sub-agent działa w oddzielnej pętli z limitem głębokości 3.
+        </div>
+        <div class="card-tags">
+          <span class="tag">multi-agent</span>
+          <span class="tag">orchestrator</span>
+          <span class="tag">delegation</span>
+        </div>
+        <div class="card-run"><span>$</span> <code>npm run lesson9:ops</code></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════ S02E05 ════════ -->
+  <section class="lesson-section s02" id="s02e05">
+    <div class="session-header">
+      <span class="session-badge">S02E05</span>
+      <span class="session-title">Projektowanie agentów</span>
+    </div>
+    <p class="session-desc">Zaawansowane wzorce projektowe agentów: pamięć obserwacyjna, refleksja i bezpieczne piaskownice (sandboxes) dla kodu.</p>
+    <a class="lesson-link" href="../lekcje/s02e05-projektowanie-agentow-1773962356.md">
+      Otwórz lekcję S02E05
+    </a>
+    <div class="cards">
+      <div class="card">
+        <div class="card-folder"><span class="folder-icon">📁</span> 02_05_agent</div>
+        <div class="card-title">Observational Memory Agent</div>
+        <div class="card-desc">
+          Agent z pamięcią obserwacyjną (observer/reflector pattern) do kompresji długich konwersacji w ustrukturyzowane obserwacje.
+        </div>
+        <div class="card-tags">
+          <span class="tag">observer pattern</span>
+          <span class="tag">memory compression</span>
+          <span class="tag">reflection</span>
+        </div>
+        <div class="card-run"><span>$</span> <code>npm run lesson10:agent</code></div>
+      </div>
+      <div class="card">
+        <div class="card-folder"><span class="folder-icon">📁</span> 02_05_sandbox</div>
+        <div class="card-title">MCP Sandbox Agent</div>
+        <div class="card-desc">
+          Agent korzystający z Model Context Protocol (MCP) i wykonujący kod w bezpiecznym, odizolowanym środowisku QuickJS.
+        </div>
+        <div class="card-tags">
+          <span class="tag">MCP</span>
+          <span class="tag">sandbox</span>
+          <span class="tag">QuickJS</span>
+          <span class="tag">security</span>
+        </div>
+        <div class="card-run"><span>$</span> <code>npm run lesson10:sandbox</code></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════ S03E01 ════════ -->
+  <section class="lesson-section s03" id="s03e01">
+    <div class="session-header">
+      <span class="session-badge">S03E01</span>
+      <span class="session-title">Obserwowanie i ewaluacja</span>
+    </div>
+    <p class="session-desc">Monitorowanie (observability) i automatyczna ewaluacja (evals) zachowań agentów w celu optymalizacji jakości i kosztów.</p>
+    <a class="lesson-link" href="../lekcje/s03e01-obserwowanie-i-ewaluacja-1774206984.md">
+      Otwórz lekcję S03E01
+    </a>
+    <div class="cards">
+      <div class="card">
+        <div class="card-folder"><span class="folder-icon">📁</span> 03_01_evals</div>
+        <div class="card-title">Agent Evaluation Suite</div>
+        <div class="card-desc">
+          System ewaluacji agentów (evals) zintegrowany z Langfuse, umożliwiający automatyczne testowanie skuteczności narzędzi i poprawności odpowiedzi.
+        </div>
+        <div class="card-tags">
+          <span class="tag">evals</span>
+          <span class="tag">Langfuse</span>
+          <span class="tag">testing</span>
+        </div>
+        <div class="card-run"><span>$</span> <code>npm run lesson11:evals</code></div>
+      </div>
+      <div class="card">
+        <div class="card-folder"><span class="folder-icon">📁</span> 03_01_observability</div>
+        <div class="card-title">Langfuse Observability</div>
+        <div class="card-desc">
+          Minimalna implementacja monitorowania (observability) agenta Alice z użyciem Langfuse i OpenTelemetry do śledzenia hierarchii zdarzeń.
+        </div>
+        <div class="card-tags">
+          <span class="tag">observability</span>
+          <span class="tag">Langfuse</span>
+          <span class="tag">tracing</span>
+        </div>
+        <div class="card-run"><span>$</span> <code>npm run lesson11:observability</code></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════ S03E02 ════════ -->
+  <section class="lesson-section s03" id="s03e02">
+    <div class="session-header">
+      <span class="session-badge">S03E02</span>
+      <span class="session-title">Ograniczenia modeli na etapie założeń projektu</span>
+    </div>
+    <p class="session-desc">Zarządzanie słabymi stronami LLM, złożonością zadań oraz bezpieczeństwem poprzez izolację zasobów i uprawnień.</p>
+    <a class="lesson-link" href="../lekcje/s03e02-ograniczenia-modeli-na-etapie-zalozen-projektu-1774278041.md">
+      Otwórz lekcję S03E02
+    </a>
+    <div class="cards">
+      <div class="card">
+        <div class="card-folder"><span class="folder-icon">📁</span> 03_02_code</div>
+        <div class="card-title">Deno Code Execution Agent</div>
+        <div class="card-desc">
+          Agent generujący i wykonujący kod w sandboxie Deno w celu przetwarzania dużych zbiorów danych finansowych i generowania raportów PDF.
+        </div>
+        <div class="card-tags">
+          <span class="tag">Deno</span>
+          <span class="tag">code execution</span>
+          <span class="tag">PDF generation</span>
+        </div>
+        <div class="card-run"><span>$</span> <code>npm run lesson12:code</code></div>
+      </div>
+      <div class="card">
+        <div class="card-folder"><span class="folder-icon">📁</span> 03_02_email</div>
+        <div class="card-title">Two-Phase Email Agent</div>
+        <div class="card-desc">
+          Agent do obsługi poczty e-mail z podziałem na fazę triażu (kategoryzacja) i bezpiecznego generowania szkiców w izolowanych sesjach.
+        </div>
+        <div class="card-tags">
+          <span class="tag">email agent</span>
+          <span class="tag">triage</span>
+          <span class="tag">security</span>
+        </div>
+        <div class="card-run"><span>$</span> <code>npm run lesson12:email</code></div>
+      </div>
+      <div class="card">
+        <div class="card-folder"><span class="folder-icon">📁</span> 03_02_events</div>
+        <div class="card-title">Multi-Agent Event Heartbeat</div>
+        <div class="card-desc">
+          Zaawansowana architektura multi-agentowa oparta na zdarzeniach i pętli heartbeat, z planowaniem zadań i systemem Human-in-the-loop.
+        </div>
+        <div class="card-tags">
+          <span class="tag">heartbeat</span>
+          <span class="tag">event-driven</span>
+          <span class="tag">HITL</span>
+        </div>
+        <div class="card-run"><span>$</span> <code>npm run lesson12:events</code></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════ S03E03 ════════ -->
+  <section class="lesson-section s03" id="s03e03">
+    <div class="session-header">
+      <span class="session-badge">S03E03</span>
+      <span class="session-title">Kontekstowy feedback wspierający skuteczność agentów</span>
+    </div>
+    <p class="session-desc">Integracja agentów z otoczeniem, proaktywne zachowania oparte na zdarzeniach oraz mechanizmy uczenia się i feedbacku.</p>
+    <a class="lesson-link" href="../lekcje/s03e03-kontekstowy-feedback-wspierajacy-skutecznosc-agentow-1774391034.md">
+      Otwórz lekcję S03E03
+    </a>
+    <div class="cards">
+      <div class="card">
+        <div class="card-folder"><span class="folder-icon">📁</span> 03_03_browser</div>
+        <div class="card-title">Browser Automation Agent</div>
+        <div class="card-desc">
+          Agent automatyzujący przeglądarkę (Playwright) z obsługą sesji, zrzutami ekranu i integracją z systemem plików przez MCP.
+        </div>
+        <div class="card-tags">
+          <span class="tag">Playwright</span>
+          <span class="tag">automation</span>
+          <span class="tag">browser</span>
+        </div>
+        <div class="card-run"><span>$</span> <code>npm run lesson13:browser</code></div>
+      </div>
+      <div class="card">
+        <div class="card-folder"><span class="folder-icon">📁</span> 03_03_calendar</div>
+        <div class="card-title">Contextual Calendar Agent</div>
+        <div class="card-desc">
+          Agent zarządzający kalendarzem w sposób proaktywny, reagujący na webhooki i zmiany kontekstu otoczenia (lokalizacja, pogoda).
+        </div>
+        <div class="card-tags">
+          <span class="tag">calendar</span>
+          <span class="tag">proactive</span>
+          <span class="tag">webhooks</span>
+        </div>
+        <div class="card-run"><span>$</span> <code>npm run lesson13:calendar</code></div>
+      </div>
+      <div class="card">
+        <div class="card-folder"><span class="folder-icon">📁</span> 03_03_language</div>
+        <div class="card-title">AI Language Coach</div>
+        <div class="card-desc">
+          Trener języka angielskiego wykorzystujący Gemini do analizy audio, oceny wymowy i generowania spersonalizowanego feedbacku głosowego.
+        </div>
+        <div class="card-tags">
+          <span class="tag">language coach</span>
+          <span class="tag">audio analysis</span>
+          <span class="tag">Gemini</span>
+        </div>
+        <div class="card-run"><span>$</span> <code>npm run lesson13:language</code></div>
+      </div>
     </div>
   </section>
 
