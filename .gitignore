@@ -4,4 +4,4 @@ node_modules/
 
 translated/
 vault/
-./**/.env
+#./**/.env
