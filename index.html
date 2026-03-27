@@ -119,6 +119,7 @@ E<!DOCTYPE html>
     }
     nav a.s01 { color: var(--s01); border-color: var(--s01-dim); background: var(--s01-glow); }
     nav a.s02 { color: var(--s02); border-color: var(--s02-dim); background: var(--s02-glow); }
+    nav a.s03 { color: var(--s03); border-color: var(--s03-dim); background: var(--s03-glow); }
     nav a.instr { color: var(--s03); border-color: var(--s03-dim); background: var(--s03-glow); }
     nav a:hover { filter: brightness(1.3); }
 
@@ -152,6 +153,7 @@ E<!DOCTYPE html>
     }
     .s01 .session-badge { background: var(--s01-glow); color: var(--s01); border: 1px solid var(--s01-dim); }
     .s02 .session-badge { background: var(--s02-glow); color: var(--s02); border: 1px solid var(--s02-dim); }
+    .s03 .session-badge { background: var(--s03-glow); color: var(--s03); border: 1px solid var(--s03-dim); }
 
     .session-title {
       font-family: 'JetBrains Mono', monospace;
@@ -185,6 +187,7 @@ E<!DOCTYPE html>
     }
     .s01 .lesson-link { color: var(--s01); background: var(--s01-glow); border: 1px solid var(--s01-dim); }
     .s02 .lesson-link { color: var(--s02); background: var(--s02-glow); border: 1px solid var(--s02-dim); }
+    .s03 .lesson-link { color: var(--s03); background: var(--s03-glow); border: 1px solid var(--s03-dim); }
     .lesson-link:hover { filter: brightness(1.3); transform: translateX(2px); }
     .lesson-link::before { content: '📄'; font-size: 12px; }
 
@@ -210,6 +213,7 @@ E<!DOCTYPE html>
 
     .s01 .card:hover { box-shadow: 0 8px 32px hsl(var(--s01-hue),80%,50%,.12); border-color: hsl(var(--s01-hue),60%,35%,.4); }
     .s02 .card:hover { box-shadow: 0 8px 32px hsl(var(--s02-hue),70%,45%,.1); border-color: hsl(var(--s02-hue),50%,30%,.4); }
+    .s03 .card:hover { box-shadow: 0 8px 32px hsl(var(--s03-hue),95%,60%,.12); border-color: hsl(var(--s03-hue),60%,18%,.4); }
 
     .card::before {
       content: '';
@@ -220,6 +224,7 @@ E<!DOCTYPE html>
     }
     .s01 .card::before { background: var(--s01); }
     .s02 .card::before { background: var(--s02); }
+    .s03 .card::before { background: var(--s03); }
 
     .card-folder {
       font-family: 'JetBrains Mono', monospace;
@@ -233,6 +238,7 @@ E<!DOCTYPE html>
     }
     .s01 .card-folder { color: var(--s01); }
     .s02 .card-folder { color: var(--s02); }
+    .s03 .card-folder { color: var(--s03); }
 
     .card-folder .folder-icon { opacity: .7; font-size: 13px; }
 
@@ -453,6 +459,7 @@ E<!DOCTYPE html>
   <a href="#s03e01" class="s03">S03E01</a>
   <a href="#s03e02" class="s03">S03E02</a>
   <a href="#s03e03" class="s03">S03E03</a>
+  <a href="#s03e04" class="s03">S03E04</a>
   <a href="#instrukcje" class="instr">↓ Jak rozwijać</a>
 </nav>
 
@@ -1201,6 +1208,35 @@ E<!DOCTYPE html>
           <span class="tag">Gemini</span>
         </div>
         <div class="card-run"><span>$</span> <code>npm run lesson13:language</code></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════ S03E04 ════════ -->
+  <section class="lesson-section s03" id="s03e04">
+    <div class="session-header">
+      <span class="session-badge">S03E04</span>
+      <span class="session-title">Wsparcie narzędzi natywnych — Gmail API</span>
+    </div>
+    <p class="session-desc">Automatyzacja skrzynki pocztowej Gmail przez natywne narzędzia modelu: wyszukiwanie, czytanie, wysyłanie i zarządzanie załącznikami z uwzględnieniem OAuth.</p>
+    <a class="lesson-link" href="../lekcje/s03e04-wsparcie-narzedzi-natywnych-gmail-api.md">
+      Otwórz lekcję S03E04
+    </a>
+    <div class="cards">
+      <div class="card">
+        <div class="card-folder"><span class="folder-icon">📁</span> 03_04_gmail</div>
+        <div class="card-title">Gmail Native Tools Agent</div>
+        <div class="card-desc">
+          Agent zintegrowany z Gmail API przez OAuth. Posiada 5 narzędzi natywnych (search, read, send, modify, attachment) z obsługą whitelist i automatycznym tworzeniem szkiców dla nieznanych adresatów.
+        </div>
+        <div class="card-tags">
+          <span class="tag">Gmail API</span>
+          <span class="tag">OAuth</span>
+          <span class="tag">native tools</span>
+          <span class="tag">Promptfoo</span>
+          <span class="tag">evals</span>
+        </div>
+        <div class="card-run"><span>$</span> <code>npm run lesson14:gmail</code></div>
       </div>
     </div>
   </section>
