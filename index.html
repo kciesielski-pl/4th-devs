@@ -1241,6 +1241,48 @@ E<!DOCTYPE html>
     </div>
   </section>
 
+  <!-- ════════ S03E05 ════════ -->
+  <section class="lesson-section s03" id="s03e05">
+    <div class="session-header">
+      <span class="session-badge">S03E05</span>
+      <span class="session-title">Modele i interfejsy użytkownika</span>
+    </div>
+    <p class="session-desc">Wykorzystanie aplikacji i UI w pracy agentów: serwery lokalne, web sockety, wizualizacje, renderowanie artefaktów i świadomość otoczenia.</p>
+    <a class="lesson-link" href="../lekcje/s03e05-modele-uzywajace-interfejsu.md">
+      Otwórz lekcję S03E05
+    </a>
+    <div class="cards">
+      <div class="card">
+        <div class="card-folder"><span class="folder-icon">📁</span> 03_05_apps</div>
+        <div class="card-title">Apps Manager z UI</div>
+        <div class="card-desc">MCP app server z agentem CLI i podglądem na żywo (todo/shopping list).</div>
+        <div class="card-tags"><span class="tag">MCP</span><span class="tag">Live UI</span></div>
+        <div class="card-run"><span>$</span> <code>npm run lesson15:apps</code></div>
+      </div>
+      <div class="card">
+        <div class="card-folder"><span class="folder-icon">📁</span> 03_05_artifacts</div>
+        <div class="card-title">Artifacts Generator</div>
+        <div class="card-desc">CLI artifact agent streamujący stan aplikacji przez WebSockety na żywo do przeglądarki.</div>
+        <div class="card-tags"><span class="tag">WebSocket</span><span class="tag">Preact</span><span class="tag">D3</span></div>
+        <div class="card-run"><span>$</span> <code>npm run lesson15:artifacts</code></div>
+      </div>
+      <div class="card">
+        <div class="card-folder"><span class="folder-icon">📁</span> 03_05_awareness</div>
+        <div class="card-title">Awareness Agent</div>
+        <div class="card-desc">Agent świadomy otoczenia, czasu i wspomnień (skaut delegowany przez MCP).</div>
+        <div class="card-tags"><span class="tag">temporal context</span><span class="tag">MCP</span></div>
+        <div class="card-run"><span>$</span> <code>npm run lesson15:awareness</code></div>
+      </div>
+      <div class="card">
+        <div class="card-folder"><span class="folder-icon">📁</span> 03_05_render</div>
+        <div class="card-title">Render Agent</div>
+        <div class="card-desc">Agent generujący strukturę UI w oparciu o sztywne komponenty i podgląd na żywo.</div>
+        <div class="card-tags"><span class="tag">UI guardrails</span><span class="tag">Live render</span></div>
+        <div class="card-run"><span>$</span> <code>npm run lesson15:render</code></div>
+      </div>
+    </div>
+  </section>
+
   <!-- ════════ INSTRUKCJE ════════ -->
   <section id="instrukcje">
     <div class="instr-header">
@@ -1323,6 +1365,216 @@ E<!DOCTYPE html>
 <footer>
   AI_devs · pliki_przykladowe_z_kursu · aktualizuj przy dodawaniu nowych lekcji
 </footer>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/vs2015.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlightjs-line-numbers.js/2.8.0/highlightjs-line-numbers.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+
+<style>
+  /* ── MODAL & FILE BROWSER ───────────────────────────── */
+  .modal-overlay {
+    position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(0,0,0,0.8); backdrop-filter: blur(4px);
+    display: flex; justify-content: center; align-items: center;
+    z-index: 1000; opacity: 0; visibility: hidden; pointer-events: none; transition: opacity .3s, visibility .3s;
+  }
+  .modal-overlay.active { opacity: 1; visibility: visible; pointer-events: auto; }
+  .modal-content {
+    background: var(--bg2); width: 90vw; height: 90vh; max-width: 1400px;
+    border: 1px solid var(--border); border-radius: 12px; overflow: hidden;
+    display: flex; flex-direction: column; transform: translateY(20px); transition: transform .3s;
+  }
+  .modal-overlay.active .modal-content { transform: translateY(0); }
+  .modal-header {
+    padding: 16px 24px; border-bottom: 1px solid var(--border);
+    display: flex; justify-content: space-between; align-items: center;
+    background: var(--bg3);
+  }
+  .modal-title { font-family: 'JetBrains Mono', monospace; font-size: 1.2rem; color: var(--white); }
+  .modal-close {
+    background: none; border: none; color: var(--muted); font-size: 24px; cursor: pointer;
+  }
+  .modal-close:hover { color: var(--white); }
+  .modal-body { display: flex; flex: 1; overflow: hidden; }
+  .file-tree {
+    width: 280px; background: var(--bg); border-right: 1px solid var(--border);
+    padding: 16px; overflow-y: auto; font-family: 'JetBrains Mono', monospace; font-size: 13px;
+  }
+  .file-tree ul { list-style: none; padding-left: 12px; }
+  .file-tree li { margin: 4px 0; cursor: pointer; color: var(--text); user-select: none; }
+  .file-tree li:hover { color: var(--s01); }
+  .file-tree li.active { color: var(--s01); font-weight: bold; }
+  .file-tree li.dir { color: var(--muted); cursor: pointer; }
+  .file-tree li.dir > div:first-child:hover { color: var(--white); }
+  .dir-content { padding-left: 8px; border-left: 1px solid rgba(255,255,255,0.05); margin-left: 6px; }
+  .file-content-panel {
+    flex: 1; display: flex; flex-direction: column; overflow: hidden; background: #0f1423;
+  }
+  .file-content-header {
+    padding: 8px 16px; background: var(--bg3); border-bottom: 1px solid var(--border);
+    font-family: 'JetBrains Mono', monospace; font-size: 12px; color: var(--muted);
+  }
+  .file-content-body { flex: 1; overflow: auto; padding: 16px; margin: 0; }
+  pre { margin: 0; }
+  code { font-family: 'JetBrains Mono', monospace; font-size: 13px; line-height: 1.5; }
+</style>
+
+<div class="modal-overlay" id="fileModal">
+  <div class="modal-content">
+    <div class="modal-header">
+      <div class="modal-title" id="modalTitle">Szczegóły lekcji</div>
+      <button class="modal-close" onclick="closeDetails()">×</button>
+    </div>
+    <div class="modal-body">
+      <div class="file-tree" id="fileTree">
+        Wczytywanie...
+      </div>
+      <div class="file-content-panel">
+        <div class="file-content-header" id="fileName">Wybierz plik z listy po lewej</div>
+        <pre class="file-content-body"><code id="fileCode" class="language-plaintext"></code></pre>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  let dbData = null;
+  let currentLesson = null;
+
+  async function loadDB() {
+    if (!dbData) {
+      try {
+        const res = await fetch('assets/db/db.json');
+        dbData = await res.json();
+      } catch(e) {
+        console.error("Nie udało się załadować bazy:", e);
+      }
+    }
+  }
+
+  function renderTree(files, container) {
+    const root = {};
+    files.forEach(f => {
+      // Obsługa starego i nowego formatu (string vs obiekt {path, desc})
+      const isObj = typeof f === 'object';
+      const fPath = isObj ? f.path : f;
+      const parts = fPath.split('/');
+      
+      let curr = root;
+      parts.forEach((p, i) => {
+        if (!curr[p]) curr[p] = (i === parts.length - 1) ? (isObj ? f : {path: f}) : {};
+        curr = curr[p];
+      });
+    });
+
+    function buildHTML(node, pathStr) {
+      let html = '<ul>';
+      for (const [key, val] of Object.entries(node)) {
+        if (val && val.path) {
+          const descSpan = val.desc ? `<span style="color:var(--muted); font-size:11px; margin-left:8px; font-style:italic;">— ${val.desc}</span>` : '';
+          html += `<li onclick="loadFile('${val.path}')" id="tree-${val.path.replace(/\\W/g, '-')}">📄 ${key}${descSpan}</li>`;
+        } else {
+          html += `<li class="dir"><div onclick="toggleDir(this)">📁 ${key}</div><div class="dir-content">${buildHTML(val, pathStr + key + '/')}</div></li>`;
+        }
+      }
+      html += '</ul>';
+      return html;
+    }
+
+    container.innerHTML = buildHTML(root, '');
+    
+    // Add README item if exists
+    container.innerHTML = `<ul style="margin-bottom: 12px; border-bottom: 1px solid var(--border); padding-bottom: 8px;">
+      <li onclick="loadReadme()" id="tree-readme" class="active">📖 Opis lekcji (README.md)</li>
+    </ul>` + container.innerHTML;
+  }
+
+  function toggleDir(el) {
+    const content = el.nextElementSibling;
+    if (content.style.display === 'none') {
+      content.style.display = 'block';
+      el.innerText = el.innerText.replace('📂', '📁');
+    } else {
+      content.style.display = 'none';
+      el.innerText = el.innerText.replace('📁', '📂');
+    }
+  }
+
+  async function openDetails(folderName) {
+    await loadDB();
+    if(!dbData || !dbData[folderName]) {
+      alert("Brak danych dla tej lekcji w db.json. Uruchom skrypt generujący (assets/db/generate_db.js)!");
+      return;
+    }
+    currentLesson = folderName;
+    document.getElementById('modalTitle').innerText = folderName;
+    document.getElementById('fileModal').classList.add('active');
+    
+    renderTree(dbData[folderName].files, document.getElementById('fileTree'));
+    loadReadme();
+  }
+
+  function closeDetails() {
+    document.getElementById('fileModal').classList.remove('active');
+  }
+
+  function highlightActive(id) {
+    document.querySelectorAll('.file-tree li').forEach(el => el.classList.remove('active'));
+    const el = document.getElementById(id);
+    if(el) el.classList.add('active');
+  }
+
+  function loadReadme() {
+    highlightActive('tree-readme');
+    document.getElementById('fileName').innerText = currentLesson + '/README.md';
+    const codeBlock = document.getElementById('fileCode');
+    codeBlock.className = 'language-markdown';
+    codeBlock.textContent = dbData[currentLesson].readme;
+    hljs.highlightElement(codeBlock);
+  }
+
+  async function loadFile(filepath) {
+    highlightActive('tree-' + filepath.replace(/\\W/g, '-'));
+    document.getElementById('fileName').innerText = currentLesson + '/' + filepath;
+    const codeBlock = document.getElementById('fileCode');
+    codeBlock.textContent = "Ładowanie...";
+    
+    try {
+      const res = await fetch(currentLesson + '/' + filepath);
+      const text = await res.text();
+      
+      const ext = filepath.split('.').pop();
+      let lang = 'plaintext';
+      if(ext === 'js' || ext === 'mjs' || ext === 'ts') lang = 'javascript';
+      if(ext === 'json') lang = 'json';
+      if(ext === 'html') lang = 'html';
+      if(ext === 'css') lang = 'css';
+      if(ext === 'md') lang = 'markdown';
+      if(ext === 'sh' || ext === 'bash') lang = 'bash';
+
+      codeBlock.className = 'language-' + lang;
+      codeBlock.textContent = text;
+      hljs.highlightElement(codeBlock);
+    } catch(e) {
+      codeBlock.textContent = "Błąd odczytu pliku: " + e;
+    }
+  }
+
+  // Hook all cards
+  document.querySelectorAll('.card').forEach(card => {
+    card.style.cursor = 'pointer';
+    card.addEventListener('click', () => {
+      const folderName = card.querySelector('.card-folder').innerText.replace('📁', '').trim();
+      openDetails(folderName);
+    });
+    // Prevent inner clicks from triggering card click
+    const runNode = card.querySelector('.card-run');
+    if (runNode) {
+      runNode.addEventListener('click', e => e.stopPropagation());
+    }
+  });
+</script>
 
 </body>
 </html>

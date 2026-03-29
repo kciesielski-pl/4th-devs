@@ -1,0 +1,3478 @@
+{
+  "01_01_grounding": {
+    "id": "01_01_grounding",
+    "readme": "# 01_01_grounding\n\nTransforms markdown notes into interactive HTML with fact-checked, source-annotated concepts using structured outputs and web search.\n\n## Run\n\n```bash\nnpm run lesson1:grounding\n```\n\nPass arguments after `--`:\n\n```bash\nnpm run lesson1:grounding -- my-note.md\nnpm run lesson1:grounding -- --force\nnpm run lesson1:grounding -- my-note.md --force\n```\n\n## How it works\n\n```\nINPUT:  Markdown file (notes/ folder)\n  ↓\n1. EXTRACT  — 1 paragraph = 1 API call → concepts.json\n  ↓\n2. DEDUPE   — group synonyms under canonical labels → dedupe.json\n  ↓\n3. SEARCH   — 1 concept = 1 API call + web search → search_results.json\n  ↓\n4. GROUND   — 1 paragraph = 1 API call → grounded.html\n```\n\nEach stage runs in parallel batches and caches results. Use `--force` to rebuild from scratch.\n\n## Output\n\nAll files written to `output/`:\n\n| File | Content |\n|------|---------|\n| `concepts.json` | Extracted concepts per paragraph with scores |\n| `dedupe.json` | Grouped canonical concepts with aliases |\n| `search_results.json` | Web search summaries and sources |\n| `grounded.html` | Final interactive HTML with tooltips |\n\n## Configuration\n\nEdit `src/config.js` to change models, timeouts, or retry settings.\n",
+    "files": [
+      {
+        "path": "README.md",
+        "desc": "Dokumentacja i opis danego przykładu"
+      },
+      {
+        "path": "app.js",
+        "desc": "Główny punkt wejścia"
+      },
+      {
+        "path": "notes/crypto.md",
+        "desc": ""
+      },
+      {
+        "path": "notes/notes.md",
+        "desc": ""
+      },
+      {
+        "path": "package-lock.json",
+        "desc": "Zablokowane wersje zależności"
+      },
+      {
+        "path": "package.json",
+        "desc": "Zależności i skrypty npm"
+      },
+      {
+        "path": "src/api.js",
+        "desc": "Integracja z zewnętrznymi API (np. OpenAI, Anthropic)"
+      },
+      {
+        "path": "src/config.js",
+        "desc": "Zmienne środowiskowe i konfiguracja"
+      },
+      {
+        "path": "src/pipeline/concept-filter.js",
+        "desc": ""
+      },
+      {
+        "path": "src/pipeline/dedupe.js",
+        "desc": ""
+      },
+      {
+        "path": "src/pipeline/extract.js",
+        "desc": ""
+      },
+      {
+        "path": "src/pipeline/ground.js",
+        "desc": ""
+      },
+      {
+        "path": "src/pipeline/search.js",
+        "desc": ""
+      },
+      {
+        "path": "src/prompts/dedupe.js",
+        "desc": ""
+      },
+      {
+        "path": "src/prompts/extract.js",
+        "desc": ""
+      },
+      {
+        "path": "src/prompts/ground.js",
+        "desc": ""
+      },
+      {
+        "path": "src/prompts/index.js",
+        "desc": ""
+      },
+      {
+        "path": "src/prompts/search.js",
+        "desc": ""
+      },
+      {
+        "path": "src/schemas/categories.js",
+        "desc": ""
+      },
+      {
+        "path": "src/schemas/dedupe.js",
+        "desc": ""
+      },
+      {
+        "path": "src/schemas/extract.js",
+        "desc": ""
+      },
+      {
+        "path": "src/schemas/ground.js",
+        "desc": ""
+      },
+      {
+        "path": "src/schemas/index.js",
+        "desc": ""
+      },
+      {
+        "path": "src/schemas/search.js",
+        "desc": ""
+      },
+      {
+        "path": "src/utils/file.js",
+        "desc": ""
+      },
+      {
+        "path": "src/utils/hash.js",
+        "desc": ""
+      },
+      {
+        "path": "src/utils/text.js",
+        "desc": ""
+      },
+      {
+        "path": "template.html",
+        "desc": "Szablon bazowy HTML do generowania raportów"
+      }
+    ]
+  },
+  "01_01_interaction": {
+    "id": "01_01_interaction",
+    "readme": "# 01_01_interaction\n\nMulti-turn conversation with the Responses API using full input history.\n\n## Run\n\n```bash\nnpm run lesson1:interaction\n```\n\n## What it does\n\n1. Sends a question: \"What is 25 * 48?\"\n2. Sends a follow-up: \"Divide that by 4.\" with the previous exchange as context\n3. Prints both answers with reasoning token counts\n",
+    "files": [
+      {
+        "path": "README.md",
+        "desc": "Dokumentacja i opis danego przykładu"
+      },
+      {
+        "path": "app.js",
+        "desc": "Główny punkt wejścia"
+      },
+      {
+        "path": "helpers.js",
+        "desc": ""
+      },
+      {
+        "path": "package-lock.json",
+        "desc": "Zablokowane wersje zależności"
+      },
+      {
+        "path": "package.json",
+        "desc": "Zależności i skrypty npm"
+      }
+    ]
+  },
+  "01_01_structured": {
+    "id": "01_01_structured",
+    "readme": "# 01_01_structured\n\nStructured outputs — the model returns guaranteed valid JSON matching a provided schema.\n\n## Run\n\n```bash\nnpm run lesson1:structured\n```\n\n## What it does\n\n1. Defines a JSON schema for a \"person\" object (name, age, occupation, skills)\n2. Sends text to the API with `text.format` set to the schema (`strict: true`)\n3. Parses and displays the extracted data\n",
+    "files": [
+      {
+        "path": "README.md",
+        "desc": "Dokumentacja i opis danego przykładu"
+      },
+      {
+        "path": "app.js",
+        "desc": "Główny punkt wejścia"
+      },
+      {
+        "path": "helpers.js",
+        "desc": ""
+      },
+      {
+        "path": "package-lock.json",
+        "desc": "Zablokowane wersje zależności"
+      },
+      {
+        "path": "package.json",
+        "desc": "Zależności i skrypty npm"
+      }
+    ]
+  },
+  "01_02_tool_use": {
+    "id": "01_02_tool_use",
+    "readme": "# 01_02_tool_use\n\nFunction calling with sandboxed filesystem tools — the model lists, reads, writes, and deletes files through tool definitions.\n\n## Run\n\n```bash\nnpm run lesson2:tool_use\n```\n\n## What it does\n\n1. Defines 6 filesystem tools (`list_files`, `read_file`, `write_file`, `delete_file`, `create_directory`, `file_info`)\n2. Resets `sandbox/` to an empty state before running the demo\n3. Runs each example query as a separate conversation\n4. Executes tool calls, appends results within that query, and prints the final answer\n5. All operations are sandboxed — path traversal is blocked programmatically\n\n## Tools\n\n| Tool | Description |\n|------|-------------|\n| `list_files` | List files and directories at a path |\n| `read_file` | Read file contents |\n| `write_file` | Create or overwrite a file |\n| `delete_file` | Delete a file |\n| `create_directory` | Create a directory (recursive) |\n| `file_info` | Get file/directory metadata |\n\nSee `TOOLS.md` for full schemas and examples.\n",
+    "files": [
+      {
+        "path": "README.md",
+        "desc": "Dokumentacja i opis danego przykładu"
+      },
+      {
+        "path": "TOOLS.md",
+        "desc": ""
+      },
+      {
+        "path": "app.js",
+        "desc": "Główny punkt wejścia"
+      },
+      {
+        "path": "package-lock.json",
+        "desc": "Zablokowane wersje zależności"
+      },
+      {
+        "path": "package.json",
+        "desc": "Zależności i skrypty npm"
+      },
+      {
+        "path": "sandbox/docs/readme.txt",
+        "desc": ""
+      },
+      {
+        "path": "src/api.js",
+        "desc": "Integracja z zewnętrznymi API (np. OpenAI, Anthropic)"
+      },
+      {
+        "path": "src/config.js",
+        "desc": "Zmienne środowiskowe i konfiguracja"
+      },
+      {
+        "path": "src/executor.js",
+        "desc": ""
+      },
+      {
+        "path": "src/tools/definitions.js",
+        "desc": ""
+      },
+      {
+        "path": "src/tools/handlers.js",
+        "desc": ""
+      },
+      {
+        "path": "src/tools/index.js",
+        "desc": ""
+      },
+      {
+        "path": "src/utils/sandbox.js",
+        "desc": ""
+      }
+    ]
+  },
+  "01_02_tools": {
+    "id": "01_02_tools",
+    "readme": "# 01_02_tools\n\nMinimal tool use with the Responses API — the model can use provider-native web search, then send the result through a mocked email tool.\n\n## Run\n\n```bash\nbun run lesson2:tools\n```\n\nBackward-compatible alias:\n\n```bash\nbun run lesson2:minimal\n```\n\n## What it does\n\n1. Defines two custom tools: `get_weather` and `send_email`\n2. Enables provider-native web search through a shared helper in `config.js`\n3. Sends the user message and available tools to the Responses API\n4. Executes each tool in regular JavaScript\n5. Sends the tool results back to the model\n6. Prints the final natural-language answer\n\n## Tools\n\n| Tool | Description |\n|------|-------------|\n| `get_weather` | Return mock weather data for a city |\n| `send_email` | Return a mocked confirmation that an email was sent |\n| built-in web search | OpenAI uses `web_search_preview`; OpenRouter uses `:online` or the `web` plugin |\n",
+    "files": [
+      {
+        "path": "README.md",
+        "desc": "Dokumentacja i opis danego przykładu"
+      },
+      {
+        "path": "app.js",
+        "desc": "Główny punkt wejścia"
+      },
+      {
+        "path": "helper.js",
+        "desc": ""
+      }
+    ]
+  },
+  "01_03_mcp_core": {
+    "id": "01_03_mcp_core",
+    "readme": "# 01_03_mcp_core\n\nCore MCP capabilities over stdio: tools, resources, prompts, elicitation, and sampling.\n\n## Run\n\n```bash\nnpm run lesson3:mcp_core\n```\n\n## What it does\n\n1. Spawns a local MCP server as a subprocess over stdio\n2. Lists the available tools, resources, and prompts\n3. Calls `calculate` directly through MCP\n4. Runs `summarize_with_confirmation` to demonstrate elicitation and sampling\n\n## MCP capabilities\n\n| Type | Name | Description |\n|------|------|-------------|\n| Tool | `calculate` | Basic arithmetic (add, subtract, multiply, divide) |\n| Tool | `summarize_with_confirmation` | Summarizes text after elicitation (user confirmation) and sampling (LLM completion) |\n| Resource | `config://project` | Static project configuration |\n| Resource | `data://stats` | Dynamic runtime statistics |\n| Prompt | `code-review` | Code review template with args (code, language, focus) |\n\n## Notes\n\nThe client handles sampling with the shared workspace AI config, so setup lives in the root `README.md` and `.env`.\n",
+    "files": [
+      {
+        "path": "README.md",
+        "desc": "Dokumentacja i opis danego przykładu"
+      },
+      {
+        "path": "app.js",
+        "desc": "Główny punkt wejścia"
+      },
+      {
+        "path": "package-lock.json",
+        "desc": "Zablokowane wersje zależności"
+      },
+      {
+        "path": "package.json",
+        "desc": "Zależności i skrypty npm"
+      },
+      {
+        "path": "src/ai.js",
+        "desc": ""
+      },
+      {
+        "path": "src/client.js",
+        "desc": "Klient łączący się z narzędziami MCP"
+      },
+      {
+        "path": "src/elicitation.js",
+        "desc": ""
+      },
+      {
+        "path": "src/log.js",
+        "desc": ""
+      },
+      {
+        "path": "src/prompts.js",
+        "desc": ""
+      },
+      {
+        "path": "src/resources.js",
+        "desc": ""
+      },
+      {
+        "path": "src/sampling.js",
+        "desc": ""
+      },
+      {
+        "path": "src/server.js",
+        "desc": ""
+      },
+      {
+        "path": "src/tools.js",
+        "desc": "Definicje natywnych narzędzi dla modelu"
+      }
+    ]
+  },
+  "01_03_mcp_native": {
+    "id": "01_03_mcp_native",
+    "readme": "# 01_03_mcp_native\n\nOne agent using both MCP tools and native function tools in the same loop.\n\n## Run\n\n```bash\nnpm run lesson3:mcp_native\n```\n\n## What it does\n\n1. Starts an in-memory MCP server with weather and time tools\n2. Adds native tools for calculation and text transformation\n3. Exposes all tools to one model as a single toolset\n4. Runs a few demo queries, including a mixed-tool example\n\n## Tools\n\n| Tool | Description |\n|------|-------------|\n| `get_weather` (MCP) | Mock weather data for a city |\n| `get_time` (MCP) | Current time in a timezone |\n| `calculate` (native) | Basic math (add, subtract, multiply, divide) |\n| `uppercase` (native) | Convert text to uppercase |\n",
+    "files": [
+      {
+        "path": "README.md",
+        "desc": "Dokumentacja i opis danego przykładu"
+      },
+      {
+        "path": "app.js",
+        "desc": "Główny punkt wejścia"
+      },
+      {
+        "path": "package-lock.json",
+        "desc": "Zablokowane wersje zależności"
+      },
+      {
+        "path": "package.json",
+        "desc": "Zależności i skrypty npm"
+      },
+      {
+        "path": "src/agent.js",
+        "desc": "Główna logika i pętla agenta AI"
+      },
+      {
+        "path": "src/ai.js",
+        "desc": ""
+      },
+      {
+        "path": "src/log.js",
+        "desc": ""
+      },
+      {
+        "path": "src/mcp/client.js",
+        "desc": "Klient łączący się z narzędziami MCP"
+      },
+      {
+        "path": "src/mcp/server.js",
+        "desc": ""
+      },
+      {
+        "path": "src/native/tools.js",
+        "desc": "Definicje natywnych narzędzi dla modelu"
+      }
+    ]
+  },
+  "01_03_mcp_translator": {
+    "id": "01_03_mcp_translator",
+    "readme": "# 01_03_mcp_translator\n\nTranslation agent built on `files-mcp` that watches a folder and writes English versions of incoming files.\n\n## Run\n\n```bash\nnpm run lesson3:mcp_translator\n```\n\n## Example curl\n\n```bash\ncurl -X POST \"http://localhost:3000/api/translate\" -H \"Content-Type: application/json\" -d '{\"text\":\"To jest przykladowy tekst po polsku.\"}'\n```\n\n## What it does\n\n1. Connects to the `files` MCP server defined in `mcp.json`\n2. Watches `workspace/translate/` for supported files\n3. Saves translated output to `workspace/translated/`\n4. Exposes `POST /api/chat` and `POST /api/translate`\n\n## Tools\n\n| Tool | Description |\n|------|-------------|\n| `fs_read` | Read files and explore directories |\n| `fs_search` | Find files and search content |\n| `fs_write` | Create and update files |\n| `fs_manage` | Structural file operations |\n\n## Notes\n\nPut source files in `workspace/translate/`. The example creates missing directories on startup.\n",
+    "files": [
+      {
+        "path": "README.md",
+        "desc": "Dokumentacja i opis danego przykładu"
+      },
+      {
+        "path": "app.js",
+        "desc": "Główny punkt wejścia"
+      },
+      {
+        "path": "mcp.json",
+        "desc": "Konfiguracja serwera MCP"
+      },
+      {
+        "path": "package-lock.json",
+        "desc": "Zablokowane wersje zależności"
+      },
+      {
+        "path": "package.json",
+        "desc": "Zależności i skrypty npm"
+      },
+      {
+        "path": "src/agent.js",
+        "desc": "Główna logika i pętla agenta AI"
+      },
+      {
+        "path": "src/config.js",
+        "desc": "Zmienne środowiskowe i konfiguracja"
+      },
+      {
+        "path": "src/helpers/api.js",
+        "desc": "Integracja z zewnętrznymi API (np. OpenAI, Anthropic)"
+      },
+      {
+        "path": "src/helpers/logger.js",
+        "desc": "Logowanie i formatowanie zdarzeń (konsola)"
+      },
+      {
+        "path": "src/helpers/stats.js",
+        "desc": "Gromadzenie statystyk zapytań do LLM"
+      },
+      {
+        "path": "src/mcp/client.js",
+        "desc": "Klient łączący się z narzędziami MCP"
+      },
+      {
+        "path": "src/server.js",
+        "desc": ""
+      },
+      {
+        "path": "src/translator.js",
+        "desc": ""
+      }
+    ]
+  },
+  "01_03_upload_mcp": {
+    "id": "01_03_upload_mcp",
+    "readme": "# 01_03_upload_mcp\n\nUpload assistant that combines a local file MCP server with a remote upload MCP server.\n\n## Run\n\n```bash\nnpm run lesson3:upload_mcp\n```\n\n## Required setup\n\nBefore running, edit `mcp.json` and replace:\n\n```json\n\"url\": \"https://URL_TO_YOUR_MCP_SERVER/mcp\"\n```\n\nwith the real URL of the MCP deployment you created in the AI_devs lesson, for example:\n\n```json\n\"url\": \"https://your-domain.example/mcp\"\n```\n\nIf you leave the placeholder value in place, the example will stop with a validation error.\n\n## What it does\n\n1. Connects to the MCP servers listed in `mcp.json`\n2. Lists files in `workspace/`\n3. Uploads files that are not already recorded\n4. Saves results to `uploaded.md`\n\n## Tools\n\n| Server | Tool | Description |\n|--------|------|-------------|\n| `files` (stdio) | `fs_read`, `fs_search`, `fs_write`, `fs_manage` | Local file operations in `workspace/` |\n| `uploadthing` (http) | *(from your deployment)* | Upload files to the configured remote server |\n\n## Notes\n\nPlace files to upload in `workspace/`. The agent skips `uploaded.md` and previously uploaded entries.\n",
+    "files": [
+      {
+        "path": "README.md",
+        "desc": "Dokumentacja i opis danego przykładu"
+      },
+      {
+        "path": "app.js",
+        "desc": "Główny punkt wejścia"
+      },
+      {
+        "path": "mcp.json",
+        "desc": "Konfiguracja serwera MCP"
+      },
+      {
+        "path": "package-lock.json",
+        "desc": "Zablokowane wersje zależności"
+      },
+      {
+        "path": "package.json",
+        "desc": "Zależności i skrypty npm"
+      },
+      {
+        "path": "src/agent.js",
+        "desc": "Główna logika i pętla agenta AI"
+      },
+      {
+        "path": "src/ai.js",
+        "desc": ""
+      },
+      {
+        "path": "src/files/log-details.js",
+        "desc": ""
+      },
+      {
+        "path": "src/files/resolver.js",
+        "desc": ""
+      },
+      {
+        "path": "src/helpers/logger.js",
+        "desc": "Logowanie i formatowanie zdarzeń (konsola)"
+      },
+      {
+        "path": "src/helpers/stats.js",
+        "desc": "Gromadzenie statystyk zapytań do LLM"
+      },
+      {
+        "path": "src/mcp/client.js",
+        "desc": "Klient łączący się z narzędziami MCP"
+      },
+      {
+        "path": "src/mcp/config.js",
+        "desc": "Zmienne środowiskowe i konfiguracja"
+      }
+    ]
+  },
+  "01_04_audio": {
+    "id": "01_04_audio",
+    "readme": "# 01_04_audio\n\nAudio transcription, analysis, and text-to-speech with Gemini plus MCP file tools.\n\n## Run\n\n```bash\nnpm run lesson4:audio\n```\n\n## Required setup\n\n1. Copy `env.example` to `.env` in the repo root.\n2. Set one Responses API key: `OPENAI_API_KEY` or `OPENROUTER_API_KEY`.\n3. Set `GEMINI_API_KEY` for audio understanding and TTS.\n4. Put source files in `workspace/input/` when working with local audio.\n\n## What it does\n\n1. Reads files from `workspace/input/` through `files-mcp`\n2. Transcribes or analyzes audio with Gemini\n3. Generates speech to `workspace/output/` when asked\n4. Supports both local files and YouTube URLs\n\n## Notes\n\nUse `clear` to reset the conversation and `exit` to quit the REPL.\n",
+    "files": [
+      {
+        "path": "README.md",
+        "desc": "Dokumentacja i opis danego przykładu"
+      },
+      {
+        "path": "app.js",
+        "desc": "Główny punkt wejścia"
+      },
+      {
+        "path": "mcp.json",
+        "desc": "Konfiguracja serwera MCP"
+      },
+      {
+        "path": "package.json",
+        "desc": "Zależności i skrypty npm"
+      },
+      {
+        "path": "src/agent.js",
+        "desc": "Główna logika i pętla agenta AI"
+      },
+      {
+        "path": "src/api.js",
+        "desc": "Integracja z zewnętrznymi API (np. OpenAI, Anthropic)"
+      },
+      {
+        "path": "src/config.js",
+        "desc": "Zmienne środowiskowe i konfiguracja"
+      },
+      {
+        "path": "src/helpers/logger.js",
+        "desc": "Logowanie i formatowanie zdarzeń (konsola)"
+      },
+      {
+        "path": "src/helpers/shutdown.js",
+        "desc": "Zarządzanie bezpiecznym zamykaniem aplikacji"
+      },
+      {
+        "path": "src/helpers/stats.js",
+        "desc": "Gromadzenie statystyk zapytań do LLM"
+      },
+      {
+        "path": "src/mcp/client.js",
+        "desc": "Klient łączący się z narzędziami MCP"
+      },
+      {
+        "path": "src/native/gemini.js",
+        "desc": "Obsługa modelu językowego Gemini"
+      },
+      {
+        "path": "src/native/tools.js",
+        "desc": "Definicje natywnych narzędzi dla modelu"
+      },
+      {
+        "path": "src/repl.js",
+        "desc": "Interaktywna konsola (Read-Eval-Print Loop)"
+      }
+    ]
+  },
+  "01_04_image_editing": {
+    "id": "01_04_image_editing",
+    "readme": "# 01_04_image_editing\n\nInteractive image generation and editing with quality checks.\n\n## Run\n\n```bash\nnpm run lesson4:image_editing\n```\n\n## Required setup\n\n1. Copy `env.example` to `.env` in the repo root.\n2. Set one Responses API key: `OPENAI_API_KEY` or `OPENROUTER_API_KEY`.\n3. For image generation and editing, set `OPENROUTER_API_KEY` or `GEMINI_API_KEY`.\n4. Add optional source images to `workspace/input/`.\n\n## What it does\n\n1. Reads `workspace/style-guide.md` before generation\n2. Generates new images or edits reference images\n3. Analyzes the result for prompt adherence and quality issues\n4. Saves final files to `workspace/output/`\n\n## Notes\n\nIf both keys are present, image generation prefers OpenRouter with `google/gemini-3.1-flash-image-preview`. Use `clear` to reset the conversation and `exit` to quit the REPL.\n",
+    "files": [
+      {
+        "path": "README.md",
+        "desc": "Dokumentacja i opis danego przykładu"
+      },
+      {
+        "path": "app.js",
+        "desc": "Główny punkt wejścia"
+      },
+      {
+        "path": "mcp.json",
+        "desc": "Konfiguracja serwera MCP"
+      },
+      {
+        "path": "package.json",
+        "desc": "Zależności i skrypty npm"
+      },
+      {
+        "path": "src/agent.js",
+        "desc": "Główna logika i pętla agenta AI"
+      },
+      {
+        "path": "src/api.js",
+        "desc": "Integracja z zewnętrznymi API (np. OpenAI, Anthropic)"
+      },
+      {
+        "path": "src/config.js",
+        "desc": "Zmienne środowiskowe i konfiguracja"
+      },
+      {
+        "path": "src/helpers/logger.js",
+        "desc": "Logowanie i formatowanie zdarzeń (konsola)"
+      },
+      {
+        "path": "src/helpers/response.js",
+        "desc": ""
+      },
+      {
+        "path": "src/helpers/shutdown.js",
+        "desc": "Zarządzanie bezpiecznym zamykaniem aplikacji"
+      },
+      {
+        "path": "src/helpers/stats.js",
+        "desc": "Gromadzenie statystyk zapytań do LLM"
+      },
+      {
+        "path": "src/mcp/client.js",
+        "desc": "Klient łączący się z narzędziami MCP"
+      },
+      {
+        "path": "src/native/gemini.js",
+        "desc": "Obsługa modelu językowego Gemini"
+      },
+      {
+        "path": "src/native/tools.js",
+        "desc": "Definicje natywnych narzędzi dla modelu"
+      },
+      {
+        "path": "src/native/vision.js",
+        "desc": ""
+      },
+      {
+        "path": "src/repl.js",
+        "desc": "Interaktywna konsola (Read-Eval-Print Loop)"
+      }
+    ]
+  },
+  "01_04_image_guidance": {
+    "id": "01_04_image_guidance",
+    "readme": "# 01_04_image_guidance\n\nPose-guided image generation from JSON templates and reference images.\n\n## Run\n\n```bash\nnpm run lesson4:image_guidance\n```\n\n## Required setup\n\n1. Copy `env.example` to `.env` in the repo root.\n2. Set one Responses API key: `OPENAI_API_KEY` or `OPENROUTER_API_KEY`.\n3. For image generation, set `OPENROUTER_API_KEY` or `GEMINI_API_KEY`.\n4. Add pose reference files to `workspace/reference/`.\n5. Keep `workspace/template.json` as the base style template.\n\n## What it does\n\n1. Copies `workspace/template.json` into `workspace/prompts/`\n2. Edits only the subject section of the copied JSON\n3. Uses a pose reference image from `workspace/reference/`\n4. Generates final images to `workspace/output/`\n\n## Notes\n\nThe default workflow expects a walking pose reference such as `workspace/reference/walking-pose.png`. If both keys are present, image generation prefers OpenRouter with `google/gemini-3.1-flash-image-preview`. Use `clear` to reset the conversation and `exit` to quit the REPL.\n",
+    "files": [
+      {
+        "path": "README.md",
+        "desc": "Dokumentacja i opis danego przykładu"
+      },
+      {
+        "path": "app.js",
+        "desc": "Główny punkt wejścia"
+      },
+      {
+        "path": "mcp.json",
+        "desc": "Konfiguracja serwera MCP"
+      },
+      {
+        "path": "package.json",
+        "desc": "Zależności i skrypty npm"
+      },
+      {
+        "path": "src/agent.js",
+        "desc": "Główna logika i pętla agenta AI"
+      },
+      {
+        "path": "src/api.js",
+        "desc": "Integracja z zewnętrznymi API (np. OpenAI, Anthropic)"
+      },
+      {
+        "path": "src/config.js",
+        "desc": "Zmienne środowiskowe i konfiguracja"
+      },
+      {
+        "path": "src/helpers/logger.js",
+        "desc": "Logowanie i formatowanie zdarzeń (konsola)"
+      },
+      {
+        "path": "src/helpers/response.js",
+        "desc": ""
+      },
+      {
+        "path": "src/helpers/shutdown.js",
+        "desc": "Zarządzanie bezpiecznym zamykaniem aplikacji"
+      },
+      {
+        "path": "src/helpers/stats.js",
+        "desc": "Gromadzenie statystyk zapytań do LLM"
+      },
+      {
+        "path": "src/mcp/client.js",
+        "desc": "Klient łączący się z narzędziami MCP"
+      },
+      {
+        "path": "src/native/analyze-image/definition.js",
+        "desc": ""
+      },
+      {
+        "path": "src/native/analyze-image/handler.js",
+        "desc": ""
+      },
+      {
+        "path": "src/native/analyze-image/prompt.js",
+        "desc": ""
+      },
+      {
+        "path": "src/native/analyze-image/report.js",
+        "desc": ""
+      },
+      {
+        "path": "src/native/analyze-image/vision.js",
+        "desc": ""
+      },
+      {
+        "path": "src/native/create-image/definition.js",
+        "desc": ""
+      },
+      {
+        "path": "src/native/create-image/gemini.js",
+        "desc": "Obsługa modelu językowego Gemini"
+      },
+      {
+        "path": "src/native/create-image/handler.js",
+        "desc": ""
+      },
+      {
+        "path": "src/native/shared/image-files.js",
+        "desc": ""
+      },
+      {
+        "path": "src/native/tools.js",
+        "desc": "Definicje natywnych narzędzi dla modelu"
+      },
+      {
+        "path": "src/repl.js",
+        "desc": "Interaktywna konsola (Read-Eval-Print Loop)"
+      }
+    ]
+  },
+  "01_04_image_recognition": {
+    "id": "01_04_image_recognition",
+    "readme": "# 01_04_image_recognition\n\nVision-based image classification using MCP file operations and a native image-understanding tool.\n\n## Run\n\n```bash\nnpm run lesson4:image_recognition\n```\n\n## Required setup\n\n1. Copy `env.example` to `.env` in the repo root.\n2. Set one Responses API key: `OPENAI_API_KEY` or `OPENROUTER_API_KEY`.\n3. Put source images in `images/`.\n4. Keep character profiles in `knowledge/`.\n\n## What it does\n\n1. Reads the character descriptions from `knowledge/`\n2. Analyzes each file in `images/`\n3. Matches visible traits against the profiles\n4. Sorts files into `images/organized/<category>/`\n\n## Notes\n\nUse `knowledge/*.md` to define the classification rules before running the example.\n",
+    "files": [
+      {
+        "path": "README.md",
+        "desc": "Dokumentacja i opis danego przykładu"
+      },
+      {
+        "path": "app.js",
+        "desc": "Główny punkt wejścia"
+      },
+      {
+        "path": "images/SCR-20260131-pczh.jpeg",
+        "desc": ""
+      },
+      {
+        "path": "images/SCR-20260131-pdac.png",
+        "desc": ""
+      },
+      {
+        "path": "images/SCR-20260131-pday.png",
+        "desc": ""
+      },
+      {
+        "path": "images/SCR-20260131-pdck.jpeg",
+        "desc": ""
+      },
+      {
+        "path": "images/SCR-20260131-pddb.jpeg",
+        "desc": ""
+      },
+      {
+        "path": "images/SCR-20260131-pder.png",
+        "desc": ""
+      },
+      {
+        "path": "images/SCR-20260131-pdfn.png",
+        "desc": ""
+      },
+      {
+        "path": "images/SCR-20260131-pdfw.jpeg",
+        "desc": ""
+      },
+      {
+        "path": "images/SCR-20260131-pdgq.jpeg",
+        "desc": ""
+      },
+      {
+        "path": "images/organized/adam/SCR-20260131-pdac.png",
+        "desc": ""
+      },
+      {
+        "path": "images/organized/adam/SCR-20260131-pddb.jpeg",
+        "desc": ""
+      },
+      {
+        "path": "images/organized/adam/SCR-20260131-pdfn.png",
+        "desc": ""
+      },
+      {
+        "path": "images/organized/jakub/SCR-20260131-pczh.jpeg",
+        "desc": ""
+      },
+      {
+        "path": "images/organized/jakub/SCR-20260131-pddb.jpeg",
+        "desc": ""
+      },
+      {
+        "path": "images/organized/jakub/SCR-20260131-pdfw.jpeg",
+        "desc": ""
+      },
+      {
+        "path": "images/organized/mateusz/SCR-20260131-pday.png",
+        "desc": ""
+      },
+      {
+        "path": "images/organized/mateusz/SCR-20260131-pdck.jpeg",
+        "desc": ""
+      },
+      {
+        "path": "images/organized/mateusz/SCR-20260131-pdgq.jpeg",
+        "desc": ""
+      },
+      {
+        "path": "images/organized/unclassified/SCR-20260131-pder.png",
+        "desc": ""
+      },
+      {
+        "path": "knowledge/adam.md",
+        "desc": ""
+      },
+      {
+        "path": "knowledge/jakub.md",
+        "desc": ""
+      },
+      {
+        "path": "knowledge/mateusz.md",
+        "desc": ""
+      },
+      {
+        "path": "mcp.json",
+        "desc": "Konfiguracja serwera MCP"
+      },
+      {
+        "path": "package.json",
+        "desc": "Zależności i skrypty npm"
+      },
+      {
+        "path": "src/agent.js",
+        "desc": "Główna logika i pętla agenta AI"
+      },
+      {
+        "path": "src/api.js",
+        "desc": "Integracja z zewnętrznymi API (np. OpenAI, Anthropic)"
+      },
+      {
+        "path": "src/config.js",
+        "desc": "Zmienne środowiskowe i konfiguracja"
+      },
+      {
+        "path": "src/helpers/logger.js",
+        "desc": "Logowanie i formatowanie zdarzeń (konsola)"
+      },
+      {
+        "path": "src/helpers/response.js",
+        "desc": ""
+      },
+      {
+        "path": "src/helpers/stats.js",
+        "desc": "Gromadzenie statystyk zapytań do LLM"
+      },
+      {
+        "path": "src/mcp/client.js",
+        "desc": "Klient łączący się z narzędziami MCP"
+      },
+      {
+        "path": "src/native/tools.js",
+        "desc": "Definicje natywnych narzędzi dla modelu"
+      },
+      {
+        "path": "src/native/vision.js",
+        "desc": ""
+      }
+    ]
+  },
+  "01_04_json_image": {
+    "id": "01_04_json_image",
+    "readme": "# 01_04_json_image\n\nToken-efficient image generation from JSON prompt templates.\n\n## Run\n\n```bash\nnpm run lesson4:json_image\n```\n\n## Required setup\n\n1. Copy `env.example` to `.env` in the repo root.\n2. Set one Responses API key: `OPENAI_API_KEY` or `OPENROUTER_API_KEY`.\n3. For image generation, set `OPENROUTER_API_KEY` or `GEMINI_API_KEY`.\n\n## What it does\n\n1. Copies `workspace/template.json` into `workspace/prompts/`\n2. Edits only the subject section of the copied JSON\n3. Generates an image from the full JSON prompt\n4. Saves outputs to `workspace/output/`\n\n## Notes\n\nThis example is built around reproducible prompt files rather than one-off raw prompts. If both keys are present, image generation prefers OpenRouter with `google/gemini-3.1-flash-image-preview`. Use `clear` to reset the conversation and `exit` to quit the REPL.\n",
+    "files": [
+      {
+        "path": "README.md",
+        "desc": "Dokumentacja i opis danego przykładu"
+      },
+      {
+        "path": "app.js",
+        "desc": "Główny punkt wejścia"
+      },
+      {
+        "path": "mcp.json",
+        "desc": "Konfiguracja serwera MCP"
+      },
+      {
+        "path": "package.json",
+        "desc": "Zależności i skrypty npm"
+      },
+      {
+        "path": "src/agent.js",
+        "desc": "Główna logika i pętla agenta AI"
+      },
+      {
+        "path": "src/config.js",
+        "desc": "Zmienne środowiskowe i konfiguracja"
+      },
+      {
+        "path": "src/helpers/api.js",
+        "desc": "Integracja z zewnętrznymi API (np. OpenAI, Anthropic)"
+      },
+      {
+        "path": "src/helpers/logger.js",
+        "desc": "Logowanie i formatowanie zdarzeń (konsola)"
+      },
+      {
+        "path": "src/helpers/shutdown.js",
+        "desc": "Zarządzanie bezpiecznym zamykaniem aplikacji"
+      },
+      {
+        "path": "src/helpers/stats.js",
+        "desc": "Gromadzenie statystyk zapytań do LLM"
+      },
+      {
+        "path": "src/mcp/client.js",
+        "desc": "Klient łączący się z narzędziami MCP"
+      },
+      {
+        "path": "src/native/gemini.js",
+        "desc": "Obsługa modelu językowego Gemini"
+      },
+      {
+        "path": "src/native/tools.js",
+        "desc": "Definicje natywnych narzędzi dla modelu"
+      },
+      {
+        "path": "src/repl.js",
+        "desc": "Interaktywna konsola (Read-Eval-Print Loop)"
+      }
+    ]
+  },
+  "01_04_reports": {
+    "id": "01_04_reports",
+    "readme": "# 01_04_reports\n\nPDF report generation from HTML, local assets, and AI-generated images.\n\n## Run\n\n```bash\nnpm run lesson4:reports\n```\n\n## Required setup\n\n1. Copy `env.example` to `.env` in the repo root.\n2. Set one Responses API key: `OPENAI_API_KEY` or `OPENROUTER_API_KEY`.\n3. For AI image generation inside reports, set `OPENROUTER_API_KEY` or `GEMINI_API_KEY`.\n4. Put local assets in `workspace/input/` when needed.\n\n## What it does\n\n1. Reads `workspace/template.html` and `workspace/style-guide.md`\n2. Writes working HTML files to `workspace/html/`\n3. Optionally generates images with OpenRouter or Gemini\n4. Converts the final HTML to PDF in `workspace/output/`\n\n## Notes\n\nIf both keys are present, report image generation prefers OpenRouter with `google/gemini-3.1-flash-image-preview`. Use `clear` to reset the conversation and `exit` to quit the REPL.\n",
+    "files": [
+      {
+        "path": "README.md",
+        "desc": "Dokumentacja i opis danego przykładu"
+      },
+      {
+        "path": "app.js",
+        "desc": "Główny punkt wejścia"
+      },
+      {
+        "path": "mcp.json",
+        "desc": "Konfiguracja serwera MCP"
+      },
+      {
+        "path": "package.json",
+        "desc": "Zależności i skrypty npm"
+      },
+      {
+        "path": "src/agent.js",
+        "desc": "Główna logika i pętla agenta AI"
+      },
+      {
+        "path": "src/config.js",
+        "desc": "Zmienne środowiskowe i konfiguracja"
+      },
+      {
+        "path": "src/helpers/api.js",
+        "desc": "Integracja z zewnętrznymi API (np. OpenAI, Anthropic)"
+      },
+      {
+        "path": "src/helpers/logger.js",
+        "desc": "Logowanie i formatowanie zdarzeń (konsola)"
+      },
+      {
+        "path": "src/helpers/shutdown.js",
+        "desc": "Zarządzanie bezpiecznym zamykaniem aplikacji"
+      },
+      {
+        "path": "src/helpers/stats.js",
+        "desc": "Gromadzenie statystyk zapytań do LLM"
+      },
+      {
+        "path": "src/mcp/client.js",
+        "desc": "Klient łączący się z narzędziami MCP"
+      },
+      {
+        "path": "src/native/gemini.js",
+        "desc": "Obsługa modelu językowego Gemini"
+      },
+      {
+        "path": "src/native/tools.js",
+        "desc": "Definicje natywnych narzędzi dla modelu"
+      },
+      {
+        "path": "src/repl.js",
+        "desc": "Interaktywna konsola (Read-Eval-Print Loop)"
+      }
+    ]
+  },
+  "01_04_video": {
+    "id": "01_04_video",
+    "readme": "# 01_04_video\n\nVideo analysis, transcription, extraction, and question answering with Gemini plus MCP file tools.\n\n## Run\n\n```bash\nnpm run lesson4:video\n```\n\n## Required setup\n\n1. Copy `env.example` to `.env` in the repo root.\n2. Set one Responses API key: `OPENAI_API_KEY` or `OPENROUTER_API_KEY`.\n3. Set `GEMINI_API_KEY` for video processing.\n4. Put local videos in `workspace/input/` when not using YouTube URLs.\n\n## What it does\n\n1. Reads video files through `files-mcp`\n2. Analyzes, transcribes, or extracts structured information from video\n3. Saves JSON outputs to `workspace/output/` when requested\n4. Supports both local video files and public YouTube URLs\n\n## Notes\n\nUse `clear` to reset the conversation and `exit` to quit the REPL.\n",
+    "files": [
+      {
+        "path": "README.md",
+        "desc": "Dokumentacja i opis danego przykładu"
+      },
+      {
+        "path": "app.js",
+        "desc": "Główny punkt wejścia"
+      },
+      {
+        "path": "mcp.json",
+        "desc": "Konfiguracja serwera MCP"
+      },
+      {
+        "path": "package.json",
+        "desc": "Zależności i skrypty npm"
+      },
+      {
+        "path": "src/agent.js",
+        "desc": "Główna logika i pętla agenta AI"
+      },
+      {
+        "path": "src/config.js",
+        "desc": "Zmienne środowiskowe i konfiguracja"
+      },
+      {
+        "path": "src/helpers/api.js",
+        "desc": "Integracja z zewnętrznymi API (np. OpenAI, Anthropic)"
+      },
+      {
+        "path": "src/helpers/logger.js",
+        "desc": "Logowanie i formatowanie zdarzeń (konsola)"
+      },
+      {
+        "path": "src/helpers/shutdown.js",
+        "desc": "Zarządzanie bezpiecznym zamykaniem aplikacji"
+      },
+      {
+        "path": "src/helpers/stats.js",
+        "desc": "Gromadzenie statystyk zapytań do LLM"
+      },
+      {
+        "path": "src/mcp/client.js",
+        "desc": "Klient łączący się z narzędziami MCP"
+      },
+      {
+        "path": "src/native/gemini.js",
+        "desc": "Obsługa modelu językowego Gemini"
+      },
+      {
+        "path": "src/native/tools.js",
+        "desc": "Definicje natywnych narzędzi dla modelu"
+      },
+      {
+        "path": "src/repl.js",
+        "desc": "Interaktywna konsola (Read-Eval-Print Loop)"
+      }
+    ]
+  },
+  "01_04_video_generation": {
+    "id": "01_04_video_generation",
+    "readme": "# 01_04_video_generation\n\nFrame-based video generation with OpenRouter or Gemini for frames and Kling via Replicate for animation.\n\n## Run\n\n```bash\nnpm run lesson4:video_generation\n```\n\n## Required setup\n\n1. Copy `env.example` to `.env` in the repo root.\n2. Set one Responses API key: `OPENAI_API_KEY` or `OPENROUTER_API_KEY`.\n3. For frame generation, set `OPENROUTER_API_KEY` or `GEMINI_API_KEY`.\n4. Set `REPLICATE_API_TOKEN` for Kling video generation.\n\n## What it does\n\n1. Copies `workspace/template.json` into `workspace/prompts/`\n2. Generates a start frame and an end frame for the same scene\n3. Animates the transition into a video\n4. Saves frames and videos to `workspace/output/`\n\n## Notes\n\nThe best results come from using both start and end frames for the animation. `GEMINI_API_KEY` is still required if you want native video analysis, while frame generation prefers OpenRouter with `google/gemini-3.1-flash-image-preview` when both keys are present. Use `clear` to reset the conversation and `exit` to quit the REPL.\n",
+    "files": [
+      {
+        "path": "README.md",
+        "desc": "Dokumentacja i opis danego przykładu"
+      },
+      {
+        "path": "app.js",
+        "desc": "Główny punkt wejścia"
+      },
+      {
+        "path": "mcp.json",
+        "desc": "Konfiguracja serwera MCP"
+      },
+      {
+        "path": "package.json",
+        "desc": "Zależności i skrypty npm"
+      },
+      {
+        "path": "src/agent.js",
+        "desc": "Główna logika i pętla agenta AI"
+      },
+      {
+        "path": "src/config.js",
+        "desc": "Zmienne środowiskowe i konfiguracja"
+      },
+      {
+        "path": "src/helpers/api.js",
+        "desc": "Integracja z zewnętrznymi API (np. OpenAI, Anthropic)"
+      },
+      {
+        "path": "src/helpers/logger.js",
+        "desc": "Logowanie i formatowanie zdarzeń (konsola)"
+      },
+      {
+        "path": "src/helpers/shutdown.js",
+        "desc": "Zarządzanie bezpiecznym zamykaniem aplikacji"
+      },
+      {
+        "path": "src/helpers/stats.js",
+        "desc": "Gromadzenie statystyk zapytań do LLM"
+      },
+      {
+        "path": "src/mcp/client.js",
+        "desc": "Klient łączący się z narzędziami MCP"
+      },
+      {
+        "path": "src/native/gemini.js",
+        "desc": "Obsługa modelu językowego Gemini"
+      },
+      {
+        "path": "src/native/replicate.js",
+        "desc": ""
+      },
+      {
+        "path": "src/native/tools.js",
+        "desc": "Definicje natywnych narzędzi dla modelu"
+      },
+      {
+        "path": "src/repl.js",
+        "desc": "Interaktywna konsola (Read-Eval-Print Loop)"
+      }
+    ]
+  },
+  "01_05_agent": {
+    "id": "01_05_agent",
+    "readme": "# Agent API\n\nMulti-provider AI agent server with tool execution, MCP integration, and markdown-based agent templates.\n\n## Quick Start\n\n```bash\nnpm install\ncp .env.example .env   # fill in API keys\nnpm run db:push         # create SQLite tables\nnpm run db:seed         # seed default user\nnpm run dev             # start dev server (http://127.0.0.1:3000)\n```\n\n## Example Requests\n\nSend a message to the `alice` agent:\n\n```bash\ncurl -s http://127.0.0.1:3000/api/chat/completions \\\n  -H \"Authorization: Bearer 0f47acce-3aa7-4b58-9389-21b2940ecc70\" \\\n  -H \"Content-Type: application/json\" \\\n  -d '{\"agent\":\"alice\",\"input\":\"What is 42 * 17?\"}' | jq\n```\n\nMulti-turn conversation — first call returns a `sessionId`, second call continues with streaming:\n\n```bash\nSESSION=$(curl -s http://127.0.0.1:3000/api/chat/completions \\\n  -H \"Authorization: Bearer 0f47acce-3aa7-4b58-9389-21b2940ecc70\" \\\n  -H \"Content-Type: application/json\" \\\n  -d '{\"agent\":\"alice\",\"input\":\"Remember: my name is Adam\"}' | jq -r '.data.sessionId')\n\ncurl -N http://127.0.0.1:3000/api/chat/completions \\\n  -H \"Authorization: Bearer 0f47acce-3aa7-4b58-9389-21b2940ecc70\" \\\n  -H \"Content-Type: application/json\" \\\n  -d \"{\\\"agent\\\":\\\"alice\\\",\\\"sessionId\\\":\\\"$SESSION\\\",\\\"input\\\":\\\"What is my name?\\\",\\\"stream\\\":true}\"\n```\n\nUse a specific model without an agent template:\n\n```bash\ncurl -s http://127.0.0.1:3000/api/chat/completions \\\n  -H \"Authorization: Bearer 0f47acce-3aa7-4b58-9389-21b2940ecc70\" \\\n  -H \"Content-Type: application/json\" \\\n  -d '{\"model\":\"openai:gpt-4.1-mini\",\"input\":\"Say hello\"}' | jq\n```\n\nCheck health:\n\n```bash\ncurl -s http://127.0.0.1:3000/health | jq\n```\n\nList MCP servers:\n\n```bash\ncurl -s http://127.0.0.1:3000/api/mcp/servers \\\n  -H \"Authorization: Bearer 0f47acce-3aa7-4b58-9389-21b2940ecc70\" | jq\n```\n\n## Environment\n\n| Variable | Required | Description |\n|---|---|---|\n| `OPENAI_API_KEY` | one of | OpenAI API key |\n| `GEMINI_API_KEY` | one of | Google Gemini API key |\n| `AUTH_TOKEN` | yes | Bearer token for API authentication |\n| `DATABASE_URL` | no | SQLite path, e.g. `file:.data/agent.db`. Omit for in-memory. |\n| `DATABASE_AUTH_TOKEN` | no | LibSQL auth token (Turso) |\n| `WORKSPACE_PATH` | no | Agent templates directory. Default: `./workspace` |\n| `PORT` | no | Server port. Default: `3000` |\n| `HOST` | no | Bind address. Default: `127.0.0.1` |\n| `CORS_ORIGIN` | no | Allowed origins. Default: `*` |\n| `BODY_LIMIT` | no | Max request body in bytes. Default: `1048576` |\n| `TIMEOUT_MS` | no | Request timeout in ms. Default: `60000` |\n| `AGENT_MAX_TURNS` | no | Max agentic loop turns. Default: `10` |\n| `LANGFUSE_SECRET_KEY` | no | Langfuse secret key for tracing |\n| `LANGFUSE_PUBLIC_KEY` | no | Langfuse public key for tracing |\n| `LANGFUSE_BASE_URL` | no | Langfuse API URL. Default: `https://cloud.langfuse.com` |\n\n## Authentication\n\nAPI requests require a `Bearer` token in the `Authorization` header. Tokens are hashed (SHA-256) and matched against users in the database.\n\n```bash\n# Seed creates a default user with this key:\ncurl -H \"Authorization: Bearer 0f47acce-3aa7-4b58-9389-21b2940ecc70\" ...\n```\n\n## API Endpoints\n\n### Chat\n\n**`POST /api/chat/completions`** — Run an agent turn.\n\n```json\n{\n  \"agent\": \"alice\",\n  \"input\": \"What is 42 * 17?\",\n  \"model\": \"openai:gpt-4.1\",\n  \"stream\": false,\n  \"sessionId\": \"optional-session-id\",\n  \"temperature\": 0.7,\n  \"maxTokens\": 4096,\n  \"instructions\": \"Override system prompt\",\n  \"tools\": [\n    { \"type\": \"function\", \"name\": \"my_tool\", \"description\": \"...\", \"parameters\": {} },\n    { \"type\": \"web_search\" }\n  ]\n}\n```\n\n| Field | Type | Description |\n|---|---|---|\n| `agent` | string? | Load agent template from `workspace/agents/{name}.agent.md` |\n| `input` | string \\| array | User message or structured input items |\n| `model` | string? | `provider:model` format. Default: `openai:gpt-4.1` |\n| `stream` | boolean? | SSE streaming. Default: `false` |\n| `sessionId` | string? | Resume existing session |\n| `instructions` | string? | Override system prompt (overrides agent template) |\n| `tools` | array? | Override tools (overrides agent template) |\n| `temperature` | number? | 0–2 |\n| `maxTokens` | number? | Max output tokens |\n\nResponse:\n\n```json\n{\n  \"data\": {\n    \"id\": \"agent-uuid\",\n    \"sessionId\": \"session-uuid\",\n    \"status\": \"completed\",\n    \"model\": \"openai:gpt-4.1\",\n    \"output\": [\n      { \"type\": \"text\", \"text\": \"714\" },\n      { \"type\": \"function_call\", \"callId\": \"...\", \"name\": \"calculator\", \"arguments\": {} }\n    ],\n    \"waitingFor\": []\n  },\n  \"error\": null\n}\n```\n\nStatus `completed` returns `200`. Status `waiting` returns `202` with `waitingFor` describing pending tool calls.\n\n**`POST /api/chat/agents/:agentId/deliver`** — Deliver result to a waiting agent.\n\n```json\n{\n  \"callId\": \"call-uuid\",\n  \"output\": \"{\\\"result\\\": \\\"done\\\"}\",\n  \"isError\": false\n}\n```\n\n**`GET /api/chat/agents/:agentId`** — Get agent status.\n\n### MCP Servers\n\n**`GET /api/mcp/servers`** — List MCP servers and connection status.\n\n```json\n{\n  \"data\": {\n    \"servers\": [\n      { \"name\": \"files\", \"status\": \"connected\" },\n      { \"name\": \"remote\", \"status\": \"auth_required\" }\n    ]\n  }\n}\n```\n\n**`GET /api/mcp/:server/auth`** — Get OAuth authorization URL for a server that requires auth.\n\n**`GET /mcp/:server/callback`** — OAuth redirect target (public, no auth). Renders a styled HTML page with connection status.\n\n### Health\n\n**`GET /health`** — Returns `{ \"status\": \"ok\" }`.\n\n## Agent Templates\n\nDefine agents as markdown files in `workspace/agents/`. The filename is `{name}.agent.md`.\n\n```markdown\n---\nname: alice\nmodel: gemini:gemini-3-flash-preview\ntools:\n  - calculator\n  - web_search\n  - files__fs_read\n  - files__fs_write\n---\n\nYou are Alice, a helpful assistant.\n\n## Guidelines\n\n1. Always use tools when appropriate.\n2. Be concise.\n```\n\n**Frontmatter fields:**\n\n| Field | Description |\n|---|---|\n| `name` | Agent name (defaults to filename) |\n| `model` | `provider:model` format. Default: `openai:gpt-4.1` |\n| `tools` | Array of tool names |\n\n**Body** is the system prompt (instructions).\n\nTemplates are read from disk on every request — edit and test without restart.\n\n## Tools\n\n### Built-in\n\n| Name | Type | Description |\n|---|---|---|\n| `calculator` | sync | Basic math: `add`, `subtract`, `multiply`, `divide` |\n| `web_search` | native | Provider-native web search (OpenAI: `web_search_preview`, Gemini: `google_search`) |\n\n### MCP Tools\n\nMCP tools are prefixed with `server__toolName`. Reference them in agent templates:\n\n```yaml\ntools:\n  - files__fs_read\n  - files__fs_write\n```\n\nAvailable MCP tools depend on connected servers. Use `GET /api/mcp/servers` to check status.\n\n## MCP Configuration\n\n### `.mcp.json`\n\nPlace in project root. Defines MCP server connections.\n\n```json\n{\n  \"mcpServers\": {\n    \"files\": {\n      \"transport\": \"stdio\",\n      \"command\": \"npx\",\n      \"args\": [\"tsx\", \"../mcp/files-mcp/src/index.ts\"],\n      \"env\": {\n        \"LOG_LEVEL\": \"info\",\n        \"FS_ROOT\": \"./workspace\"\n      }\n    },\n    \"remote\": {\n      \"transport\": \"http\",\n      \"url\": \"https://mcp-server.example.com/mcp\",\n      \"headers\": {\n        \"X-Custom\": \"value\"\n      }\n    }\n  }\n}\n```\n\n**Stdio servers** spawn a child process. Fields: `command`, `args`, `env`, `cwd`.\n\n**HTTP servers** connect over Streamable HTTP. Fields: `url`, `headers`. OAuth is handled automatically — if the server returns `401`, the OAuth flow starts.\n\n### `.mcp.oauth.json`\n\nAuto-generated. Stores OAuth tokens per server. **Gitignored** — never commit.\n\n### OAuth Flow\n\n1. Server starts → connects to MCP servers\n2. HTTP server returns 401 → status becomes `auth_required`\n3. `GET /api/mcp/:server/auth` → returns `authorizationUrl`\n4. Open URL in browser → authorize → redirected to `/mcp/:server/callback`\n5. Callback exchanges code for tokens → connection established\n6. Tokens persist in `.mcp.oauth.json` across restarts\n\n## Providers\n\nModels use `provider:model` format:\n\n| Provider | Example models |\n|---|---|\n| `openai` | `openai:gpt-4.1`, `openai:gpt-4.1-mini` |\n| `gemini` | `gemini:gemini-3-flash-preview`, `gemini:gemini-2.5-pro-preview-05-06` |\n\n## Database\n\nSQLite via Drizzle ORM. Tables: `users`, `sessions`, `agents`, `items`.\n\n```bash\nnpm run db:push      # apply schema to database\nnpm run db:seed      # seed default user\nnpm run db:generate  # generate migration files\nnpm run db:migrate   # run migrations\nnpm run db:studio    # open Drizzle Studio UI\n```\n\n## Project Structure\n\n```\nsrc/\n  index.ts              # entry point\n  lib/\n    app.ts              # Hono app, middleware\n    config.ts           # env config\n    runtime.ts          # runtime init (providers, tools, MCP, agents)\n  routes/\n    chat.ts             # chat endpoints\n    chat.schema.ts      # request validation\n    chat.service.ts     # chat business logic\n    mcp.ts              # MCP OAuth endpoints\n  runtime/\n    runner.ts           # agentic loop (turn execution, tool handling)\n    context.ts          # runtime + execution context types\n  providers/\n    openai/adapter.ts   # OpenAI Responses API adapter\n    gemini/adapter.ts   # Gemini Interactions API adapter\n    registry.ts         # provider registry\n  domain/\n    agent.ts            # agent entity, state transitions\n    session.ts          # session entity\n    item.ts             # conversation items (message, function_call, etc.)\n  tools/\n    registry.ts         # tool registry\n    definitions/        # built-in tool implementations\n  mcp/\n    client.ts           # MCP client manager\n    oauth.ts            # OAuth provider (file-backed tokens)\n    types.ts            # MCP config types\n  workspace/\n    loader.ts           # agent template loader (frontmatter + markdown)\n  repositories/\n    sqlite/             # Drizzle ORM repository implementation\n    memory.ts           # in-memory repository (no database)\n  middleware/\n    auth.ts             # bearer token authentication\n  db/\n    seed.ts             # database seeder\n\nworkspace/\n  agents/\n    alice.agent.md      # agent template\n```\n",
+    "files": [
+      {
+        "path": "README.md",
+        "desc": "Dokumentacja i opis danego przykładu"
+      },
+      {
+        "path": "drizzle/0000_romantic_union_jack.sql",
+        "desc": ""
+      },
+      {
+        "path": "drizzle/meta/0000_snapshot.json",
+        "desc": ""
+      },
+      {
+        "path": "drizzle/meta/_journal.json",
+        "desc": ""
+      },
+      {
+        "path": "drizzle.config.ts",
+        "desc": ""
+      },
+      {
+        "path": "package-lock.json",
+        "desc": "Zablokowane wersje zależności"
+      },
+      {
+        "path": "package.json",
+        "desc": "Zależności i skrypty npm"
+      },
+      {
+        "path": "spec/hono.md",
+        "desc": ""
+      },
+      {
+        "path": "spec/interactions.md",
+        "desc": ""
+      },
+      {
+        "path": "spec/responses.md",
+        "desc": ""
+      },
+      {
+        "path": "src/config/models.ts",
+        "desc": ""
+      },
+      {
+        "path": "src/db/seed.ts",
+        "desc": ""
+      },
+      {
+        "path": "src/db/setup.ts",
+        "desc": ""
+      },
+      {
+        "path": "src/domain/agent.ts",
+        "desc": "Główna logika i pętla agenta AI"
+      },
+      {
+        "path": "src/domain/index.ts",
+        "desc": "Główny punkt wejścia (TypeScript)"
+      },
+      {
+        "path": "src/domain/item.ts",
+        "desc": ""
+      },
+      {
+        "path": "src/domain/session.ts",
+        "desc": ""
+      },
+      {
+        "path": "src/domain/types.ts",
+        "desc": ""
+      },
+      {
+        "path": "src/domain/user.ts",
+        "desc": ""
+      },
+      {
+        "path": "src/errors/index.ts",
+        "desc": "Główny punkt wejścia (TypeScript)"
+      },
+      {
+        "path": "src/events/emitter.ts",
+        "desc": ""
+      },
+      {
+        "path": "src/events/index.ts",
+        "desc": "Główny punkt wejścia (TypeScript)"
+      },
+      {
+        "path": "src/events/types.ts",
+        "desc": ""
+      },
+      {
+        "path": "src/examples.ts",
+        "desc": ""
+      },
+      {
+        "path": "src/index.ts",
+        "desc": "Główny punkt wejścia (TypeScript)"
+      },
+      {
+        "path": "src/lib/app.ts",
+        "desc": ""
+      },
+      {
+        "path": "src/lib/config.ts",
+        "desc": "Zmienne środowiskowe i konfiguracja"
+      },
+      {
+        "path": "src/lib/event-logger.ts",
+        "desc": ""
+      },
+      {
+        "path": "src/lib/langfuse-subscriber.ts",
+        "desc": ""
+      },
+      {
+        "path": "src/lib/logger.ts",
+        "desc": "Logowanie i formatowanie zdarzeń (konsola)"
+      },
+      {
+        "path": "src/lib/runtime.ts",
+        "desc": ""
+      },
+      {
+        "path": "src/lib/tracing.ts",
+        "desc": ""
+      },
+      {
+        "path": "src/mcp/client.ts",
+        "desc": "Klient łączący się z narzędziami MCP"
+      },
+      {
+        "path": "src/mcp/index.ts",
+        "desc": "Główny punkt wejścia (TypeScript)"
+      },
+      {
+        "path": "src/mcp/oauth.ts",
+        "desc": ""
+      },
+      {
+        "path": "src/mcp/types.ts",
+        "desc": ""
+      },
+      {
+        "path": "src/middleware/auth.ts",
+        "desc": ""
+      },
+      {
+        "path": "src/middleware/index.ts",
+        "desc": "Główny punkt wejścia (TypeScript)"
+      },
+      {
+        "path": "src/middleware/rate-limit.ts",
+        "desc": ""
+      },
+      {
+        "path": "src/providers/gemini/adapter.ts",
+        "desc": ""
+      },
+      {
+        "path": "src/providers/gemini/index.ts",
+        "desc": "Główny punkt wejścia (TypeScript)"
+      },
+      {
+        "path": "src/providers/index.ts",
+        "desc": "Główny punkt wejścia (TypeScript)"
+      },
+      {
+        "path": "src/providers/openai/adapter.ts",
+        "desc": ""
+      },
+      {
+        "path": "src/providers/openai/index.ts",
+        "desc": "Główny punkt wejścia (TypeScript)"
+      },
+      {
+        "path": "src/providers/registry.ts",
+        "desc": ""
+      },
+      {
+        "path": "src/providers/types.ts",
+        "desc": ""
+      },
+      {
+        "path": "src/repositories/index.ts",
+        "desc": "Główny punkt wejścia (TypeScript)"
+      },
+      {
+        "path": "src/repositories/memory.ts",
+        "desc": ""
+      },
+      {
+        "path": "src/repositories/sqlite/index.ts",
+        "desc": "Główny punkt wejścia (TypeScript)"
+      },
+      {
+        "path": "src/repositories/sqlite/schema.ts",
+        "desc": ""
+      },
+      {
+        "path": "src/repositories/types.ts",
+        "desc": ""
+      },
+      {
+        "path": "src/routes/chat.response.ts",
+        "desc": ""
+      },
+      {
+        "path": "src/routes/chat.schema.ts",
+        "desc": ""
+      },
+      {
+        "path": "src/routes/chat.service.ts",
+        "desc": ""
+      },
+      {
+        "path": "src/routes/chat.ts",
+        "desc": ""
+      },
+      {
+        "path": "src/routes/chat.turn.ts",
+        "desc": ""
+      },
+      {
+        "path": "src/routes/index.ts",
+        "desc": "Główny punkt wejścia (TypeScript)"
+      },
+      {
+        "path": "src/routes/mcp.ts",
+        "desc": ""
+      },
+      {
+        "path": "src/runtime/context.ts",
+        "desc": ""
+      },
+      {
+        "path": "src/runtime/index.ts",
+        "desc": "Główny punkt wejścia (TypeScript)"
+      },
+      {
+        "path": "src/runtime/runner.ts",
+        "desc": ""
+      },
+      {
+        "path": "src/tools/definitions/calculator.ts",
+        "desc": ""
+      },
+      {
+        "path": "src/tools/definitions/delegate.ts",
+        "desc": ""
+      },
+      {
+        "path": "src/tools/definitions/index.ts",
+        "desc": "Główny punkt wejścia (TypeScript)"
+      },
+      {
+        "path": "src/tools/index.ts",
+        "desc": "Główny punkt wejścia (TypeScript)"
+      },
+      {
+        "path": "src/tools/registry.ts",
+        "desc": ""
+      },
+      {
+        "path": "src/tools/types.ts",
+        "desc": ""
+      },
+      {
+        "path": "src/utils/pruning.ts",
+        "desc": ""
+      },
+      {
+        "path": "src/utils/summarization.ts",
+        "desc": ""
+      },
+      {
+        "path": "src/utils/tokens.ts",
+        "desc": ""
+      },
+      {
+        "path": "tsconfig.json",
+        "desc": "Konfiguracja kompilatora TypeScript"
+      }
+    ]
+  },
+  "01_05_confirmation": {
+    "id": "01_05_confirmation",
+    "readme": "# 01_05_confirmation\n\nInteractive file-and-email agent with whitelist enforcement and a terminal confirmation step before sending email.\n\n## Run\n\n```bash\nnpm run lesson5:confirmation\n```\n\n## Required setup\n\n1. Copy `env.example` to `.env` in the repo root.\n2. Set one Responses API key: `OPENAI_API_KEY` or `OPENROUTER_API_KEY`.\n3. Set `RESEND_API_KEY` and `RESEND_FROM`.\n4. Edit `workspace/whitelist.json` with allowed recipients or domains.\n\n## What it does\n\n1. Connects to the local file MCP server from `mcp.json`\n2. Lets the agent read, search, and write workspace files\n3. Drafts emails with the model using `gpt-5.4`\n4. Requires explicit terminal confirmation before `send_email` is executed\n\n## Notes\n\nThe whitelist supports exact emails like `user@example.com` and whole domains like `@example.com`. Use `clear` to reset the conversation and `exit` to quit the REPL.\n",
+    "files": [
+      {
+        "path": "AGENTS.md",
+        "desc": ""
+      },
+      {
+        "path": "README.md",
+        "desc": "Dokumentacja i opis danego przykładu"
+      },
+      {
+        "path": "app.js",
+        "desc": "Główny punkt wejścia"
+      },
+      {
+        "path": "mcp.json",
+        "desc": "Konfiguracja serwera MCP"
+      },
+      {
+        "path": "package-lock.json",
+        "desc": "Zablokowane wersje zależności"
+      },
+      {
+        "path": "package.json",
+        "desc": "Zależności i skrypty npm"
+      },
+      {
+        "path": "src/agent.js",
+        "desc": "Główna logika i pętla agenta AI"
+      },
+      {
+        "path": "src/config.js",
+        "desc": "Zmienne środowiskowe i konfiguracja"
+      },
+      {
+        "path": "src/helpers/api.js",
+        "desc": "Integracja z zewnętrznymi API (np. OpenAI, Anthropic)"
+      },
+      {
+        "path": "src/helpers/logger.js",
+        "desc": "Logowanie i formatowanie zdarzeń (konsola)"
+      },
+      {
+        "path": "src/helpers/shutdown.js",
+        "desc": "Zarządzanie bezpiecznym zamykaniem aplikacji"
+      },
+      {
+        "path": "src/helpers/stats.js",
+        "desc": "Gromadzenie statystyk zapytań do LLM"
+      },
+      {
+        "path": "src/mcp/client.js",
+        "desc": "Klient łączący się z narzędziami MCP"
+      },
+      {
+        "path": "src/native/resend.js",
+        "desc": ""
+      },
+      {
+        "path": "src/native/tools.js",
+        "desc": "Definicje natywnych narzędzi dla modelu"
+      },
+      {
+        "path": "src/repl.js",
+        "desc": "Interaktywna konsola (Read-Eval-Print Loop)"
+      }
+    ]
+  },
+  "02_01_agentic_rag": {
+    "id": "02_01_agentic_rag",
+    "readme": "# 02_01_agentic_rag\n\nAgentic RAG with multi-step retrieval over MCP file tools.\n\n## Run\n\n```bash\nnpm run lesson6:agentic_rag\n```\n\n## Required setup\n\n1. Copy `env.example` to `.env` in the repo root.\n2. Set one Responses API key: `OPENAI_API_KEY` or `OPENROUTER_API_KEY`.\n\n## What it does\n\n1. Connects to an MCP file server (`list`, `search`, `read`)\n2. Runs an agentic loop — the model decides which files to scan, search, and read\n3. Iterates through multiple search angles (synonyms, related terms) before answering\n4. Maintains conversation history for follow-up questions\n\n## Notes\n\nOn startup the agent asks for confirmation because it can consume a noticeable number of tokens. A pre-recorded example session is available in `demo/example.md`. Use `clear` to reset conversation and `exit` to quit the REPL.\n",
+    "files": [
+      {
+        "path": "README.md",
+        "desc": "Dokumentacja i opis danego przykładu"
+      },
+      {
+        "path": "app.js",
+        "desc": "Główny punkt wejścia"
+      },
+      {
+        "path": "demo/example.md",
+        "desc": ""
+      },
+      {
+        "path": "mcp.json",
+        "desc": "Konfiguracja serwera MCP"
+      },
+      {
+        "path": "package-lock.json",
+        "desc": "Zablokowane wersje zależności"
+      },
+      {
+        "path": "package.json",
+        "desc": "Zależności i skrypty npm"
+      },
+      {
+        "path": "src/agent.js",
+        "desc": "Główna logika i pętla agenta AI"
+      },
+      {
+        "path": "src/config.js",
+        "desc": "Zmienne środowiskowe i konfiguracja"
+      },
+      {
+        "path": "src/helpers/api.js",
+        "desc": "Integracja z zewnętrznymi API (np. OpenAI, Anthropic)"
+      },
+      {
+        "path": "src/helpers/logger.js",
+        "desc": "Logowanie i formatowanie zdarzeń (konsola)"
+      },
+      {
+        "path": "src/helpers/shutdown.js",
+        "desc": "Zarządzanie bezpiecznym zamykaniem aplikacji"
+      },
+      {
+        "path": "src/helpers/stats.js",
+        "desc": "Gromadzenie statystyk zapytań do LLM"
+      },
+      {
+        "path": "src/mcp/client.js",
+        "desc": "Klient łączący się z narzędziami MCP"
+      },
+      {
+        "path": "src/repl.js",
+        "desc": "Interaktywna konsola (Read-Eval-Print Loop)"
+      }
+    ]
+  },
+  "02_02_chunking": {
+    "id": "02_02_chunking",
+    "readme": "# 02_02_chunking\n\nFour text chunking strategies compared side-by-side.\n\n## Run\n\n```bash\nnpm run lesson7:chunking\n```\n\n## Required setup\n\n1. Copy `env.example` to `.env` in the repo root.\n2. Set one Responses API key: `OPENAI_API_KEY` or `OPENROUTER_API_KEY` (needed for context-enriched and topic-based strategies).\n\n## What it does\n\n1. Reads `workspace/example.md`\n2. Runs four chunking strategies on the same text:\n   - **Characters** — fixed-size windows with overlap\n   - **Separators** — splits on headings and paragraph boundaries\n   - **Context** — separator-based chunks enriched with an LLM-generated context prefix\n   - **Topics** — LLM identifies logical topic boundaries and groups text accordingly\n3. Saves each result as JSONL in `workspace/example-[strategy].jsonl`\n\n## Notes\n\nThe character and separator strategies are purely local. The context and topic strategies call the LLM, so they consume tokens. Pre-generated outputs are already present in `workspace/`.\n",
+    "files": [
+      {
+        "path": "README.md",
+        "desc": "Dokumentacja i opis danego przykładu"
+      },
+      {
+        "path": "app.js",
+        "desc": "Główny punkt wejścia"
+      },
+      {
+        "path": "package.json",
+        "desc": "Zależności i skrypty npm"
+      },
+      {
+        "path": "src/api.js",
+        "desc": "Integracja z zewnętrznymi API (np. OpenAI, Anthropic)"
+      },
+      {
+        "path": "src/strategies/characters.js",
+        "desc": ""
+      },
+      {
+        "path": "src/strategies/context.js",
+        "desc": ""
+      },
+      {
+        "path": "src/strategies/separators.js",
+        "desc": ""
+      },
+      {
+        "path": "src/strategies/topics.js",
+        "desc": ""
+      },
+      {
+        "path": "src/utils.js",
+        "desc": ""
+      }
+    ]
+  },
+  "02_02_embedding": {
+    "id": "02_02_embedding",
+    "readme": "# 02_02_embedding\n\nInteractive embedding demo with a pairwise similarity matrix.\n\n## Run\n\n```bash\nnpm run lesson7:embedding\n```\n\n## Required setup\n\n1. Copy `env.example` to `.env` in the repo root.\n2. Set one API key: `OPENAI_API_KEY` or `OPENROUTER_API_KEY`.\n\n## What it does\n\n1. Opens an interactive REPL\n2. Each text you type is embedded with `text-embedding-3-small`\n3. After two or more entries, prints a color-coded similarity matrix (cosine similarity)\n4. Makes it easy to see which inputs cluster together\n\n## Notes\n\nType `exit` or press Enter on an empty line to quit. The matrix uses green (≥ 0.60 similar), yellow (≥ 0.35 related), and red (< 0.35 distant) to visualize scores.\n",
+    "files": [
+      {
+        "path": "README.md",
+        "desc": "Dokumentacja i opis danego przykładu"
+      },
+      {
+        "path": "app.js",
+        "desc": "Główny punkt wejścia"
+      },
+      {
+        "path": "package.json",
+        "desc": "Zależności i skrypty npm"
+      }
+    ]
+  },
+  "02_02_hybrid_rag": {
+    "id": "02_02_hybrid_rag",
+    "readme": "# 02_02_hybrid_rag\n\nHybrid RAG agent with SQLite FTS5 full-text search and sqlite-vec vector similarity.\n\n## Run\n\n```bash\nnpm run lesson7:hybrid_rag\n```\n\n## Required setup\n\n1. Copy `env.example` to `.env` in the repo root.\n2. Set one Responses API key: `OPENAI_API_KEY` or `OPENROUTER_API_KEY`.\n\n## What it does\n\n1. Reads `.md`/`.txt` files from `workspace/`, chunks them, generates embeddings\n2. Stores everything in SQLite with FTS5 full-text index and sqlite-vec vector index\n3. At query time, combines BM25 keyword search with cosine vector similarity via Reciprocal Rank Fusion (RRF)\n4. Runs an agentic loop with conversation history\n\n## Notes\n\nDocuments in `workspace/` are indexed automatically on startup. Use `reindex` to re-scan, `clear` to reset conversation, and `exit` to quit.\n",
+    "files": [
+      {
+        "path": "README.md",
+        "desc": "Dokumentacja i opis danego przykładu"
+      },
+      {
+        "path": "app.js",
+        "desc": "Główny punkt wejścia"
+      },
+      {
+        "path": "mcp.json",
+        "desc": "Konfiguracja serwera MCP"
+      },
+      {
+        "path": "package-lock.json",
+        "desc": "Zablokowane wersje zależności"
+      },
+      {
+        "path": "package.json",
+        "desc": "Zależności i skrypty npm"
+      },
+      {
+        "path": "spec/fts.md",
+        "desc": ""
+      },
+      {
+        "path": "spec/sqlite.md",
+        "desc": ""
+      },
+      {
+        "path": "src/agent/index.js",
+        "desc": ""
+      },
+      {
+        "path": "src/agent/tools.js",
+        "desc": "Definicje natywnych narzędzi dla modelu"
+      },
+      {
+        "path": "src/config.js",
+        "desc": "Zmienne środowiskowe i konfiguracja"
+      },
+      {
+        "path": "src/db/chunking.js",
+        "desc": ""
+      },
+      {
+        "path": "src/db/embeddings.js",
+        "desc": ""
+      },
+      {
+        "path": "src/db/index.js",
+        "desc": ""
+      },
+      {
+        "path": "src/db/indexer.js",
+        "desc": ""
+      },
+      {
+        "path": "src/db/search.js",
+        "desc": ""
+      },
+      {
+        "path": "src/helpers/api.js",
+        "desc": "Integracja z zewnętrznymi API (np. OpenAI, Anthropic)"
+      },
+      {
+        "path": "src/helpers/logger.js",
+        "desc": "Logowanie i formatowanie zdarzeń (konsola)"
+      },
+      {
+        "path": "src/helpers/shutdown.js",
+        "desc": "Zarządzanie bezpiecznym zamykaniem aplikacji"
+      },
+      {
+        "path": "src/helpers/stats.js",
+        "desc": "Gromadzenie statystyk zapytań do LLM"
+      },
+      {
+        "path": "src/mcp/client.js",
+        "desc": "Klient łączący się z narzędziami MCP"
+      },
+      {
+        "path": "src/repl.js",
+        "desc": "Interaktywna konsola (Read-Eval-Print Loop)"
+      }
+    ]
+  },
+  "02_03_graph_agents": {
+    "id": "02_03_graph_agents",
+    "readme": "# 02_03_graph_agents\n\nGraph RAG agent backed by a Neo4j knowledge graph with hybrid search and entity exploration.\n\n## Run\n\n```bash\nnpm run lesson8:graph_agents\n```\n\n## Required setup\n\n1. Copy `env.example` to `.env` in the repo root.\n2. Set one Responses API key: `OPENAI_API_KEY` or `OPENROUTER_API_KEY`.\n3. Run **Neo4j 5.11+** (needed for vector index support):\n\n```bash\ndocker run -d --name neo4j -p 7474:7474 -p 7687:7687 -e NEO4J_AUTH=neo4j/password neo4j:5\n```\n\n4. Add Neo4j credentials to the local `.env`:\n\n```bash\nNEO4J_URI=bolt://localhost:7687\nNEO4J_USERNAME=neo4j\nNEO4J_PASSWORD=password\n```\n\n## What it does\n\n1. Indexes `.md`/`.txt` files from `workspace/` — chunks text, extracts entities and relationships via LLM, embeds everything, writes to Neo4j\n2. **search** — hybrid full-text + vector retrieval with entity mentions\n3. **explore** — traverse an entity's neighborhood in the graph\n4. **connect** — find shortest paths between two entities\n5. **cypher** — read-only Cypher queries for structural questions\n6. **learn / forget** — add or remove documents at runtime\n7. **audit / merge_entities** — graph quality maintenance\n\n## Notes\n\nDocuments are indexed automatically on startup. Use `reindex` to re-scan (`--force` to wipe and rebuild), `clear` to reset conversation, and `exit` to quit.\n",
+    "files": [
+      {
+        "path": "README.md",
+        "desc": "Dokumentacja i opis danego przykładu"
+      },
+      {
+        "path": "app.js",
+        "desc": "Główny punkt wejścia"
+      },
+      {
+        "path": "package-lock.json",
+        "desc": "Zablokowane wersje zależności"
+      },
+      {
+        "path": "package.json",
+        "desc": "Zależności i skrypty npm"
+      },
+      {
+        "path": "src/agent/index.js",
+        "desc": ""
+      },
+      {
+        "path": "src/agent/tools.js",
+        "desc": "Definicje natywnych narzędzi dla modelu"
+      },
+      {
+        "path": "src/config.js",
+        "desc": "Zmienne środowiskowe i konfiguracja"
+      },
+      {
+        "path": "src/graph/chunking.js",
+        "desc": ""
+      },
+      {
+        "path": "src/graph/driver.js",
+        "desc": ""
+      },
+      {
+        "path": "src/graph/embeddings.js",
+        "desc": ""
+      },
+      {
+        "path": "src/graph/extract.js",
+        "desc": ""
+      },
+      {
+        "path": "src/graph/indexer.js",
+        "desc": ""
+      },
+      {
+        "path": "src/graph/schema.js",
+        "desc": ""
+      },
+      {
+        "path": "src/graph/search.js",
+        "desc": ""
+      },
+      {
+        "path": "src/helpers/api.js",
+        "desc": "Integracja z zewnętrznymi API (np. OpenAI, Anthropic)"
+      },
+      {
+        "path": "src/helpers/logger.js",
+        "desc": "Logowanie i formatowanie zdarzeń (konsola)"
+      },
+      {
+        "path": "src/helpers/shutdown.js",
+        "desc": "Zarządzanie bezpiecznym zamykaniem aplikacji"
+      },
+      {
+        "path": "src/helpers/stats.js",
+        "desc": "Gromadzenie statystyk zapytań do LLM"
+      },
+      {
+        "path": "src/repl.js",
+        "desc": "Interaktywna konsola (Read-Eval-Print Loop)"
+      }
+    ]
+  },
+  "02_04_ops": {
+    "id": "02_04_ops",
+    "readme": "# 02_04_ops\n\nMulti-agent daily ops generator with task delegation.\n\n## Run\n\n```bash\nnpm run lesson9:ops\n```\n\n## Required setup\n\n1. Copy `env.example` to `.env` in the repo root.\n2. Set one API key: `OPENAI_API_KEY` or `OPENROUTER_API_KEY`.\n\n## What it does\n\n1. Loads agent templates from `workspace/agents/*.agent.md` (orchestrator, mail, calendar, tasks, notes)\n2. The orchestrator reads the workflow from `workspace/workflows/daily-ops.md`\n3. Delegates data-gathering to specialist agents (mail, calendar, tasks, notes)\n4. Synthesizes results against goals and history\n5. Writes a daily ops summary to `workspace/output/YYYY-MM-DD.md`\n\n## Notes\n\nAgent definitions live in markdown frontmatter (model, tools, system prompt). The orchestrator delegates via a `delegate` tool — each sub-agent runs in its own conversation loop with a depth limit of 3.\n",
+    "files": [
+      {
+        "path": "README.md",
+        "desc": "Dokumentacja i opis danego przykładu"
+      },
+      {
+        "path": "demo/example.md",
+        "desc": ""
+      },
+      {
+        "path": "package.json",
+        "desc": "Zależności i skrypty npm"
+      },
+      {
+        "path": "src/agent.ts",
+        "desc": "Główna logika i pętla agenta AI"
+      },
+      {
+        "path": "src/config.ts",
+        "desc": "Zmienne środowiskowe i konfiguracja"
+      },
+      {
+        "path": "src/index.ts",
+        "desc": "Główny punkt wejścia (TypeScript)"
+      },
+      {
+        "path": "src/tools.ts",
+        "desc": "Definicje natywnych narzędzi dla modelu"
+      },
+      {
+        "path": "tsconfig.json",
+        "desc": "Konfiguracja kompilatora TypeScript"
+      }
+    ]
+  },
+  "02_05_agent": {
+    "id": "02_05_agent",
+    "readme": "# 02_05_agent\n\nContext engineering agent with observational memory (observer/reflector pattern).\n\n## Run\n\nFrom the **repo root**, first install dependencies, then start the agent server and run the demo:\n\n```bash\nnpm run lesson10:install\nnpm run lesson10:agent\n```\n\nIn a **separate terminal**, run the demo script that sends a multi-phase conversation to the agent:\n\n```bash\nnpm run lesson10:agent:demo\n```\n\n## Required setup\n\n1. Copy `env.example` to `.env` in the repo root.\n2. Set one API key: `OPENAI_API_KEY` or `OPENROUTER_API_KEY`.\n\n## What it does\n\n1. Starts an HTTP server (`POST /api/chat`) with session-based conversations\n2. As conversation grows, an **observer** compresses older messages into structured observations\n3. When observations grow too large, a **reflector** distills them further\n4. The agent's context window always contains: compressed history (observations) + recent raw messages\n5. Memory logs are persisted to `workspace/memory/`\n\n## Notes\n\nThe server runs on `http://localhost:3001` by default (override with `PORT` env var). Use `GET /api/sessions` to list sessions and `POST /api/sessions/:id/flush` to force-compress remaining messages.\n\n",
+    "files": [
+      {
+        "path": "README.md",
+        "desc": "Dokumentacja i opis danego przykładu"
+      },
+      {
+        "path": "demo.sh",
+        "desc": ""
+      },
+      {
+        "path": "demo.ts",
+        "desc": ""
+      },
+      {
+        "path": "package-lock.json",
+        "desc": "Zablokowane wersje zależności"
+      },
+      {
+        "path": "package.json",
+        "desc": "Zależności i skrypty npm"
+      },
+      {
+        "path": "src/agent/agent.ts",
+        "desc": "Główna logika i pętla agenta AI"
+      },
+      {
+        "path": "src/agent/tools.ts",
+        "desc": "Definicje natywnych narzędzi dla modelu"
+      },
+      {
+        "path": "src/ai/response.ts",
+        "desc": ""
+      },
+      {
+        "path": "src/ai/tokens.ts",
+        "desc": ""
+      },
+      {
+        "path": "src/config.ts",
+        "desc": "Zmienne środowiskowe i konfiguracja"
+      },
+      {
+        "path": "src/helpers/log.ts",
+        "desc": ""
+      },
+      {
+        "path": "src/helpers/utils.ts",
+        "desc": ""
+      },
+      {
+        "path": "src/index.ts",
+        "desc": "Główny punkt wejścia (TypeScript)"
+      },
+      {
+        "path": "src/memory/context.ts",
+        "desc": ""
+      },
+      {
+        "path": "src/memory/observer.ts",
+        "desc": ""
+      },
+      {
+        "path": "src/memory/persistence.ts",
+        "desc": ""
+      },
+      {
+        "path": "src/memory/processor.ts",
+        "desc": ""
+      },
+      {
+        "path": "src/memory/prompts.ts",
+        "desc": ""
+      },
+      {
+        "path": "src/memory/reflector.ts",
+        "desc": ""
+      },
+      {
+        "path": "src/memory/runtime.ts",
+        "desc": ""
+      },
+      {
+        "path": "src/session.ts",
+        "desc": ""
+      },
+      {
+        "path": "src/types.ts",
+        "desc": ""
+      }
+    ]
+  },
+  "02_05_sandbox": {
+    "id": "02_05_sandbox",
+    "readme": "# 02_05_sandbox\n\nMCP sandbox agent with tool discovery and QuickJS code execution.\n\n## Run\n\n```bash\nnpm run lesson10:sandbox\n```\n\n## Required setup\n\n1. Copy `env.example` to `.env` in the repo root.\n2. Set one API key: `OPENAI_API_KEY` or `OPENROUTER_API_KEY`.\n\n## What it does\n\n1. Connects to an MCP todo server (`servers/todo.ts`) over stdio\n2. Discovers available tools dynamically from the MCP server\n3. Loads an agent template from `workspace/agents/sandbox.agent.md`\n4. Runs a task (passed as CLI args or a default demo) through an agentic loop\n5. Tool calls are executed in a sandboxed QuickJS environment\n\n## Notes\n\nPass a custom task as CLI arguments: `bun src/index.ts \"your task here\"`. The default demo creates a shopping list, marks an item complete, and shows remaining items.\n\n...",
+    "files": [
+      {
+        "path": "README.md",
+        "desc": "Dokumentacja i opis danego przykładu"
+      },
+      {
+        "path": "package-lock.json",
+        "desc": "Zablokowane wersje zależności"
+      },
+      {
+        "path": "package.json",
+        "desc": "Zależności i skrypty npm"
+      },
+      {
+        "path": "servers/todo.ts",
+        "desc": ""
+      },
+      {
+        "path": "src/agent.ts",
+        "desc": "Główna logika i pętla agenta AI"
+      },
+      {
+        "path": "src/config.ts",
+        "desc": "Zmienne środowiskowe i konfiguracja"
+      },
+      {
+        "path": "src/index.ts",
+        "desc": "Główny punkt wejścia (TypeScript)"
+      },
+      {
+        "path": "src/mcp-client.ts",
+        "desc": ""
+      },
+      {
+        "path": "src/mcp-registry.ts",
+        "desc": ""
+      },
+      {
+        "path": "src/sandbox.ts",
+        "desc": ""
+      },
+      {
+        "path": "src/schemas.ts",
+        "desc": ""
+      },
+      {
+        "path": "src/tools.ts",
+        "desc": "Definicje natywnych narzędzi dla modelu"
+      },
+      {
+        "path": "tsconfig.json",
+        "desc": "Konfiguracja kompilatora TypeScript"
+      }
+    ]
+  },
+  "03_01_evals": {
+    "id": "03_01_evals",
+    "readme": "# 03_01_evals\n\nAgent server with Langfuse tracing and a synthetic tool-use evaluation suite.\n\n## Run\n\n```bash\nnpm run lesson11:evals\n```\n\nIn a **separate terminal**, run the demo client:\n\n```bash\nnpm run lesson11:evals:demo\n```\n\nRun evaluation experiments (standalone, no server needed):\n\n```bash\nnpm run lesson11:evals:tools        # tool-use eval\nnpm run lesson11:evals:correctness  # response-correctness eval\n```\n\n## Required setup\n\n1. Copy `env.example` to `.env` in the repo root.\n2. Set one API key: `OPENAI_API_KEY` or `OPENROUTER_API_KEY`.\n3. Optional: set `LANGFUSE_PUBLIC_KEY`, `LANGFUSE_SECRET_KEY`, and `LANGFUSE_BASE_URL` in root `.env` or local `.env` for tracing (degrades gracefully when missing).\n\n## What it does\n\n1. Starts an HTTP server with `POST /api/chat`, `GET /api/sessions`, and `GET /api/health`\n2. Runs a multi-turn agent loop (Alice) with `get_current_time` and `sum_numbers` tools via the Responses API\n3. Wraps every request in a Langfuse trace with span hierarchy: `chat-request` → `alice` → `generation#N` / `tool#N`\n4. Evaluation experiments seed/upsert datasets into Langfuse, run `dataset.runExperiment(...)` with per-case evaluators, and write per-item + run-level scores\n\n## Notes\n\nThe server runs on `http://localhost:3010` by default (override with `PORT`). This is the same agent as `03_01_observability` but upgraded to the Responses API with an `experiments/` folder layered on top for programmatic evaluation.\n",
+    "files": [
+      {
+        "path": "ENVIRONMENT.md",
+        "desc": ""
+      },
+      {
+        "path": "README.md",
+        "desc": "Dokumentacja i opis danego przykładu"
+      },
+      {
+        "path": "demo.ts",
+        "desc": ""
+      },
+      {
+        "path": "experiments/datasets/response-correctness.synthetic.json",
+        "desc": ""
+      },
+      {
+        "path": "experiments/datasets/tool-use.synthetic.json",
+        "desc": ""
+      },
+      {
+        "path": "experiments/lib/context.ts",
+        "desc": ""
+      },
+      {
+        "path": "experiments/lib/dataset.ts",
+        "desc": ""
+      },
+      {
+        "path": "experiments/lib/helpers.ts",
+        "desc": ""
+      },
+      {
+        "path": "experiments/lib/index.ts",
+        "desc": "Główny punkt wejścia (TypeScript)"
+      },
+      {
+        "path": "experiments/response-correctness.ts",
+        "desc": ""
+      },
+      {
+        "path": "experiments/tool-use.ts",
+        "desc": ""
+      },
+      {
+        "path": "package.json",
+        "desc": "Zależności i skrypty npm"
+      },
+      {
+        "path": "src/agent/run.ts",
+        "desc": ""
+      },
+      {
+        "path": "src/agent/tools.ts",
+        "desc": "Definicje natywnych narzędzi dla modelu"
+      },
+      {
+        "path": "src/app.ts",
+        "desc": ""
+      },
+      {
+        "path": "src/core/adapters/index.ts",
+        "desc": "Główny punkt wejścia (TypeScript)"
+      },
+      {
+        "path": "src/core/adapters/openai.ts",
+        "desc": ""
+      },
+      {
+        "path": "src/core/logger.ts",
+        "desc": "Logowanie i formatowanie zdarzeń (konsola)"
+      },
+      {
+        "path": "src/core/result.ts",
+        "desc": ""
+      },
+      {
+        "path": "src/core/tracing/adapter.ts",
+        "desc": ""
+      },
+      {
+        "path": "src/core/tracing/context.ts",
+        "desc": ""
+      },
+      {
+        "path": "src/core/tracing/index.ts",
+        "desc": "Główny punkt wejścia (TypeScript)"
+      },
+      {
+        "path": "src/core/tracing/init.ts",
+        "desc": ""
+      },
+      {
+        "path": "src/core/tracing/prompts.ts",
+        "desc": ""
+      },
+      {
+        "path": "src/core/tracing/tracer.ts",
+        "desc": ""
+      },
+      {
+        "path": "src/index.ts",
+        "desc": "Główny punkt wejścia (TypeScript)"
+      },
+      {
+        "path": "src/session.ts",
+        "desc": ""
+      },
+      {
+        "path": "src/types.ts",
+        "desc": ""
+      },
+      {
+        "path": "tsconfig.json",
+        "desc": "Konfiguracja kompilatora TypeScript"
+      }
+    ]
+  },
+  "03_01_observability": {
+    "id": "03_01_observability",
+    "readme": "# 03_01_observability\n\nMinimal agent server with Langfuse tracing wired at the adapter boundary.\n\n## Run\n\n```bash\nnpm run lesson11:observability\n```\n\nIn a **separate terminal**, run the demo client:\n\n```bash\nnpm run lesson11:observability:demo\n```\n\n## Required setup\n\n1. Copy `env.example` to `.env` in the repo root.\n2. Set one API key: `OPENAI_API_KEY` or `OPENROUTER_API_KEY`.\n3. Optional: set `LANGFUSE_PUBLIC_KEY`, `LANGFUSE_SECRET_KEY`, and `LANGFUSE_BASE_URL` in root `.env` or local `.env` for tracing (degrades gracefully when missing).\n\n## What it does\n\n1. Starts an HTTP server with `POST /api/chat`, `GET /api/sessions`, and `GET /api/health`\n2. Runs a multi-turn agent loop (Alice) with `get_current_time` and `sum_numbers` tools\n3. Wraps every request in a Langfuse trace with explicit span hierarchy: `chat-request` → `alice` → `generation#N` / `tool#N`\n4. Flushes traces after every request and on shutdown to reduce trace loss\n\n## Notes\n\nThe server runs on `http://localhost:3000` by default (override with `PORT`). Tracing is initialized once at startup and skipped when Langfuse credentials are missing. The demo script sends a multi-turn conversation and prints responses.\n",
+    "files": [
+      {
+        "path": "ENVIRONMENT.md",
+        "desc": ""
+      },
+      {
+        "path": "README.md",
+        "desc": "Dokumentacja i opis danego przykładu"
+      },
+      {
+        "path": "demo.ts",
+        "desc": ""
+      },
+      {
+        "path": "package.json",
+        "desc": "Zależności i skrypty npm"
+      },
+      {
+        "path": "src/agent/run.ts",
+        "desc": ""
+      },
+      {
+        "path": "src/agent/tools.ts",
+        "desc": "Definicje natywnych narzędzi dla modelu"
+      },
+      {
+        "path": "src/app.ts",
+        "desc": ""
+      },
+      {
+        "path": "src/core/adapters/index.ts",
+        "desc": "Główny punkt wejścia (TypeScript)"
+      },
+      {
+        "path": "src/core/adapters/openai.ts",
+        "desc": ""
+      },
+      {
+        "path": "src/core/logger.ts",
+        "desc": "Logowanie i formatowanie zdarzeń (konsola)"
+      },
+      {
+        "path": "src/core/result.ts",
+        "desc": ""
+      },
+      {
+        "path": "src/core/tracing/adapter.ts",
+        "desc": ""
+      },
+      {
+        "path": "src/core/tracing/context.ts",
+        "desc": ""
+      },
+      {
+        "path": "src/core/tracing/index.ts",
+        "desc": "Główny punkt wejścia (TypeScript)"
+      },
+      {
+        "path": "src/core/tracing/init.ts",
+        "desc": ""
+      },
+      {
+        "path": "src/core/tracing/prompts.ts",
+        "desc": ""
+      },
+      {
+        "path": "src/core/tracing/tracer.ts",
+        "desc": ""
+      },
+      {
+        "path": "src/index.ts",
+        "desc": "Główny punkt wejścia (TypeScript)"
+      },
+      {
+        "path": "src/session.ts",
+        "desc": ""
+      },
+      {
+        "path": "src/types.ts",
+        "desc": ""
+      },
+      {
+        "path": "tsconfig.json",
+        "desc": "Konfiguracja kompilatora TypeScript"
+      }
+    ]
+  },
+  "03_02_code": {
+    "id": "03_02_code",
+    "readme": "# 03_02_code\n\nCode execution agent with a Deno sandbox and MCP file tools.\n\n## Run\n\n```bash\nnpm run lesson12:code\n```\n\nCustom task via CLI args:\n\n```bash\ncd 03_02_code && bun src/index.ts \"Summarize all markdown files in the workspace\"\n```\n\n## Required setup\n\n1. Copy `env.example` to `.env` in the repo root.\n2. Set one Responses API key: `OPENAI_API_KEY` or `OPENROUTER_API_KEY`.\n3. Install [Deno](https://deno.land/#installation) (the sandbox executes LLM-generated code in an isolated Deno process).\n4. Optional: `AI_PROVIDER` (`openai` | `openrouter`), `MODEL` (default `gpt-5.2`), `PERMISSION_LEVEL`.\n\n## What it does\n\n1. Connects to an MCP file server for workspace read/write\n2. Uses a Deno subprocess sandbox (`execute_code`) with configurable permission levels (`safe`, `standard`, `network`, `full`)\n3. An HTTP bridge exposes host-side MCP tools to the sandboxed code at runtime\n4. Default task: generate a styled PDF cost report from raw data found in the workspace\n\n## Notes\n\nGenerate sample cost data with `cd 03_02_code && bun run generate:data` (creates synthetic data in `workspace/data/`).\n",
+    "files": [
+      {
+        "path": "README.md",
+        "desc": "Dokumentacja i opis danego przykładu"
+      },
+      {
+        "path": "mcp.json",
+        "desc": "Konfiguracja serwera MCP"
+      },
+      {
+        "path": "package.json",
+        "desc": "Zależności i skrypty npm"
+      },
+      {
+        "path": "src/agent.ts",
+        "desc": "Główna logika i pętla agenta AI"
+      },
+      {
+        "path": "src/index.ts",
+        "desc": "Główny punkt wejścia (TypeScript)"
+      },
+      {
+        "path": "src/mcp.ts",
+        "desc": ""
+      },
+      {
+        "path": "src/prompt.ts",
+        "desc": ""
+      },
+      {
+        "path": "src/sandbox.ts",
+        "desc": ""
+      },
+      {
+        "path": "src/scripts/generate-cost-dataset.ts",
+        "desc": ""
+      },
+      {
+        "path": "src/tools.ts",
+        "desc": "Definicje natywnych narzędzi dla modelu"
+      },
+      {
+        "path": "src/types.ts",
+        "desc": ""
+      },
+      {
+        "path": "tsconfig.json",
+        "desc": "Konfiguracja kompilatora TypeScript"
+      }
+    ]
+  },
+  "03_02_email": {
+    "id": "03_02_email",
+    "readme": "# 03_02_email\n\nTwo-phase email agent: triage with labels, then isolated KB-scoped draft sessions.\n\n## Run\n\n```bash\nnpm run lesson12:email\n```\n\nCustom task via CLI args:\n\n```bash\ncd 03_02_email && bun src/index.ts \"Triage the work inbox only\"\n```\n\n## Required setup\n\n1. Copy `env.example` to `.env` in the repo root.\n2. Set one Responses API key: `OPENAI_API_KEY` or `OPENROUTER_API_KEY`.\n3. Optional: `AI_PROVIDER`, `MODEL` (default `gpt-4.1`).\n\n## What it does\n\n1. **Triage phase** — reads all unread emails, checks the knowledge base, assigns labels, and marks emails that need replies (no drafts produced)\n2. **Draft phase** — for each reply plan, runs an isolated session with a KB scoped to the sender's account and produces a draft reply (completion only, no tool access)\n\n## Notes\n\nEval suites are available locally: `cd 03_02_email && bun run eval:triage`, `bun run eval:draft-isolation`, `bun run eval:draft-language`, `bun run eval:malicious-email`, or `bun run eval:all`.\n",
+    "files": [
+      {
+        "path": "README.md",
+        "desc": "Dokumentacja i opis danego przykładu"
+      },
+      {
+        "path": "docs/design-brief.md",
+        "desc": ""
+      },
+      {
+        "path": "experiments/datasets/draft-isolation.json",
+        "desc": ""
+      },
+      {
+        "path": "experiments/datasets/draft-language.json",
+        "desc": ""
+      },
+      {
+        "path": "experiments/datasets/malicious-email.json",
+        "desc": ""
+      },
+      {
+        "path": "experiments/datasets/triage.json",
+        "desc": ""
+      },
+      {
+        "path": "experiments/draft-isolation.ts",
+        "desc": ""
+      },
+      {
+        "path": "experiments/draft-language.ts",
+        "desc": ""
+      },
+      {
+        "path": "experiments/lib/draft-task.ts",
+        "desc": ""
+      },
+      {
+        "path": "experiments/lib/index.ts",
+        "desc": "Główny punkt wejścia (TypeScript)"
+      },
+      {
+        "path": "experiments/lib/mock-inbox-state.ts",
+        "desc": ""
+      },
+      {
+        "path": "experiments/malicious-email.ts",
+        "desc": ""
+      },
+      {
+        "path": "experiments/triage.ts",
+        "desc": ""
+      },
+      {
+        "path": "package.json",
+        "desc": "Zależności i skrypty npm"
+      },
+      {
+        "path": "src/agent.ts",
+        "desc": "Główna logika i pętla agenta AI"
+      },
+      {
+        "path": "src/core/completion.ts",
+        "desc": ""
+      },
+      {
+        "path": "src/data/contacts.ts",
+        "desc": ""
+      },
+      {
+        "path": "src/data/knowledge-base.ts",
+        "desc": ""
+      },
+      {
+        "path": "src/data/mock-inbox.ts",
+        "desc": ""
+      },
+      {
+        "path": "src/index.ts",
+        "desc": "Główny punkt wejścia (TypeScript)"
+      },
+      {
+        "path": "src/knowledge/access-lock.ts",
+        "desc": ""
+      },
+      {
+        "path": "src/knowledge/access-log.ts",
+        "desc": ""
+      },
+      {
+        "path": "src/knowledge/scoping.ts",
+        "desc": ""
+      },
+      {
+        "path": "src/logger.ts",
+        "desc": "Logowanie i formatowanie zdarzeń (konsola)"
+      },
+      {
+        "path": "src/phases/draft.ts",
+        "desc": ""
+      },
+      {
+        "path": "src/phases/triage.ts",
+        "desc": ""
+      },
+      {
+        "path": "src/prompts/draft.ts",
+        "desc": ""
+      },
+      {
+        "path": "src/prompts/triage.ts",
+        "desc": ""
+      },
+      {
+        "path": "src/state.ts",
+        "desc": ""
+      },
+      {
+        "path": "src/tools/emails.ts",
+        "desc": ""
+      },
+      {
+        "path": "src/tools/index.ts",
+        "desc": "Główny punkt wejścia (TypeScript)"
+      },
+      {
+        "path": "src/tools/knowledge.ts",
+        "desc": ""
+      },
+      {
+        "path": "src/tools/labels.ts",
+        "desc": ""
+      },
+      {
+        "path": "src/types.ts",
+        "desc": ""
+      },
+      {
+        "path": "tsconfig.json",
+        "desc": "Konfiguracja kompilatora TypeScript"
+      }
+    ]
+  },
+  "03_02_events": {
+    "id": "03_02_events",
+    "readme": "# 03_02_events\n\nMulti-agent event architecture with heartbeat loop, observer/reflector memory, and human-in-the-loop.\n\n## Run\n\n```bash\nnpm run lesson12:events\n```\n\nThis runs the full demo (report-v2 workflow, 10 rounds). A Polish-language confirmation prompt will appear because this example is request-heavy. To preview results without running, see `workspace/demo/`.\n\nCustom flags via local scripts:\n\n```bash\ncd 03_02_events\nbun run demo --workflow report-v2 --rounds 12 --delay-ms 500\nbun run start   # bare index.ts (no reset, no summary)\n```\n\n## Required setup\n\n1. Copy `env.example` to `.env` in the repo root.\n2. Set one API key: `OPENAI_API_KEY` or `OPENROUTER_API_KEY`.\n3. Set `GEMINI_API_KEY` — used by the `create_image` tool.\n4. Optional: `OPENAI_MODEL` (default `gpt-5.2`), `WEB_SEARCH_MODEL` (default `gpt-5.2`), `HEARTBEAT_DELAY_MS` (default `750`).\n\n## What it does\n\n1. Reads a goal contract from `workspace/goal.md` and scans agent templates for capabilities\n2. Calls an LLM planner to generate a validated task plan, then materializes it as markdown task files\n3. Runs a heartbeat loop that claims tasks, dispatches them to specialist agents (researcher, planner, writer, editor, designer), and detects completion\n4. Each agent session uses observer/reflector memory compaction for long-running threads\n5. Human-in-the-loop pauses via `request_human` tool and persisted wait states\n6. Produces deliverables in `workspace/project/` — reports, evidence, event logs, memory snapshots\n\n## Notes\n\nPre-generated demo results are available in `workspace/demo/` (final report, HTML deliverable, tasks, plan, events, memory logs). The demo resets `workspace/project/` on each run by default (`--reset=true`).\n",
+    "files": [
+      {
+        "path": "README.md",
+        "desc": "Dokumentacja i opis danego przykładu"
+      },
+      {
+        "path": "demo.ts",
+        "desc": ""
+      },
+      {
+        "path": "docs/heartbeat.md",
+        "desc": ""
+      },
+      {
+        "path": "docs/schemas.md",
+        "desc": ""
+      },
+      {
+        "path": "package-lock.json",
+        "desc": "Zablokowane wersje zależności"
+      },
+      {
+        "path": "package.json",
+        "desc": "Zależności i skrypty npm"
+      },
+      {
+        "path": "src/autonomy/capability-map.ts",
+        "desc": ""
+      },
+      {
+        "path": "src/autonomy/contract.ts",
+        "desc": ""
+      },
+      {
+        "path": "src/autonomy/feasibility.ts",
+        "desc": ""
+      },
+      {
+        "path": "src/autonomy/index.ts",
+        "desc": "Główny punkt wejścia (TypeScript)"
+      },
+      {
+        "path": "src/autonomy/materialize.ts",
+        "desc": ""
+      },
+      {
+        "path": "src/autonomy/plan-generate.ts",
+        "desc": ""
+      },
+      {
+        "path": "src/autonomy/plan-validate.ts",
+        "desc": ""
+      },
+      {
+        "path": "src/autonomy/replan.ts",
+        "desc": ""
+      },
+      {
+        "path": "src/autonomy/runtime.ts",
+        "desc": ""
+      },
+      {
+        "path": "src/autonomy/types.ts",
+        "desc": ""
+      },
+      {
+        "path": "src/bootstrap.ts",
+        "desc": ""
+      },
+      {
+        "path": "src/config/index.ts",
+        "desc": "Główny punkt wejścia (TypeScript)"
+      },
+      {
+        "path": "src/core/agent-runner.ts",
+        "desc": ""
+      },
+      {
+        "path": "src/core/events.ts",
+        "desc": ""
+      },
+      {
+        "path": "src/core/logger.ts",
+        "desc": "Logowanie i formatowanie zdarzeń (konsola)"
+      },
+      {
+        "path": "src/core/openai.ts",
+        "desc": ""
+      },
+      {
+        "path": "src/features/heartbeat/index.ts",
+        "desc": "Główny punkt wejścia (TypeScript)"
+      },
+      {
+        "path": "src/features/tasks/index.ts",
+        "desc": "Główny punkt wejścia (TypeScript)"
+      },
+      {
+        "path": "src/helpers/agent-response-loop.ts",
+        "desc": ""
+      },
+      {
+        "path": "src/helpers/agent-template.ts",
+        "desc": ""
+      },
+      {
+        "path": "src/helpers/fs.ts",
+        "desc": ""
+      },
+      {
+        "path": "src/helpers/paths.ts",
+        "desc": ""
+      },
+      {
+        "path": "src/helpers/tokens.ts",
+        "desc": ""
+      },
+      {
+        "path": "src/helpers/workspace-nav.ts",
+        "desc": ""
+      },
+      {
+        "path": "src/index.ts",
+        "desc": "Główny punkt wejścia (TypeScript)"
+      },
+      {
+        "path": "src/mcp/client.ts",
+        "desc": "Klient łączący się z narzędziami MCP"
+      },
+      {
+        "path": "src/mcp/types.ts",
+        "desc": ""
+      },
+      {
+        "path": "src/memory/observer.ts",
+        "desc": ""
+      },
+      {
+        "path": "src/memory/processor.ts",
+        "desc": ""
+      },
+      {
+        "path": "src/memory/reflector.ts",
+        "desc": ""
+      },
+      {
+        "path": "src/tools/common.ts",
+        "desc": ""
+      },
+      {
+        "path": "src/tools/human.ts",
+        "desc": ""
+      },
+      {
+        "path": "src/tools/image.ts",
+        "desc": ""
+      },
+      {
+        "path": "src/tools/index.ts",
+        "desc": "Główny punkt wejścia (TypeScript)"
+      },
+      {
+        "path": "src/tools/render-html.ts",
+        "desc": ""
+      },
+      {
+        "path": "src/tools/web-search.ts",
+        "desc": ""
+      },
+      {
+        "path": "src/types.ts",
+        "desc": ""
+      },
+      {
+        "path": "src/workflows/registry.ts",
+        "desc": ""
+      },
+      {
+        "path": "src/workflows/report-v1/plugin.ts",
+        "desc": ""
+      },
+      {
+        "path": "src/workflows/report-v1/task-seeds.ts",
+        "desc": ""
+      },
+      {
+        "path": "src/workflows/report-v2/plugin.ts",
+        "desc": ""
+      },
+      {
+        "path": "src/workflows/report-v2/task-seeds.ts",
+        "desc": ""
+      },
+      {
+        "path": "src/workflows/types.ts",
+        "desc": ""
+      },
+      {
+        "path": "tsconfig.json",
+        "desc": "Konfiguracja kompilatora TypeScript"
+      }
+    ]
+  },
+  "03_03_browser": {
+    "id": "03_03_browser",
+    "readme": "# 03_03_browser\n\nBrowser automation agent with Playwright, session persistence, and MCP file tools.\n\n## Run\n\n**Step 1** — Login to Goodreads (one-time, saves session cookies):\n\n```bash\nnpm run lesson13:browser:login\n```\n\nA browser window opens. Go to [goodreads.com](https://www.goodreads.com), log into your account, then come back to the terminal and press Enter.\n\n**Step 2** — Start the chat agent:\n\n```bash\nnpm run lesson13:browser\n```\n\nTry asking: `List all books by Jim Collins` or `Find top-rated books about strategy`.\n\n## Required setup\n\n1. Copy `env.example` to `.env` in the repo root.\n2. Set one Responses API key: `OPENAI_API_KEY` or `OPENROUTER_API_KEY`.\n3. A [Goodreads](https://www.goodreads.com) account for authenticated access.\n4. Optional: `AI_PROVIDER`, `MODEL` (default `gpt-5.2`).\n\n## What it does\n\n1. Launches a Playwright browser (headless by default) with persisted session cookies\n2. Connects to an MCP file server for workspace file access\n3. Runs an agentic loop with browser tools (navigate, screenshot, click, type, extract) and file tools\n4. Maintains conversation history via `previous_response_id` chaining\n\n## Notes\n\nIf you skip the login step, the agent starts without authentication and some Goodreads features may be limited. Re-run `npm run lesson13:browser:login` any time to refresh the session.\n",
+    "files": [
+      {
+        "path": "README.md",
+        "desc": "Dokumentacja i opis danego przykładu"
+      },
+      {
+        "path": "docs/kernel.md",
+        "desc": ""
+      },
+      {
+        "path": "instructions/goodreads-discoveries.md",
+        "desc": ""
+      },
+      {
+        "path": "instructions/goodreads.com-discoveries.md",
+        "desc": ""
+      },
+      {
+        "path": "instructions/goodreads.md",
+        "desc": ""
+      },
+      {
+        "path": "mcp.json",
+        "desc": "Konfiguracja serwera MCP"
+      },
+      {
+        "path": "package.json",
+        "desc": "Zależności i skrypty npm"
+      },
+      {
+        "path": "readings.md",
+        "desc": ""
+      },
+      {
+        "path": "src/agent/index.ts",
+        "desc": "Główny punkt wejścia (TypeScript)"
+      },
+      {
+        "path": "src/agent/interventions.ts",
+        "desc": ""
+      },
+      {
+        "path": "src/agent/model.ts",
+        "desc": ""
+      },
+      {
+        "path": "src/agent/runner.ts",
+        "desc": ""
+      },
+      {
+        "path": "src/agent/tool-executor.ts",
+        "desc": ""
+      },
+      {
+        "path": "src/agent/types.ts",
+        "desc": ""
+      },
+      {
+        "path": "src/browser.ts",
+        "desc": ""
+      },
+      {
+        "path": "src/feedback/index.ts",
+        "desc": "Główny punkt wejścia (TypeScript)"
+      },
+      {
+        "path": "src/feedback/tracker.ts",
+        "desc": ""
+      },
+      {
+        "path": "src/feedback/types.ts",
+        "desc": ""
+      },
+      {
+        "path": "src/index.ts",
+        "desc": "Główny punkt wejścia (TypeScript)"
+      },
+      {
+        "path": "src/log.ts",
+        "desc": ""
+      },
+      {
+        "path": "src/mcp.ts",
+        "desc": ""
+      },
+      {
+        "path": "src/prompt.ts",
+        "desc": ""
+      },
+      {
+        "path": "src/tools/artifacts.ts",
+        "desc": ""
+      },
+      {
+        "path": "src/tools/browser-tools.ts",
+        "desc": ""
+      },
+      {
+        "path": "src/tools/index.ts",
+        "desc": "Główny punkt wejścia (TypeScript)"
+      },
+      {
+        "path": "src/tools/mcp-tools.ts",
+        "desc": ""
+      },
+      {
+        "path": "src/tools/types.ts",
+        "desc": ""
+      },
+      {
+        "path": "tsconfig.json",
+        "desc": "Konfiguracja kompilatora TypeScript"
+      }
+    ]
+  },
+  "03_03_calendar": {
+    "id": "03_03_calendar",
+    "readme": "# 03_03_calendar\n\nCalendar agent with add-events and notification-webhook phases.\n\n## Run\n\n```bash\nnpm run lesson13:calendar\n```\n\n## Required setup\n\n1. Copy `env.example` to `.env` in the repo root.\n2. Set one Responses API key: `OPENAI_API_KEY` or `OPENROUTER_API_KEY`.\n3. Optional: `AI_PROVIDER`, `MODEL` (default `gpt-5.2`).\n\n## What it does\n\n1. **Add events phase** — processes a series of user scheduling requests, each with a time context and location, using calendar tools to create events\n2. **Notification phase** — processes upcoming-event webhook payloads and sends exactly one notification per event using notification tools\n\n## Notes\n\nBoth phases run sequentially in a single process. Each phase uses its own agent session with dedicated tools.\n",
+    "files": [
+      {
+        "path": "README.md",
+        "desc": "Dokumentacja i opis danego przykładu"
+      },
+      {
+        "path": "package.json",
+        "desc": "Zależności i skrypty npm"
+      },
+      {
+        "path": "src/agent.ts",
+        "desc": "Główna logika i pętla agenta AI"
+      },
+      {
+        "path": "src/core/completion.ts",
+        "desc": ""
+      },
+      {
+        "path": "src/data/calendar.ts",
+        "desc": ""
+      },
+      {
+        "path": "src/data/contacts.ts",
+        "desc": ""
+      },
+      {
+        "path": "src/data/environment.ts",
+        "desc": ""
+      },
+      {
+        "path": "src/data/notifications.ts",
+        "desc": ""
+      },
+      {
+        "path": "src/data/places.ts",
+        "desc": ""
+      },
+      {
+        "path": "src/data/routes.ts",
+        "desc": ""
+      },
+      {
+        "path": "src/data/scenarios.ts",
+        "desc": ""
+      },
+      {
+        "path": "src/data/weather.ts",
+        "desc": ""
+      },
+      {
+        "path": "src/data/web-search.ts",
+        "desc": ""
+      },
+      {
+        "path": "src/index.ts",
+        "desc": "Główny punkt wejścia (TypeScript)"
+      },
+      {
+        "path": "src/logger.ts",
+        "desc": "Logowanie i formatowanie zdarzeń (konsola)"
+      },
+      {
+        "path": "src/prompt.ts",
+        "desc": ""
+      },
+      {
+        "path": "src/tools/calendar.ts",
+        "desc": ""
+      },
+      {
+        "path": "src/tools/contacts.ts",
+        "desc": ""
+      },
+      {
+        "path": "src/tools/index.ts",
+        "desc": "Główny punkt wejścia (TypeScript)"
+      },
+      {
+        "path": "src/tools/map.ts",
+        "desc": ""
+      },
+      {
+        "path": "src/tools/notifications.ts",
+        "desc": ""
+      },
+      {
+        "path": "src/tools/places.ts",
+        "desc": ""
+      },
+      {
+        "path": "src/tools/web-search.ts",
+        "desc": ""
+      },
+      {
+        "path": "src/types.ts",
+        "desc": ""
+      },
+      {
+        "path": "tsconfig.json",
+        "desc": "Konfiguracja kompilatora TypeScript"
+      }
+    ]
+  },
+  "03_03_language": {
+    "id": "03_03_language",
+    "readme": "# 03_03_language\n\nEnglish coaching agent with Gemini for ASR, pronunciation scoring, drills, and TTS.\n\n## Run\n\n```bash\nnpm run lesson13:language\n```\n\nThen ask the agent to analyze a recording, e.g. `Please give me feedback on input/day.wav`.\n\nSample audio files are already in `workspace/input/`. You can also drop your own `.wav` files there.\n\nGenerate additional sample audio:\n\n```bash\ncd 03_03_language && bun run sample:audio -- --style clear\n```\n\n## Required setup\n\n1. Copy `env.example` to `.env` in the repo root.\n2. Set `GEMINI_API_KEY` (required — used for ASR, analysis, and TTS).\n3. Optional: `COACH_MODEL` (default `gemini-2.5-flash`), `ASR_MODEL` (default `gemini-2.5-flash`), `TTS_MODEL` (default `gemini-2.5-flash-preview-tts`).\n\n## What it does\n\n1. Reads the learner's profile (`workspace/profile.json`) with goals and weak areas\n2. Transcribes and analyzes the audio recording via Gemini API — catches grammar errors, pronunciation issues, filler words, and speech rhythm\n3. Generates personalized feedback as text and audio (Gemini TTS) — a `text + audio input → text + audio output` interaction\n4. Saves session notes, transcript, and coaching artifacts to `workspace/sessions/` and updates the learner profile with discovered weak areas\n\n## Agent hooks\n\nThe agent uses lifecycle hooks to enforce the full coaching flow:\n\n- **beforeToolCall** — when `listen` is called, records the audio file path for the current session\n- **afterToolResult** — tracks phase completion flags (`listen_done`, `feedback_done`, `session_saved`); resets state when all phases are complete, allowing the next analysis\n- **beforeFinish** — guards the finish: if required steps (listen → feedback → session save → profile update) are incomplete, it injects a message asking the agent to complete them before finishing\n\n## Notes\n\nThe `listen` and `feedback` tools make **additional Gemini API calls** internally — the agent orchestrates when to call them, but the tools themselves run separate model requests for ASR/analysis and TTS generation. Progress is persisted across sessions, so feedback becomes more personalized over time.\n",
+    "files": [
+      {
+        "path": "README.md",
+        "desc": "Dokumentacja i opis danego przykładu"
+      },
+      {
+        "path": "package.json",
+        "desc": "Zależności i skrypty npm"
+      },
+      {
+        "path": "src/agent.ts",
+        "desc": "Główna logika i pętla agenta AI"
+      },
+      {
+        "path": "src/config.ts",
+        "desc": "Zmienne środowiskowe i konfiguracja"
+      },
+      {
+        "path": "src/gemini.ts",
+        "desc": "Obsługa modelu językowego Gemini"
+      },
+      {
+        "path": "src/helpers.ts",
+        "desc": ""
+      },
+      {
+        "path": "src/hooks.ts",
+        "desc": ""
+      },
+      {
+        "path": "src/index.ts",
+        "desc": "Główny punkt wejścia (TypeScript)"
+      },
+      {
+        "path": "src/log.ts",
+        "desc": ""
+      },
+      {
+        "path": "src/prompt.ts",
+        "desc": ""
+      },
+      {
+        "path": "src/smoke.ts",
+        "desc": ""
+      },
+      {
+        "path": "src/tools.ts",
+        "desc": "Definicje natywnych narzędzi dla modelu"
+      },
+      {
+        "path": "src/types/domain.ts",
+        "desc": ""
+      },
+      {
+        "path": "src/types/gemini.ts",
+        "desc": "Obsługa modelu językowego Gemini"
+      },
+      {
+        "path": "tsconfig.json",
+        "desc": "Konfiguracja kompilatora TypeScript"
+      }
+    ]
+  },
+  "03_04_gmail": {
+    "id": "03_04_gmail",
+    "readme": "# 03_04_gmail\n\nNative Gmail tools agent with OAuth, Zod schemas, and Promptfoo evals.\n\n## Run\n\n**Step 1** — Authenticate with Google (one-time):\n\n```bash\nnpm run lesson14:gmail:auth\n```\n\nThis opens a browser for OAuth consent and saves a refresh token to `.auth/gmail-token.json`. You need a Google Cloud project with Gmail API enabled and a desktop OAuth client — place `credentials.json` in this directory (or set `GMAIL_CREDENTIALS_PATH`).\n\n**Step 2** — Start the agent:\n\n```bash\nnpm run lesson14:gmail\n```\n\nThen ask questions like:\n- `Find my latest unread emails`\n- `Read the last message from Anna`\n- `Reply to the invoice thread saying \"Got it, thanks\"`\n\n## Required setup\n\n1. Copy `env.example` to `.env` in the repo root.\n2. Set one API key: `OPENAI_API_KEY` or `OPENROUTER_API_KEY`.\n3. Create a Google Cloud project at [console.developers.google.com](https://console.developers.google.com), enable the Gmail API, and download the desktop OAuth client JSON as `credentials.json`.\n4. Run `npm run lesson14:gmail:auth` to complete the OAuth flow.\n5. Optional: `MODEL` (default `gpt-5.2`), `GMAIL_SEND_WHITELIST` (comma-separated safe recipients).\n\n## What it does\n\n1. Connects to your Gmail via OAuth with five native tools: `gmail_search`, `gmail_read`, `gmail_send`, `gmail_modify`, `gmail_attachment`\n2. All tool outputs use a structured `{ data, hint }` envelope with status, recovery suggestions, and next-action proposals\n3. Runs a discovery-first agent loop: search → read → act (the agent never invents message content)\n4. `gmail_send` auto-drafts when recipients are outside the whitelist — the agent reports this to the user\n\n## Evals (Promptfoo)\n\nMocked suites (no live Gmail needed):\n\n```bash\ncd 03_04_gmail\nbun run eval:tools        # tool behavior suites (search, read, send, modify, attachment, errors)\nbun run eval:scenarios    # multi-turn scenario suites (readonly, actions, safety)\nbun run eval:all          # all mocked suites\n```\n\nLive suites (against real Gmail):\n\n```bash\nbun run eval:tools:live\nbun run eval:scenarios:live\nbun run eval:all:live\n```\n\nResults are saved to `evals/promptfoo/results/` as HTML reports.\n\n## Notes\n\nUse `bun run probe:shapes` to inspect live Gmail API response shapes for development. Tool specs live in `spec/`, eval configs in `evals/promptfoo/`.\n",
+    "files": [
+      {
+        "path": "ENVIRONMENT.md",
+        "desc": ""
+      },
+      {
+        "path": "README.md",
+        "desc": "Dokumentacja i opis danego przykładu"
+      },
+      {
+        "path": "docs/reference.md",
+        "desc": ""
+      },
+      {
+        "path": "evals/promptfoo/datasets/scenarios/actions.yaml",
+        "desc": ""
+      },
+      {
+        "path": "evals/promptfoo/datasets/scenarios/readonly.yaml",
+        "desc": ""
+      },
+      {
+        "path": "evals/promptfoo/datasets/scenarios/safety.yaml",
+        "desc": ""
+      },
+      {
+        "path": "evals/promptfoo/datasets/tools/errors.yaml",
+        "desc": ""
+      },
+      {
+        "path": "evals/promptfoo/datasets/tools/gmail_attachment.yaml",
+        "desc": ""
+      },
+      {
+        "path": "evals/promptfoo/datasets/tools/gmail_modify.yaml",
+        "desc": ""
+      },
+      {
+        "path": "evals/promptfoo/datasets/tools/gmail_read.yaml",
+        "desc": ""
+      },
+      {
+        "path": "evals/promptfoo/datasets/tools/gmail_search.yaml",
+        "desc": ""
+      },
+      {
+        "path": "evals/promptfoo/datasets/tools/gmail_send.yaml",
+        "desc": ""
+      },
+      {
+        "path": "evals/promptfoo/promptfooconfig.scenarios.actions.yaml",
+        "desc": ""
+      },
+      {
+        "path": "evals/promptfoo/promptfooconfig.scenarios.readonly.yaml",
+        "desc": ""
+      },
+      {
+        "path": "evals/promptfoo/promptfooconfig.scenarios.safety.yaml",
+        "desc": ""
+      },
+      {
+        "path": "evals/promptfoo/promptfooconfig.tools.errors.yaml",
+        "desc": ""
+      },
+      {
+        "path": "evals/promptfoo/promptfooconfig.tools.gmail_attachment.yaml",
+        "desc": ""
+      },
+      {
+        "path": "evals/promptfoo/promptfooconfig.tools.gmail_modify.yaml",
+        "desc": ""
+      },
+      {
+        "path": "evals/promptfoo/promptfooconfig.tools.gmail_read.yaml",
+        "desc": ""
+      },
+      {
+        "path": "evals/promptfoo/promptfooconfig.tools.gmail_search.yaml",
+        "desc": ""
+      },
+      {
+        "path": "evals/promptfoo/promptfooconfig.tools.gmail_send.yaml",
+        "desc": ""
+      },
+      {
+        "path": "evals/promptfoo/provider.mjs",
+        "desc": ""
+      },
+      {
+        "path": "evals/promptfoo/provider.stateful.mjs",
+        "desc": ""
+      },
+      {
+        "path": "evals/promptfoo/results/actions_gpt41.html",
+        "desc": ""
+      },
+      {
+        "path": "evals/promptfoo/results/actions_gpt52.html",
+        "desc": ""
+      },
+      {
+        "path": "evals/promptfoo/results/actions_mini.html",
+        "desc": ""
+      },
+      {
+        "path": "evals/promptfoo/results/readonly_gpt41.html",
+        "desc": ""
+      },
+      {
+        "path": "evals/promptfoo/results/readonly_gpt52.html",
+        "desc": ""
+      },
+      {
+        "path": "evals/promptfoo/results/readonly_mini.html",
+        "desc": ""
+      },
+      {
+        "path": "evals/promptfoo/results/safety_gpt41.html",
+        "desc": ""
+      },
+      {
+        "path": "evals/promptfoo/results/safety_gpt52.html",
+        "desc": ""
+      },
+      {
+        "path": "evals/promptfoo/results/safety_mini.html",
+        "desc": ""
+      },
+      {
+        "path": "evals/promptfoo/results/scenarios.actions.html",
+        "desc": ""
+      },
+      {
+        "path": "evals/promptfoo/results/scenarios.readonly.html",
+        "desc": ""
+      },
+      {
+        "path": "evals/promptfoo/results/scenarios.safety.html",
+        "desc": ""
+      },
+      {
+        "path": "evals/promptfoo/results/tools.gmail_attachment.html",
+        "desc": ""
+      },
+      {
+        "path": "evals/promptfoo/results/tools.gmail_modify.html",
+        "desc": ""
+      },
+      {
+        "path": "evals/promptfoo/results/tools.gmail_read.html",
+        "desc": ""
+      },
+      {
+        "path": "evals/promptfoo/results/tools.gmail_search.html",
+        "desc": ""
+      },
+      {
+        "path": "evals/promptfoo/results/tools.gmail_send.html",
+        "desc": ""
+      },
+      {
+        "path": "package.json",
+        "desc": "Zależności i skrypty npm"
+      },
+      {
+        "path": "spec/gmail_attachment.md",
+        "desc": ""
+      },
+      {
+        "path": "spec/gmail_modify.md",
+        "desc": ""
+      },
+      {
+        "path": "spec/gmail_read.md",
+        "desc": ""
+      },
+      {
+        "path": "spec/gmail_search.md",
+        "desc": ""
+      },
+      {
+        "path": "spec/gmail_send.md",
+        "desc": ""
+      },
+      {
+        "path": "spec/use-cases.md",
+        "desc": ""
+      },
+      {
+        "path": "src/agent/index.ts",
+        "desc": "Główny punkt wejścia (TypeScript)"
+      },
+      {
+        "path": "src/agent/runtime.ts",
+        "desc": ""
+      },
+      {
+        "path": "src/agent/tool-call.ts",
+        "desc": ""
+      },
+      {
+        "path": "src/agent/types.ts",
+        "desc": ""
+      },
+      {
+        "path": "src/auth.ts",
+        "desc": ""
+      },
+      {
+        "path": "src/config.ts",
+        "desc": "Zmienne środowiskowe i konfiguracja"
+      },
+      {
+        "path": "src/core/completion.ts",
+        "desc": ""
+      },
+      {
+        "path": "src/evals/run-agent-eval.ts",
+        "desc": ""
+      },
+      {
+        "path": "src/gmail/auth.ts",
+        "desc": ""
+      },
+      {
+        "path": "src/gmail/client.ts",
+        "desc": "Klient łączący się z narzędziami MCP"
+      },
+      {
+        "path": "src/gmail/mock-client.ts",
+        "desc": ""
+      },
+      {
+        "path": "src/hints/index.ts",
+        "desc": "Główny punkt wejścia (TypeScript)"
+      },
+      {
+        "path": "src/hints/tool-hints.ts",
+        "desc": ""
+      },
+      {
+        "path": "src/index.ts",
+        "desc": "Główny punkt wejścia (TypeScript)"
+      },
+      {
+        "path": "src/prompt.ts",
+        "desc": ""
+      },
+      {
+        "path": "src/scripts/probe-gmail-api-shapes.ts",
+        "desc": ""
+      },
+      {
+        "path": "src/tools/gmail-attachment.ts",
+        "desc": ""
+      },
+      {
+        "path": "src/tools/gmail-modify.ts",
+        "desc": ""
+      },
+      {
+        "path": "src/tools/gmail-read.ts",
+        "desc": ""
+      },
+      {
+        "path": "src/tools/gmail-search.ts",
+        "desc": ""
+      },
+      {
+        "path": "src/tools/gmail-send.ts",
+        "desc": ""
+      },
+      {
+        "path": "src/tools/index.ts",
+        "desc": "Główny punkt wejścia (TypeScript)"
+      },
+      {
+        "path": "src/types.ts",
+        "desc": ""
+      },
+      {
+        "path": "tsconfig.json",
+        "desc": "Konfiguracja kompilatora TypeScript"
+      }
+    ]
+  },
+  "03_05_apps": {
+    "id": "03_05_apps",
+    "readme": "# 03_05_apps\n\nMCP app server with CLI agent, todo/shopping list UI, and live browser preview.\n\n## Run\n\n```bash\nnpm run lesson15:apps\n```\n\nThen ask in the CLI, for example: `open todo manager`, `manage my shopping list`.\n\n## Required setup\n\n1. Copy `.env.example` to `.env` and fill in any needed values.\n2. Optionally set one API key: `OPENAI_API_KEY` or `OPENROUTER_API_KEY` (without a key, the app still works with deterministic routing).\n\n## What it does\n\n1. Runs two servers: a local UI server (opens in browser) and an MCP server exposing an app-enabled tool + UI resource\n2. When the agent chooses the `open_list_manager` tool, it opens the browser UI\n3. The UI edits and saves markdown files (`todo.md`, `shopping.md`), showing one active list at a time\n\n## Notes\n\nBoth markdown files are created automatically if they don't exist. Run `cd 03_05_apps && bun run build:ui` to rebuild the UI bundle from `ui/` sources.\n",
+    "files": [
+      {
+        "path": "README.md",
+        "desc": "Dokumentacja i opis danego przykładu"
+      },
+      {
+        "path": "package.json",
+        "desc": "Zależności i skrypty npm"
+      },
+      {
+        "path": "shopping.md",
+        "desc": ""
+      },
+      {
+        "path": "src/config.ts",
+        "desc": "Zmienne środowiskowe i konfiguracja"
+      },
+      {
+        "path": "src/core/agent.ts",
+        "desc": "Główna logika i pętla agenta AI"
+      },
+      {
+        "path": "src/core/browser.ts",
+        "desc": ""
+      },
+      {
+        "path": "src/core/cli.ts",
+        "desc": ""
+      },
+      {
+        "path": "src/core/list-files.ts",
+        "desc": ""
+      },
+      {
+        "path": "src/core/mcp-app-server.ts",
+        "desc": ""
+      },
+      {
+        "path": "src/core/tools.ts",
+        "desc": "Definicje natywnych narzędzi dla modelu"
+      },
+      {
+        "path": "src/core/ui-html.ts",
+        "desc": ""
+      },
+      {
+        "path": "src/core/ui-server.ts",
+        "desc": ""
+      },
+      {
+        "path": "src/index.ts",
+        "desc": "Główny punkt wejścia (TypeScript)"
+      },
+      {
+        "path": "src/logger.ts",
+        "desc": "Logowanie i formatowanie zdarzeń (konsola)"
+      },
+      {
+        "path": "src/types.ts",
+        "desc": ""
+      },
+      {
+        "path": "todo.md",
+        "desc": ""
+      },
+      {
+        "path": "tsconfig.json",
+        "desc": "Konfiguracja kompilatora TypeScript"
+      },
+      {
+        "path": "ui/app.ts",
+        "desc": ""
+      },
+      {
+        "path": "ui/index.html",
+        "desc": "Główny plik widoku"
+      },
+      {
+        "path": "ui/styles.css",
+        "desc": ""
+      },
+      {
+        "path": "vite.config.mjs",
+        "desc": ""
+      }
+    ]
+  },
+  "03_05_artifacts": {
+    "id": "03_05_artifacts",
+    "readme": "# 03_05_artifacts\n\nCLI artifact agent with live browser preview, WebSocket sync, and capability packs.\n\n## Run\n\n```bash\nnpm run lesson15:artifacts\n```\n\nType your prompt in the CLI. Type `exit` to stop.\n\nDataset visualization demo (seeds business data, picks a random dataset, renders a chart):\n\n```bash\ncd 03_05_artifacts && bun run demo\n```\n\nOptionally force a dataset: `DEMO_DATASET_FILE=sales-activities.csv bun run demo`.\n\n## Required setup\n\n1. Copy `.env.example` to `.env` and fill in any needed values.\n2. Optionally set one API key: `OPENAI_API_KEY` or `OPENROUTER_API_KEY` (without a key, artifact generation falls back to a local placeholder renderer).\n\n## What it does\n\n1. Opens a browser tab automatically and streams app state via WebSocket in real time\n2. Routes prompts between chat and create/edit artifact tools\n3. Generates artifacts using capability packs (Preact, Chart.js, D3, Tailwind, Zod, day.js, etc.)\n4. Supports search/replace editing of existing artifacts\n\n## Notes\n\nAvailable capability packs: `core`, `preact`, `validation`, `date`, `sanitize`, `charts`, `viz`, `csv`, `xlsx`, `tailwind`. The agent requests packs intentionally based on the artifact requirements.\n",
+    "files": [
+      {
+        "path": "README.md",
+        "desc": "Dokumentacja i opis danego przykładu"
+      },
+      {
+        "path": "package.json",
+        "desc": "Zależności i skrypty npm"
+      },
+      {
+        "path": "src/config.ts",
+        "desc": "Zmienne środowiskowe i konfiguracja"
+      },
+      {
+        "path": "src/core/agent.ts",
+        "desc": "Główna logika i pętla agenta AI"
+      },
+      {
+        "path": "src/core/artifact-editor.ts",
+        "desc": ""
+      },
+      {
+        "path": "src/core/artifact-generator.ts",
+        "desc": ""
+      },
+      {
+        "path": "src/core/browser.ts",
+        "desc": ""
+      },
+      {
+        "path": "src/core/capabilities.ts",
+        "desc": ""
+      },
+      {
+        "path": "src/core/cli.ts",
+        "desc": ""
+      },
+      {
+        "path": "src/core/demo-datasets.ts",
+        "desc": ""
+      },
+      {
+        "path": "src/core/live-preview-server.ts",
+        "desc": ""
+      },
+      {
+        "path": "src/core/tools.ts",
+        "desc": "Definicje natywnych narzędzi dla modelu"
+      },
+      {
+        "path": "src/core/web-ui.ts",
+        "desc": ""
+      },
+      {
+        "path": "src/demo.ts",
+        "desc": ""
+      },
+      {
+        "path": "src/index.ts",
+        "desc": "Główny punkt wejścia (TypeScript)"
+      },
+      {
+        "path": "src/logger.ts",
+        "desc": "Logowanie i formatowanie zdarzeń (konsola)"
+      },
+      {
+        "path": "src/types.ts",
+        "desc": ""
+      },
+      {
+        "path": "tsconfig.json",
+        "desc": "Konfiguracja kompilatora TypeScript"
+      }
+    ]
+  },
+  "03_05_awareness": {
+    "id": "03_05_awareness",
+    "readme": "# 03_05_awareness\n\nAwareness agent with temporal context, memory recall, and scout delegation via MCP.\n\n## Run\n\n```bash\nnpm run lesson15:awareness\n```\n\nType your prompt in the CLI. Type `exit` to stop.\n\nScripted demo with visible under-the-hood logs (scout decisions, MCP calls, refresh reasons):\n\n```bash\ncd 03_05_awareness && bun run demo\n```\n\nTo keep demo-seeded files after finishing: `DEMO_PERSIST=1 bun run demo`.\n\n## Required setup\n\n1. Copy `.env.example` to `.env` and fill in any needed values.\n2. Set one API key: `OPENAI_API_KEY` or `OPENROUTER_API_KEY`.\n\n## What it does\n\n1. Injects current date/time context each turn for dynamic temporal reasoning\n2. Reads important-date awareness (birthdays, social dates) from persistent profile files\n3. Delegates context exploration to a `look_around` scout sub-agent that reads profile/environment/memory signals through MCP file access\n4. Stores awareness snapshots persistently with automatic refresh heuristics (bootstrap, date-sensitive, weather, periodic)\n\n## Notes\n\nKnowledge is read from `workspace/` files (profile, environment, memory) and is not hardcoded. The scout refreshes context selectively — not every turn. The demo runs with debug-level logs and a short refresh cooldown to show the mechanics.\n",
+    "files": [
+      {
+        "path": "README.md",
+        "desc": "Dokumentacja i opis danego przykładu"
+      },
+      {
+        "path": "package.json",
+        "desc": "Zależności i skrypty npm"
+      },
+      {
+        "path": "src/bootstrap.ts",
+        "desc": ""
+      },
+      {
+        "path": "src/config.ts",
+        "desc": "Zmienne środowiskowe i konfiguracja"
+      },
+      {
+        "path": "src/core/agent.ts",
+        "desc": "Główna logika i pętla agenta AI"
+      },
+      {
+        "path": "src/core/awareness-state.ts",
+        "desc": ""
+      },
+      {
+        "path": "src/core/chat-history.ts",
+        "desc": ""
+      },
+      {
+        "path": "src/core/cli.ts",
+        "desc": ""
+      },
+      {
+        "path": "src/core/responses-loop.ts",
+        "desc": ""
+      },
+      {
+        "path": "src/core/scout.ts",
+        "desc": ""
+      },
+      {
+        "path": "src/core/template.ts",
+        "desc": ""
+      },
+      {
+        "path": "src/core/tools.ts",
+        "desc": "Definicje natywnych narzędzi dla modelu"
+      },
+      {
+        "path": "src/core/weather.ts",
+        "desc": ""
+      },
+      {
+        "path": "src/demo.ts",
+        "desc": ""
+      },
+      {
+        "path": "src/index.ts",
+        "desc": "Główny punkt wejścia (TypeScript)"
+      },
+      {
+        "path": "src/logger.ts",
+        "desc": "Logowanie i formatowanie zdarzeń (konsola)"
+      },
+      {
+        "path": "src/mcp/client.ts",
+        "desc": "Klient łączący się z narzędziami MCP"
+      },
+      {
+        "path": "src/mcp/types.ts",
+        "desc": ""
+      },
+      {
+        "path": "src/types.ts",
+        "desc": ""
+      },
+      {
+        "path": "templates/awareness.agent.md",
+        "desc": ""
+      },
+      {
+        "path": "templates/scout.agent.md",
+        "desc": ""
+      },
+      {
+        "path": "tsconfig.json",
+        "desc": "Konfiguracja kompilatora TypeScript"
+      }
+    ]
+  },
+  "03_05_render": {
+    "id": "03_05_render",
+    "readme": "# 03_05_render\n\nComponent-guardrailed rendering agent with live preview and structured specs.\n\n## Run\n\n```bash\nnpm run lesson15:render\n```\n\nType your prompt in the CLI. Type `exit` to stop.\n\nDataset demo (seeds business data, picks a random dataset, renders a dashboard):\n\n```bash\ncd 03_05_render && bun run demo\n```\n\nOptionally force a dataset: `DEMO_DATASET_FILE=sales-activities.csv bun run demo`.\n\n## Required setup\n\n1. Copy `.env.example` to `.env` and fill in any needed values.\n2. Optionally set one API key: `OPENAI_API_KEY` or `OPENROUTER_API_KEY` (without a key, rendering falls back to a local synthetic preview).\n\n## What it does\n\n1. Opens a browser preview with WebSocket state sync\n2. Routes prompts between chat and render intent\n3. Generates structured UI specs constrained to allowed component packs (`analytics-core`, `analytics-viz`, `analytics-table`, `analytics-insight`, `analytics-controls`)\n4. Renders specs to HTML server-side for deterministic preview with an inspectable JSON view\n\n## Notes\n\nOutput is constrained to the component catalog — the agent cannot produce arbitrary HTML. This ensures consistent, predictable rendering across runs.\n",
+    "files": [
+      {
+        "path": "README.md",
+        "desc": "Dokumentacja i opis danego przykładu"
+      },
+      {
+        "path": "package.json",
+        "desc": "Zależności i skrypty npm"
+      },
+      {
+        "path": "src/config.ts",
+        "desc": "Zmienne środowiskowe i konfiguracja"
+      },
+      {
+        "path": "src/core/agent.ts",
+        "desc": "Główna logika i pętla agenta AI"
+      },
+      {
+        "path": "src/core/browser.ts",
+        "desc": ""
+      },
+      {
+        "path": "src/core/catalog.ts",
+        "desc": ""
+      },
+      {
+        "path": "src/core/cli.ts",
+        "desc": ""
+      },
+      {
+        "path": "src/core/demo-datasets.ts",
+        "desc": ""
+      },
+      {
+        "path": "src/core/live-preview-server.ts",
+        "desc": ""
+      },
+      {
+        "path": "src/core/spec-generator.ts",
+        "desc": ""
+      },
+      {
+        "path": "src/core/spec-to-html.ts",
+        "desc": ""
+      },
+      {
+        "path": "src/core/tools.ts",
+        "desc": "Definicje natywnych narzędzi dla modelu"
+      },
+      {
+        "path": "src/core/web-ui.ts",
+        "desc": ""
+      },
+      {
+        "path": "src/demo.ts",
+        "desc": ""
+      },
+      {
+        "path": "src/index.ts",
+        "desc": "Główny punkt wejścia (TypeScript)"
+      },
+      {
+        "path": "src/logger.ts",
+        "desc": "Logowanie i formatowanie zdarzeń (konsola)"
+      },
+      {
+        "path": "src/types.ts",
+        "desc": ""
+      },
+      {
+        "path": "tsconfig.json",
+        "desc": "Konfiguracja kompilatora TypeScript"
+      }
+    ]
+  }
+}
