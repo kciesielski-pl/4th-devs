@@ -295,6 +295,69 @@ E<!DOCTYPE html>
       border-radius: 3px;
     }
 
+    /* ── THEME HEADERS ──────────────────────────────────── */
+    .theme-header {
+      margin-top: 80px;
+      padding: 32px 40px;
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      position: relative;
+      overflow: hidden;
+      animation: fadeUp .5s ease both;
+    }
+    .theme-header::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; width: 4px; height: 100%;
+    }
+    .theme-s01::before { background: var(--s01); }
+    .theme-s02::before { background: var(--s02); }
+    .theme-s03::before { background: var(--s03); }
+
+    .theme-title {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: var(--white);
+      margin-bottom: 12px;
+    }
+    .theme-desc {
+      font-size: 14.5px;
+      color: var(--text);
+      line-height: 1.6;
+      margin-bottom: 20px;
+    }
+    .theme-why {
+      background: rgba(255,255,255,0.02);
+      padding: 16px 20px;
+      border-radius: 8px;
+      margin-bottom: 20px;
+      border: 1px solid rgba(255,255,255,0.04);
+      font-size: 14px;
+    }
+    .theme-why-title {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-bottom: 8px;
+    }
+    .theme-keywords {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    .theme-keywords .tag {
+      font-size: 11px;
+      padding: 4px 10px;
+      background: transparent;
+    }
+    .theme-s01 .theme-keywords .tag { border-color: var(--s01-dim); color: var(--s01); }
+    .theme-s02 .theme-keywords .tag { border-color: var(--s02-dim); color: var(--s02); }
+    .theme-s03 .theme-keywords .tag { border-color: var(--s03-dim); color: var(--s03); }
+
     /* ── INSTRUCTIONS ───────────────────────────────────── */
     #instrukcje {
       margin-top: 80px;
@@ -460,11 +523,30 @@ E<!DOCTYPE html>
   <a href="#s03e02" class="s03">S03E02</a>
   <a href="#s03e03" class="s03">S03E03</a>
   <a href="#s03e04" class="s03">S03E04</a>
+  <a href="#s03e05" class="s03">S03E05</a>
   <a href="#instrukcje" class="instr">↓ Jak rozwijać</a>
 </nav>
 
 <!-- ─── MAIN ──────────────────────────────────────────────────────── -->
 <main>
+
+  <!-- ════════ THEME 1 ════════ -->
+  <div class="theme-header theme-s01" style="margin-top: 40px;">
+    <div class="theme-title">Sezon 1: Fundamenty — od promptów do agentów</div>
+    <div class="theme-desc">Solidne podstawy programowania z LLM: wieloturowe konwersacje, structured outputs, function calling, MCP, multimodalność (audio, wideo, obrazy) oraz budowa pełnego agenta z potwierdzeniami human-in-the-loop.</div>
+    <div class="theme-why">
+      <div class="theme-why-title">Co może Ci się przydać?</div>
+      Zrozumienie cyklu życia zapytania do modelu, budowa narzędzi i integracja z MCP, praca z obrazami/audio/wideo, oraz wzorce agentowe: sandbox, workspace, confirmation flow.
+    </div>
+    <div class="theme-keywords">
+      <span class="tag">Responses API</span>
+      <span class="tag">Structured Outputs</span>
+      <span class="tag">Function Calling</span>
+      <span class="tag">MCP</span>
+      <span class="tag">Multimodalność</span>
+      <span class="tag">Agent Loop</span>
+    </div>
+  </div>
 
   <!-- ════════ S01E01 ════════ -->
   <section class="lesson-section s01" id="s01e01">
@@ -841,7 +923,7 @@ E<!DOCTYPE html>
           <span class="tag">streaming</span>
           <span class="tag">OAuth</span>
         </div>
-        <div class="card-run"><span>$</span> <code>npm run dev</code></div>
+        <div class="card-run"><span>$</span> <code>npm run lesson5:agent</code></div>
       </div>
 
       <div class="card">
@@ -864,6 +946,24 @@ E<!DOCTYPE html>
 
     </div>
   </section>
+
+  <!-- ════════ THEME 2 ════════ -->
+  <div class="theme-header theme-s02" style="margin-top: 100px;">
+    <div class="theme-title">Sezon 2: Kontekst, pamięć i wieloagentowość</div>
+    <div class="theme-desc">Zaawansowane zarządzanie kontekstem: RAG (agentic, hybrid, graph), embeddingi, chunking, pamięć długoterminowa z Neo4j, wieloagentowe architektury z orchestratorem oraz bezpieczne piaskownice do wykonywania kodu.</div>
+    <div class="theme-why">
+      <div class="theme-why-title">Co może Ci się przydać?</div>
+      Budowa systemów RAG łączących wiele źródeł, grafy wiedzy, wzorce delegacji między agentami, obserwacyjna pamięć i refleksja, oraz sandboxing kodu.
+    </div>
+    <div class="theme-keywords">
+      <span class="tag">Agentic RAG</span>
+      <span class="tag">Embeddingi</span>
+      <span class="tag">Chunking</span>
+      <span class="tag">Neo4j</span>
+      <span class="tag">Multi-Agent</span>
+      <span class="tag">Sandbox</span>
+    </div>
+  </div>
 
   <!-- ════════ S02E01 ════════ -->
   <section class="lesson-section s02" id="s02e01">
@@ -1066,6 +1166,24 @@ E<!DOCTYPE html>
     </div>
   </section>
 
+  <!-- ════════ THEME 3 ════════ -->
+  <div class="theme-header theme-s03" style="margin-top: 100px;">
+    <div class="theme-title">Sezon 3: Wdrażanie, Interfejsy i Niezawodność</div>
+    <div class="theme-desc">Przeniesienie agentów z terminala do świata rzeczywistego. Moduł pokazuje, jak tworzyć UI/UX dla agentów (WebSockets, aplikacje webowe), jak bezpiecznie korzystać z zewnętrznych API (np. Gmail) oraz jak monitorować (observability) i oceniać skuteczność systemów AI przed produkcją.</div>
+    <div class="theme-why">
+      <div class="theme-why-title">Co może Ci się przydać?</div>
+      Budowa aplikacji typu "Copilot" z interfejsem w przeglądarce, automatyzacja pracy z przeglądarką i pocztą, oraz profesjonalne logowanie kosztów/ścieżek myślowych agentów (Langfuse).
+    </div>
+    <div class="theme-keywords">
+      <span class="tag">Ewaluacja (Evals)</span>
+      <span class="tag">Observability (Langfuse)</span>
+      <span class="tag">Bezpieczeństwo</span>
+      <span class="tag">WebSockets</span>
+      <span class="tag">Generowanie UI</span>
+      <span class="tag">Automatyzacja (Playwright)</span>
+    </div>
+  </div>
+
   <!-- ════════ S03E01 ════════ -->
   <section class="lesson-section s03" id="s03e01">
     <div class="session-header">
@@ -1241,6 +1359,48 @@ E<!DOCTYPE html>
     </div>
   </section>
 
+  <!-- ════════ S03E05 ════════ -->
+  <section class="lesson-section s03" id="s03e05">
+    <div class="session-header">
+      <span class="session-badge">S03E05</span>
+      <span class="session-title">Modele i interfejsy użytkownika</span>
+    </div>
+    <p class="session-desc">Wykorzystanie aplikacji i UI w pracy agentów: serwery lokalne, web sockety, wizualizacje, renderowanie artefaktów i świadomość otoczenia.</p>
+    <a class="lesson-link" href="../lekcje/s03e05-modele-uzywajace-interfejsu.md">
+      Otwórz lekcję S03E05
+    </a>
+    <div class="cards">
+      <div class="card">
+        <div class="card-folder"><span class="folder-icon">📁</span> 03_05_apps</div>
+        <div class="card-title">Apps Manager z UI</div>
+        <div class="card-desc">MCP app server z agentem CLI i podglądem na żywo (todo/shopping list).</div>
+        <div class="card-tags"><span class="tag">MCP</span><span class="tag">Live UI</span></div>
+        <div class="card-run"><span>$</span> <code>npm run lesson15:apps</code></div>
+      </div>
+      <div class="card">
+        <div class="card-folder"><span class="folder-icon">📁</span> 03_05_artifacts</div>
+        <div class="card-title">Artifacts Generator</div>
+        <div class="card-desc">CLI artifact agent streamujący stan aplikacji przez WebSockety na żywo do przeglądarki.</div>
+        <div class="card-tags"><span class="tag">WebSocket</span><span class="tag">Preact</span><span class="tag">D3</span></div>
+        <div class="card-run"><span>$</span> <code>npm run lesson15:artifacts</code></div>
+      </div>
+      <div class="card">
+        <div class="card-folder"><span class="folder-icon">📁</span> 03_05_awareness</div>
+        <div class="card-title">Awareness Agent</div>
+        <div class="card-desc">Agent świadomy otoczenia, czasu i wspomnień (skaut delegowany przez MCP).</div>
+        <div class="card-tags"><span class="tag">temporal context</span><span class="tag">MCP</span></div>
+        <div class="card-run"><span>$</span> <code>npm run lesson15:awareness</code></div>
+      </div>
+      <div class="card">
+        <div class="card-folder"><span class="folder-icon">📁</span> 03_05_render</div>
+        <div class="card-title">Render Agent</div>
+        <div class="card-desc">Agent generujący strukturę UI w oparciu o sztywne komponenty i podgląd na żywo.</div>
+        <div class="card-tags"><span class="tag">UI guardrails</span><span class="tag">Live render</span></div>
+        <div class="card-run"><span>$</span> <code>npm run lesson15:render</code></div>
+      </div>
+    </div>
+  </section>
+
   <!-- ════════ INSTRUKCJE ════════ -->
   <section id="instrukcje">
     <div class="instr-header">
@@ -1323,6 +1483,331 @@ E<!DOCTYPE html>
 <footer>
   AI_devs · pliki_przykladowe_z_kursu · aktualizuj przy dodawaniu nowych lekcji
 </footer>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/vs2015.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlightjs-line-numbers.js/2.8.0/highlightjs-line-numbers.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+
+<style>
+  /* ── MODAL & FILE BROWSER ───────────────────────────── */
+  .modal-overlay {
+    position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(0,0,0,0.8); backdrop-filter: blur(4px);
+    display: flex; justify-content: center; align-items: center;
+    z-index: 1000; opacity: 0; visibility: hidden; pointer-events: none; transition: opacity .3s, visibility .3s;
+  }
+  .modal-overlay.active { opacity: 1; visibility: visible; pointer-events: auto; }
+  .modal-content {
+    background: var(--bg2); width: 90vw; height: 90vh; max-width: 1400px;
+    border: 1px solid var(--border); border-radius: 12px; overflow: hidden;
+    display: flex; flex-direction: column; transform: translateY(20px); transition: transform .3s;
+  }
+  .modal-overlay.active .modal-content { transform: translateY(0); }
+  .modal-header {
+    padding: 16px 24px; border-bottom: 1px solid var(--border);
+    display: flex; justify-content: space-between; align-items: center;
+    background: var(--bg3);
+  }
+  .modal-title { font-family: 'JetBrains Mono', monospace; font-size: 1.2rem; color: var(--white); }
+  .modal-close {
+    background: none; border: none; color: var(--muted); font-size: 24px; cursor: pointer;
+  }
+  .modal-close:hover { color: var(--white); }
+  .modal-body { display: flex; flex: 1; overflow: hidden; }
+  .file-tree {
+    width: 280px; background: var(--bg); border-right: 1px solid var(--border);
+    padding: 16px; overflow-y: auto; font-family: 'JetBrains Mono', monospace; font-size: 13px;
+  }
+  .file-tree ul { list-style: none; padding-left: 12px; }
+  .file-tree li { margin: 4px 0; cursor: pointer; color: var(--text); user-select: none; }
+  .file-tree li:hover { color: var(--s01); }
+  .file-tree li.active { color: var(--s01); font-weight: bold; }
+  .file-tree li.dir { color: var(--muted); cursor: pointer; }
+  .file-tree li.dir > div:first-child:hover { color: var(--white); }
+  .dir-content { padding-left: 8px; border-left: 1px solid rgba(255,255,255,0.05); margin-left: 6px; }
+  .file-content-panel {
+    flex: 1; display: flex; flex-direction: column; overflow: hidden; background: #0f1423;
+  }
+  .file-content-header {
+    padding: 8px 16px; background: var(--bg3); border-bottom: 1px solid var(--border);
+    font-family: 'JetBrains Mono', monospace; font-size: 12px; color: var(--muted);
+  }
+  .file-content-body { flex: 1; overflow: auto; padding: 16px; margin: 0; position: relative; }
+  pre { margin: 0; }
+  code { font-family: 'JetBrains Mono', monospace; font-size: 13px; line-height: 1.5; }
+  
+  /* ── Line Numbers & Highlight.js Overrides ── */
+  .hljs { background: transparent; padding: 0; }
+  .hljs-ln-numbers {
+    -webkit-touch-callout: none; -webkit-user-select: none; user-select: none;
+    text-align: center; color: #5c6370; border-right: 1px solid #30363d;
+    vertical-align: top; padding-right: 12px !important; width: 40px;
+    font-size: 12px;
+  }
+  .hljs-ln-code { padding-left: 16px !important; }
+  .file-content-body table { border-collapse: collapse; width: 100%; }
+  
+  /* ── EXPLAINER PANEL ────────────────────────────────── */
+  .file-explainer-panel {
+    width: 320px; background: var(--bg2); border-left: 1px solid var(--border);
+    display: flex; flex-direction: column; overflow: hidden;
+  }
+  .explainer-header {
+    padding: 12px 16px; background: var(--bg3); border-bottom: 1px solid var(--border);
+    font-family: 'JetBrains Mono', monospace; font-size: 12px; color: var(--s03);
+    display: flex; justify-content: space-between; align-items: center;
+  }
+  .explainer-body { flex: 1; overflow-y: auto; padding: 16px; font-size: 13.5px; line-height: 1.6; }
+  .explainer-footer { padding: 16px; border-top: 1px solid var(--border); background: var(--bg); }
+  .explainer-btn {
+    width: 100%; padding: 8px; background: var(--s01-glow); border: 1px solid var(--s01-dim);
+    color: var(--s01); border-radius: 4px; font-family: 'JetBrains Mono', monospace; font-size: 11px;
+    cursor: pointer; transition: all .2s;
+  }
+  .explainer-btn:hover { background: var(--s01); color: #000; }
+  .explainer-btn:disabled { opacity: 0.5; cursor: not-allowed; }
+  .api-key-input {
+    width: 100%; padding: 8px; background: rgba(0,0,0,0.3); border: 1px solid var(--border);
+    color: var(--white); border-radius: 4px; margin-bottom: 8px; font-family: monospace; font-size: 11px;
+  }
+  .explainer-box {
+    background: rgba(255,255,255,.03); border: 1px solid var(--border); border-radius: 6px; padding: 12px; margin-bottom: 12px;
+  }
+  .explainer-box h4 { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--s02); margin-bottom: 6px; border-bottom: 1px solid rgba(255,255,255,.05); padding-bottom: 4px;}
+  .explainer-box code { font-size: 11.5px; background: rgba(0,0,0,.3); padding: 2px 4px; border-radius: 3px; }
+  .explainer-box p { margin-bottom: 8px; }
+  .explainer-box p:last-child { margin-bottom: 0; }
+</style>
+
+<div class="modal-overlay" id="fileModal">
+  <div class="modal-content">
+    <div class="modal-header">
+      <div class="modal-title" id="modalTitle">Szczegóły lekcji</div>
+      <button class="modal-close" onclick="closeDetails()">×</button>
+    </div>
+    <div class="modal-body">
+      <div class="file-tree" id="fileTree">
+        Wczytywanie...
+      </div>
+      <div class="file-content-panel">
+        <div class="file-content-header" id="fileName">Wybierz plik z listy po lewej</div>
+        <pre class="file-content-body"><code id="fileCode" class="language-plaintext"></code></pre>
+      </div>
+      <div class="file-explainer-panel">
+        <div class="explainer-header">AI Wyjaśnienie kodu</div>
+        <div class="explainer-body" id="explainerBody">
+          <p style="color:var(--muted); font-size:12.5px;">1. Wpisz klucz API OpenAI poniżej.<br>2. Zaznacz fragment kodu myszką w lewym panelu.<br>3. Kliknij "Wyjaśnij kod", aby AI przeanalizowało zaznaczenie.</p>
+        </div>
+        <div class="explainer-footer">
+          <input type="password" id="apiKeyInput" class="api-key-input" placeholder="sk-..." onchange="saveApiKey()" />
+          <button class="explainer-btn" id="explainBtn" onclick="explainSelectedText()">Wyjaśnij zaznaczony kod</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  let dbData = null;
+  let currentLesson = null;
+
+  async function loadDB() {
+    if (!dbData) {
+      try {
+        const res = await fetch('assets/db/db.json');
+        dbData = await res.json();
+      } catch(e) {
+        console.error("Nie udało się załadować bazy:", e);
+      }
+    }
+  }
+
+  function renderTree(files, container) {
+    const root = {};
+    files.forEach(f => {
+      // Obsługa starego i nowego formatu (string vs obiekt {path, desc})
+      const isObj = typeof f === 'object';
+      const fPath = isObj ? f.path : f;
+      const parts = fPath.split('/');
+      
+      let curr = root;
+      parts.forEach((p, i) => {
+        if (!curr[p]) curr[p] = (i === parts.length - 1) ? (isObj ? f : {path: f}) : {};
+        curr = curr[p];
+      });
+    });
+
+    function buildHTML(node, pathStr) {
+      let html = '<ul>';
+      for (const [key, val] of Object.entries(node)) {
+        if (val && val.path) {
+          const descSpan = val.desc ? `<span style="color:var(--muted); font-size:11px; margin-left:8px; font-style:italic;">— ${val.desc}</span>` : '';
+          html += `<li onclick="loadFile('${val.path}')" id="tree-${val.path.replace(/\W/g, '-')}">📄 ${key}${descSpan}</li>`;
+        } else {
+          html += `<li class="dir"><div onclick="toggleDir(this)">📁 ${key}</div><div class="dir-content">${buildHTML(val, pathStr + key + '/')}</div></li>`;
+        }
+      }
+      html += '</ul>';
+      return html;
+    }
+
+    container.innerHTML = buildHTML(root, '');
+    
+    // Add README item if exists
+    container.innerHTML = `<ul style="margin-bottom: 12px; border-bottom: 1px solid var(--border); padding-bottom: 8px;">
+      <li onclick="loadReadme()" id="tree-readme" class="active">📖 Opis lekcji (README.md)</li>
+    </ul>` + container.innerHTML;
+  }
+
+  function toggleDir(el) {
+    const content = el.nextElementSibling;
+    if (content.style.display === 'none') {
+      content.style.display = 'block';
+      el.innerText = el.innerText.replace('📂', '📁');
+    } else {
+      content.style.display = 'none';
+      el.innerText = el.innerText.replace('📁', '📂');
+    }
+  }
+
+  async function openDetails(folderName) {
+    await loadDB();
+    if(!dbData || !dbData[folderName]) {
+      alert("Brak danych dla tej lekcji w db.json. Uruchom skrypt generujący (assets/db/generate_db.js)!");
+      return;
+    }
+    currentLesson = folderName;
+    document.getElementById('modalTitle').innerText = folderName;
+    document.getElementById('fileModal').classList.add('active');
+    
+    renderTree(dbData[folderName].files, document.getElementById('fileTree'));
+    loadReadme();
+  }
+
+  function closeDetails() {
+    document.getElementById('fileModal').classList.remove('active');
+  }
+
+  function highlightActive(id) {
+    document.querySelectorAll('.file-tree li').forEach(el => el.classList.remove('active'));
+    const el = document.getElementById(id);
+    if(el) el.classList.add('active');
+  }
+
+  function loadReadme() {
+    highlightActive('tree-readme');
+    document.getElementById('fileName').innerText = currentLesson + '/README.md';
+    const codeBlock = document.getElementById('fileCode');
+    codeBlock.className = 'language-markdown';
+    codeBlock.textContent = dbData[currentLesson].readme;
+    hljs.highlightElement(codeBlock);
+    hljs.lineNumbersBlock(codeBlock);
+  }
+
+  async function loadFile(filepath) {
+    highlightActive('tree-' + filepath.replace(/\W/g, '-'));
+    document.getElementById('fileName').innerText = currentLesson + '/' + filepath;
+    const codeBlock = document.getElementById('fileCode');
+    codeBlock.textContent = "Ładowanie...";
+    
+    try {
+      const res = await fetch(currentLesson + '/' + filepath);
+      const text = await res.text();
+      
+      const ext = filepath.split('.').pop();
+      let lang = 'plaintext';
+      if(ext === 'js' || ext === 'mjs' || ext === 'ts') lang = 'javascript';
+      if(ext === 'json') lang = 'json';
+      if(ext === 'html') lang = 'html';
+      if(ext === 'css') lang = 'css';
+      if(ext === 'md') lang = 'markdown';
+      if(ext === 'sh' || ext === 'bash') lang = 'bash';
+
+      codeBlock.className = 'language-' + lang;
+      codeBlock.textContent = text;
+      delete codeBlock.dataset.highlighted;
+      hljs.highlightElement(codeBlock);
+      hljs.lineNumbersBlock(codeBlock);    } catch(e) {
+      codeBlock.textContent = "Błąd odczytu pliku: " + e;
+    }
+  }
+
+  // Hook all cards
+  document.querySelectorAll('.card').forEach(card => {
+    card.style.cursor = 'pointer';
+    card.addEventListener('click', () => {
+      const folderName = card.querySelector('.card-folder').innerText.replace('📁', '').trim();
+      openDetails(folderName);
+    });
+    // Prevent inner clicks from triggering card click
+    const runNode = card.querySelector('.card-run');
+    if (runNode) {
+      runNode.addEventListener('click', e => e.stopPropagation());
+    }
+  });
+
+  // AI EXPLAINER LOGIC
+  document.addEventListener('DOMContentLoaded', () => {
+    const savedKey = localStorage.getItem('ai_devs_api_key');
+    if (savedKey) document.getElementById('apiKeyInput').value = savedKey;
+  });
+
+  function saveApiKey() {
+    const key = document.getElementById('apiKeyInput').value.trim();
+    localStorage.setItem('ai_devs_api_key', key);
+  }
+
+  async function explainSelectedText() {
+    const selection = window.getSelection().toString().trim();
+    const body = document.getElementById('explainerBody');
+    const btn = document.getElementById('explainBtn');
+    const apiKey = document.getElementById('apiKeyInput').value.trim();
+
+    if (!apiKey) {
+      alert("Najpierw podaj swój klucz API OpenAI!");
+      return;
+    }
+    if (!selection) {
+      alert("Najpierw zaznacz fragment kodu myszką w lewym panelu.");
+      return;
+    }
+
+    body.innerHTML = '<div class="explainer-box"><p>⏳ <em>AI analizuje kod...</em></p></div>' + body.innerHTML;
+    btn.disabled = true;
+    btn.innerText = "Analizowanie...";
+
+    try {
+      const res = await fetch('https://api.openai.com/v1/chat/completions', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${apiKey}`
+        },
+        body: JSON.stringify({
+          model: 'gpt-4o-mini',
+          messages: [
+            { role: 'system', content: 'Jesteś ekspertem programowania. Użytkownik przesyła fragment kodu (TypeScript/Node.js/HTML). Wyjaśnij krótko, prosto i zwięźle co robi ten kod. Używaj formatowania Markdown (pogrubienia, code blocks). Zwracaj odpowiedź w języku polskim.' },
+            { role: 'user', content: `Oto kod:\n\n${selection}` }
+          ],
+          temperature: 0.3
+        })
+      });
+
+      if (!res.ok) throw new Error("Błąd API OpenAI: " + res.status);
+      
+      const data = await res.json();
+      const explanation = data.choices[0].message.content;
+      
+      body.innerHTML = `<div class="explainer-box">${marked.parse(explanation)}</div>` + body.innerHTML.replace('<div class="explainer-box"><p>⏳ <em>AI analizuje kod...</em></p></div>', '');
+    } catch(err) {
+      body.innerHTML = `<div class="explainer-box"><p style="color:var(--s02)">❌ <strong>Błąd:</strong> ${err.message}</p></div>` + body.innerHTML.replace('<div class="explainer-box"><p>⏳ <em>AI analizuje kod...</em></p></div>', '');
+    } finally {
+      btn.disabled = false;
+      btn.innerText = "Wyjaśnij zaznaczony kod";
+    }
+  }
+</script>
 
 </body>
 </html>
