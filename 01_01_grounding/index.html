@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI_Devs Dashboard: 01_01 Grounding</title>
+    <style>
+        :root { --primary: #007bff; --bg: #f0f2f5; --card: #ffffff; --text: #1c1e21; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: var(--bg); color: var(--text); margin: 0; padding: 2rem; }
+        .container { max-width: 1000px; margin: 0 auto; }
+        header { text-align: center; margin-bottom: 3rem; }
+        header h1 { font-size: 2.5rem; color: var(--primary); margin-bottom: 0.5rem; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; }
+        .card { background: var(--card); border-radius: 12px; padding: 1.5rem; box-shadow: 0 4px 6px rgba(0,0,0,0.1); transition: transform 0.2s; display: flex; flex-direction: column; }
+        .card:hover { transform: translateY(-5px); }
+        .card h2 { margin-top: 0; font-size: 1.25rem; color: #333; }
+        .card p { color: #606770; flex-grow: 1; }
+        .btn { display: inline-block; background: var(--primary); color: white; text-decoration: none; padding: 0.8rem 1.2rem; border-radius: 6px; text-align: center; font-weight: bold; margin-top: 1rem; }
+        .btn-alt { background: #6c757d; }
+        .btn-special { background: #28a745; }
+        .tag { font-size: 0.75rem; background: #e7f3ff; color: var(--primary); padding: 0.2rem 0.5rem; border-radius: 4px; font-weight: bold; text-transform: uppercase; margin-bottom: 0.5rem; align-self: flex-start; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>01_01 Grounding & RAG</h1>
+            <p>Zrozumienie mechanizmu uzasadniania faktów w LLM</p>
+        </header>
+
+        <div class="grid">
+            <!-- NOTATKI TECHNICZNE -->
+            <div class="card">
+                <span class="tag">Teoria & Kod</span>
+                <h2>Notatki Techniczne</h2>
+                <p>Szczegółowy opis potoku (pipeline), parametrów funkcji oraz wyjaśnienie procesu RAG w tym projekcie.</p>
+                <a href="NOTATKI_DO_KURSU.html" class="btn">Otwórz Notatki</a>
+            </div>
+
+            <!-- WYNIK PROJEKTU -->
+            <div class="card">
+                <span class="tag">Demo</span>
+                <h2>Grounded Demo HTML</h2>
+                <p>Zobacz efekt końcowy: interaktywny tekst z tooltipami zawierającymi sprawdzone fakty z internetu.</p>
+                <a href="output/grounded_demo.html" class="btn btn-alt">Zobacz Wynik</a>
+            </div>
+
+            <!-- SKRYPTY LLM -->
+            <div class="card">
+                <span class="tag">Zasoby Zewnętrzne</span>
+                <h2>Wizualne Skrypty LLM</h2>
+                <p>Pełna lista skryptów i narzędzi AI przygotowana przez Overment (Cloud).</p>
+                <a href="https://cloud.overment.com/ai_devs_list-1773155819.html" target="_blank" class="btn btn-special">Otwórz Listę Skryptów</a>
+            </div>
+        </div>
+
+        <footer style="margin-top: 4rem; text-align: center; color: #90949c; font-size: 0.9rem;">
+            Projekt: 01_01_grounding | Kurs AI_Devs
+        </footer>
+    </div>
+</body>
+</html>
