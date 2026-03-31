@@ -4,12 +4,24 @@
     "readme": "# 01_01_grounding\n\nTransforms markdown notes into interactive HTML with fact-checked, source-annotated concepts using structured outputs and web search.\n\n## Run\n\n```bash\nnpm run lesson1:grounding\n```\n\nPass arguments after `--`:\n\n```bash\nnpm run lesson1:grounding -- my-note.md\nnpm run lesson1:grounding -- --force\nnpm run lesson1:grounding -- my-note.md --force\n```\n\n## How it works\n\n```\nINPUT:  Markdown file (notes/ folder)\n  ↓\n1. EXTRACT  — 1 paragraph = 1 API call → concepts.json\n  ↓\n2. DEDUPE   — group synonyms under canonical labels → dedupe.json\n  ↓\n3. SEARCH   — 1 concept = 1 API call + web search → search_results.json\n  ↓\n4. GROUND   — 1 paragraph = 1 API call → grounded.html\n```\n\nEach stage runs in parallel batches and caches results. Use `--force` to rebuild from scratch.\n\n## Output\n\nAll files written to `output/`:\n\n| File | Content |\n|------|---------|\n| `concepts.json` | Extracted concepts per paragraph with scores |\n| `dedupe.json` | Grouped canonical concepts with aliases |\n| `search_results.json` | Web search summaries and sources |\n| `grounded.html` | Final interactive HTML with tooltips |\n\n## Configuration\n\nEdit `src/config.js` to change models, timeouts, or retry settings.\n",
     "files": [
       {
+        "path": "NOTATKI_DO_KURSU.html",
+        "desc": ""
+      },
+      {
         "path": "README.md",
         "desc": "Dokumentacja i opis danego przykładu"
       },
       {
+        "path": "README_PL.html",
+        "desc": ""
+      },
+      {
         "path": "app.js",
         "desc": "Główny punkt wejścia"
+      },
+      {
+        "path": "index.html",
+        "desc": "Główny plik widoku"
       },
       {
         "path": "notes/crypto.md",
@@ -126,6 +138,10 @@
         "desc": "Dokumentacja i opis danego przykładu"
       },
       {
+        "path": "README_PL.html",
+        "desc": ""
+      },
+      {
         "path": "app.js",
         "desc": "Główny punkt wejścia"
       },
@@ -152,6 +168,10 @@
         "desc": "Dokumentacja i opis danego przykładu"
       },
       {
+        "path": "README_PL.html",
+        "desc": ""
+      },
+      {
         "path": "app.js",
         "desc": "Główny punkt wejścia"
       },
@@ -176,6 +196,10 @@
       {
         "path": "README.md",
         "desc": "Dokumentacja i opis danego przykładu"
+      },
+      {
+        "path": "README_PL.html",
+        "desc": ""
       },
       {
         "path": "TOOLS.md",
@@ -236,6 +260,10 @@
         "desc": "Dokumentacja i opis danego przykładu"
       },
       {
+        "path": "README_PL.html",
+        "desc": ""
+      },
+      {
         "path": "app.js",
         "desc": "Główny punkt wejścia"
       },
@@ -252,6 +280,10 @@
       {
         "path": "README.md",
         "desc": "Dokumentacja i opis danego przykładu"
+      },
+      {
+        "path": "README_PL.html",
+        "desc": ""
       },
       {
         "path": "app.js",
@@ -312,6 +344,10 @@
         "desc": "Dokumentacja i opis danego przykładu"
       },
       {
+        "path": "README_PL.html",
+        "desc": ""
+      },
+      {
         "path": "app.js",
         "desc": "Główny punkt wejścia"
       },
@@ -356,6 +392,10 @@
       {
         "path": "README.md",
         "desc": "Dokumentacja i opis danego przykładu"
+      },
+      {
+        "path": "README_PL.html",
+        "desc": ""
       },
       {
         "path": "app.js",
@@ -416,6 +456,10 @@
         "desc": "Dokumentacja i opis danego przykładu"
       },
       {
+        "path": "README_PL.html",
+        "desc": ""
+      },
+      {
         "path": "app.js",
         "desc": "Główny punkt wejścia"
       },
@@ -472,6 +516,10 @@
       {
         "path": "README.md",
         "desc": "Dokumentacja i opis danego przykładu"
+      },
+      {
+        "path": "README_PL.html",
+        "desc": ""
       },
       {
         "path": "app.js",
@@ -534,6 +582,10 @@
       {
         "path": "README.md",
         "desc": "Dokumentacja i opis danego przykładu"
+      },
+      {
+        "path": "README_PL.html",
+        "desc": ""
       },
       {
         "path": "app.js",
@@ -604,6 +656,10 @@
       {
         "path": "README.md",
         "desc": "Dokumentacja i opis danego przykładu"
+      },
+      {
+        "path": "README_PL.html",
+        "desc": ""
       },
       {
         "path": "app.js",
@@ -702,6 +758,10 @@
       {
         "path": "README.md",
         "desc": "Dokumentacja i opis danego przykładu"
+      },
+      {
+        "path": "README_PL.html",
+        "desc": ""
       },
       {
         "path": "app.js",
@@ -850,6 +910,10 @@
         "desc": "Dokumentacja i opis danego przykładu"
       },
       {
+        "path": "README_PL.html",
+        "desc": ""
+      },
+      {
         "path": "app.js",
         "desc": "Główny punkt wejścia"
       },
@@ -910,6 +974,10 @@
       {
         "path": "README.md",
         "desc": "Dokumentacja i opis danego przykładu"
+      },
+      {
+        "path": "README_PL.html",
+        "desc": ""
       },
       {
         "path": "app.js",
@@ -974,6 +1042,10 @@
         "desc": "Dokumentacja i opis danego przykładu"
       },
       {
+        "path": "README_PL.html",
+        "desc": ""
+      },
+      {
         "path": "app.js",
         "desc": "Główny punkt wejścia"
       },
@@ -1034,6 +1106,10 @@
       {
         "path": "README.md",
         "desc": "Dokumentacja i opis danego przykładu"
+      },
+      {
+        "path": "README_PL.html",
+        "desc": ""
       },
       {
         "path": "app.js",
@@ -1100,6 +1176,10 @@
       {
         "path": "README.md",
         "desc": "Dokumentacja i opis danego przykładu"
+      },
+      {
+        "path": "README_PL.html",
+        "desc": ""
       },
       {
         "path": "drizzle/0000_romantic_union_jack.sql",
@@ -1396,6 +1476,10 @@
         "desc": "Dokumentacja i opis danego przykładu"
       },
       {
+        "path": "README_PL.html",
+        "desc": ""
+      },
+      {
         "path": "app.js",
         "desc": "Główny punkt wejścia"
       },
@@ -1462,6 +1546,10 @@
         "desc": "Dokumentacja i opis danego przykładu"
       },
       {
+        "path": "README_PL.html",
+        "desc": ""
+      },
+      {
         "path": "app.js",
         "desc": "Główny punkt wejścia"
       },
@@ -1524,8 +1612,16 @@
         "desc": "Dokumentacja i opis danego przykładu"
       },
       {
+        "path": "README_PL.html",
+        "desc": ""
+      },
+      {
         "path": "app.js",
         "desc": "Główny punkt wejścia"
+      },
+      {
+        "path": "context.md",
+        "desc": ""
       },
       {
         "path": "package.json",
@@ -1566,6 +1662,10 @@
         "desc": "Dokumentacja i opis danego przykładu"
       },
       {
+        "path": "README_PL.html",
+        "desc": ""
+      },
+      {
         "path": "app.js",
         "desc": "Główny punkt wejścia"
       },
@@ -1582,6 +1682,10 @@
       {
         "path": "README.md",
         "desc": "Dokumentacja i opis danego przykładu"
+      },
+      {
+        "path": "README_PL.html",
+        "desc": ""
       },
       {
         "path": "app.js",
@@ -3472,6 +3576,196 @@
       {
         "path": "tsconfig.json",
         "desc": "Konfiguracja kompilatora TypeScript"
+      }
+    ]
+  },
+  "04_01_garden": {
+    "id": "04_01_garden",
+    "readme": "Brak opisu (README.md).",
+    "files": [
+      {
+        "path": "grove/build.ts",
+        "desc": ""
+      },
+      {
+        "path": "grove/markdown.ts",
+        "desc": ""
+      },
+      {
+        "path": "grove/styles/main.css",
+        "desc": ""
+      },
+      {
+        "path": "grove/template.ts",
+        "desc": ""
+      },
+      {
+        "path": "grove/templates/layout.html",
+        "desc": ""
+      },
+      {
+        "path": "grove/types.ts",
+        "desc": ""
+      },
+      {
+        "path": "menu.json",
+        "desc": ""
+      },
+      {
+        "path": "package.json",
+        "desc": "Zależności i skrypty npm"
+      },
+      {
+        "path": "src/agent/index.ts",
+        "desc": "Główny punkt wejścia (TypeScript)"
+      },
+      {
+        "path": "src/agent/log.ts",
+        "desc": ""
+      },
+      {
+        "path": "src/agent/loop.ts",
+        "desc": ""
+      },
+      {
+        "path": "src/agent/skill.ts",
+        "desc": ""
+      },
+      {
+        "path": "src/agent/template.ts",
+        "desc": ""
+      },
+      {
+        "path": "src/agent/types.ts",
+        "desc": ""
+      },
+      {
+        "path": "src/ai/client.ts",
+        "desc": "Klient łączący się z narzędziami MCP"
+      },
+      {
+        "path": "src/config.ts",
+        "desc": "Zmienne środowiskowe i konfiguracja"
+      },
+      {
+        "path": "src/debug.ts",
+        "desc": ""
+      },
+      {
+        "path": "src/index.ts",
+        "desc": "Główny punkt wejścia (TypeScript)"
+      },
+      {
+        "path": "src/sandbox/client.ts",
+        "desc": "Klient łączący się z narzędziami MCP"
+      },
+      {
+        "path": "src/tools/code-mode.ts",
+        "desc": ""
+      },
+      {
+        "path": "src/tools/git-push.ts",
+        "desc": ""
+      },
+      {
+        "path": "src/tools/index.ts",
+        "desc": "Główny punkt wejścia (TypeScript)"
+      },
+      {
+        "path": "src/tools/terminal.ts",
+        "desc": ""
+      },
+      {
+        "path": "src/types.ts",
+        "desc": ""
+      },
+      {
+        "path": "src/welcome.ts",
+        "desc": ""
+      },
+      {
+        "path": "tsconfig.json",
+        "desc": "Konfiguracja kompilatora TypeScript"
+      },
+      {
+        "path": "vault/index.md",
+        "desc": ""
+      },
+      {
+        "path": "vault/lab.md",
+        "desc": ""
+      },
+      {
+        "path": "vault/research/notion-airtable-clickup/airtable.md",
+        "desc": ""
+      },
+      {
+        "path": "vault/research/notion-airtable-clickup/clickup.md",
+        "desc": ""
+      },
+      {
+        "path": "vault/research/notion-airtable-clickup/notion.md",
+        "desc": ""
+      },
+      {
+        "path": "vault/research/notion-airtable-clickup/overview.md",
+        "desc": ""
+      },
+      {
+        "path": "vault/research/smoke-test/hello.md",
+        "desc": ""
+      },
+      {
+        "path": "vault/shelf/good-to-great.md",
+        "desc": ""
+      },
+      {
+        "path": "vault/shelf/great-by-choice.md",
+        "desc": ""
+      },
+      {
+        "path": "vault/shelf.md",
+        "desc": ""
+      },
+      {
+        "path": "vault/signal/purified-radio-497-nora-en-pure.md",
+        "desc": ""
+      },
+      {
+        "path": "vault/signal.md",
+        "desc": ""
+      },
+      {
+        "path": "vault/system/agent-architecture-concepts.md",
+        "desc": ""
+      },
+      {
+        "path": "vault/system/main.agent.md",
+        "desc": ""
+      },
+      {
+        "path": "vault/system/skills/product-compare/SKILL.md",
+        "desc": ""
+      },
+      {
+        "path": "vault/system/skills/product-compare/scripts/merge-overview.js",
+        "desc": ""
+      },
+      {
+        "path": "vault/system/skills/product-compare/scripts/smoke-edit-file.js",
+        "desc": ""
+      },
+      {
+        "path": "vault/system/skills/vault-note/SKILL.md",
+        "desc": ""
+      },
+      {
+        "path": "vault/system/skills-code-mode-concept.md",
+        "desc": ""
+      },
+      {
+        "path": "vault/system/workflows/research.md",
+        "desc": ""
       }
     ]
   }

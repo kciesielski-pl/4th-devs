@@ -32,6 +32,11 @@ E<!DOCTYPE html>
       --s03: hsl(var(--s03-hue), 95%, 60%);
       --s03-dim: hsl(var(--s03-hue), 60%, 18%);
       --s03-glow: hsl(var(--s03-hue), 95%, 60%, .12);
+
+      --s04-hue: 280;
+      --s04: hsl(var(--s04-hue), 75%, 65%);
+      --s04-dim: hsl(var(--s04-hue), 50%, 20%);
+      --s04-glow: hsl(var(--s04-hue), 75%, 65%, .12);
     }
 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -120,6 +125,7 @@ E<!DOCTYPE html>
     nav a.s01 { color: var(--s01); border-color: var(--s01-dim); background: var(--s01-glow); }
     nav a.s02 { color: var(--s02); border-color: var(--s02-dim); background: var(--s02-glow); }
     nav a.s03 { color: var(--s03); border-color: var(--s03-dim); background: var(--s03-glow); }
+    nav a.s04 { color: var(--s04); border-color: var(--s04-dim); background: var(--s04-glow); }
     nav a.instr { color: var(--s03); border-color: var(--s03-dim); background: var(--s03-glow); }
     nav a:hover { filter: brightness(1.3); }
 
@@ -154,6 +160,7 @@ E<!DOCTYPE html>
     .s01 .session-badge { background: var(--s01-glow); color: var(--s01); border: 1px solid var(--s01-dim); }
     .s02 .session-badge { background: var(--s02-glow); color: var(--s02); border: 1px solid var(--s02-dim); }
     .s03 .session-badge { background: var(--s03-glow); color: var(--s03); border: 1px solid var(--s03-dim); }
+    .s04 .session-badge { background: var(--s04-glow); color: var(--s04); border: 1px solid var(--s04-dim); }
 
     .session-title {
       font-family: 'JetBrains Mono', monospace;
@@ -188,6 +195,7 @@ E<!DOCTYPE html>
     .s01 .lesson-link { color: var(--s01); background: var(--s01-glow); border: 1px solid var(--s01-dim); }
     .s02 .lesson-link { color: var(--s02); background: var(--s02-glow); border: 1px solid var(--s02-dim); }
     .s03 .lesson-link { color: var(--s03); background: var(--s03-glow); border: 1px solid var(--s03-dim); }
+    .s04 .lesson-link { color: var(--s04); background: var(--s04-glow); border: 1px solid var(--s04-dim); }
     .lesson-link:hover { filter: brightness(1.3); transform: translateX(2px); }
     .lesson-link::before { content: '📄'; font-size: 12px; }
 
@@ -239,6 +247,7 @@ E<!DOCTYPE html>
     .s01 .card-folder { color: var(--s01); }
     .s02 .card-folder { color: var(--s02); }
     .s03 .card-folder { color: var(--s03); }
+    .s04 .card-folder { color: var(--s04); }
 
     .card-folder .folder-icon { opacity: .7; font-size: 13px; }
 
@@ -314,6 +323,7 @@ E<!DOCTYPE html>
     .theme-s01::before { background: var(--s01); }
     .theme-s02::before { background: var(--s02); }
     .theme-s03::before { background: var(--s03); }
+    .theme-s04::before { background: var(--s04); }
 
     .theme-title {
       font-family: 'JetBrains Mono', monospace;
@@ -357,6 +367,7 @@ E<!DOCTYPE html>
     .theme-s01 .theme-keywords .tag { border-color: var(--s01-dim); color: var(--s01); }
     .theme-s02 .theme-keywords .tag { border-color: var(--s02-dim); color: var(--s02); }
     .theme-s03 .theme-keywords .tag { border-color: var(--s03-dim); color: var(--s03); }
+    .theme-s04 .theme-keywords .tag { border-color: var(--s04-dim); color: var(--s04); }
 
     /* ── INSTRUCTIONS ───────────────────────────────────── */
     #instrukcje {
@@ -524,6 +535,7 @@ E<!DOCTYPE html>
   <a href="#s03e03" class="s03">S03E03</a>
   <a href="#s03e04" class="s03">S03E04</a>
   <a href="#s03e05" class="s03">S03E05</a>
+  <a href="#s04e01" class="s04">S04E01</a>
   <a href="#instrukcje" class="instr">↓ Jak rozwijać</a>
 </nav>
 
@@ -1397,6 +1409,50 @@ E<!DOCTYPE html>
         <div class="card-desc">Agent generujący strukturę UI w oparciu o sztywne komponenty i podgląd na żywo.</div>
         <div class="card-tags"><span class="tag">UI guardrails</span><span class="tag">Live render</span></div>
         <div class="card-run"><span>$</span> <code>npm run lesson15:render</code></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════ THEME 4 ════════ -->
+  <div class="theme-header theme-s04" style="margin-top: 100px;">
+    <div class="theme-title">Sezon 4: Zaawansowane Systemy i Produkcja</div>
+    <div class="theme-desc">Budowa kompletnych systemów agentowych gotowych na produkcję: cyfrowy ogród z piaskownicą Daytona, zaawansowane workflow, automatyczne przeglądy kodu i aplikacje webowe sterowane przez AI.</div>
+    <div class="theme-why">
+      <div class="theme-why-title">Co może Ci się przydać?</div>
+      Architektura skill-based agentów, praca z sandboxami w chmurze (Daytona), budowanie statycznych stron z vault/markdown, integracja z Git i terminalem, oraz wzorce produkcyjne.
+    </div>
+    <div class="theme-keywords">
+      <span class="tag">Digital Garden</span>
+      <span class="tag">Daytona Sandbox</span>
+      <span class="tag">Skill-based Agent</span>
+      <span class="tag">Vault</span>
+      <span class="tag">Static Site</span>
+    </div>
+  </div>
+
+  <!-- ════════ S04E01 ════════ -->
+  <section class="lesson-section s04" id="s04e01">
+    <div class="session-header">
+      <span class="session-badge">S04E01</span>
+      <span class="session-title">Cyfrowy ogród i piaskownice w chmurze</span>
+    </div>
+    <p class="session-desc">Budowa cyfrowego ogrodu (digital garden) z agentem AI zarządzającym vault Markdown — skills, piaskownica Daytona, generowanie statycznej strony.</p>
+    <div class="cards">
+      <div class="card">
+        <div class="card-folder"><span class="folder-icon">📁</span> 04_01_garden</div>
+        <div class="card-title">Digital Garden — agent z vault i piaskownicą</div>
+        <div class="card-desc">
+          Interaktywny agent CLI zarządzający vault Markdown. Korzysta z Daytona sandbox do wykonywania kodu, generuje statyczną stronę ze styli CSS i szablonów HTML. Architektura skill-based z narzędziami: terminal, code_mode, git_push.
+        </div>
+        <div class="card-tags">
+          <span class="tag">Daytona</span>
+          <span class="tag">sandbox</span>
+          <span class="tag">vault</span>
+          <span class="tag">static site</span>
+          <span class="tag">skills</span>
+          <span class="tag">Bun</span>
+        </div>
+        <div class="card-run"><span>$</span> <code>npm run lesson16:garden</code></div>
       </div>
     </div>
   </section>
