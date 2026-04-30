@@ -1,3 +1,31 @@
+
+# Awareness — agent z kontekstem czasowym i scout (03_05_awareness)
+
+Wstrzykuje datę/czas każdy turn; sub-agent scout look_around odkrywa kontekst leniwie.
+
+## 📝 Opis
+Wstrzykuje aktualny kontekst daty/czasu każdy turn dla rozumowania temporalnego. Czyta awareness daty (urodziny, wydarzenia) z plików profilu. Deleguje eksplorację do sub-agenta scout look_around, który czyta sygnały profilu/środowiska/pamięci przez MCP. Snapshoty awareness z heurystycznym refresh (bootstrap, date-sensitive, weather, periodic). Wiedza z workspace/ — niczego nie hardkoduje.
+
+## 🎯 Zastosowania
+- Asystent osobisty wrażliwy na daty (urodziny, rocznice, deadliny)
+- Agenty z dynamicznym rozumowaniem temporalnym
+- Lazy context loading przez scout — oszczędność tokenów
+
+## 💡 Zapamiętaj
+- Temporal context injection — taniej niż zmuszanie modelu do recall'u
+- Scout sub-agent dla selective context discovery (lazy)
+- Heuristic refresh (event-driven) zamiast naiwnego refreshu zawsze
+
+## 🔧 Szczegóły
+- **Lekcja**: [S03E05 - Niedeterministyczna natura modeli jako przewaga](../../index.html#S03E05)
+- **Tagi**: `temporal-context`, `memory`, `scout-delegation`, `mcp`, `awareness`
+- **Narzędzia**: `MCP SDK`, `gray-matter`, `OpenAI / OpenRouter`
+- **Uruchomienie**: `npm run lesson15:awareness`
+
+---
+
+## 🛠️ Technical Details / Jak to działa
+
 # 03_05_awareness
 
 Awareness agent with temporal context, memory recall, and scout delegation via MCP.

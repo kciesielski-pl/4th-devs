@@ -1,3 +1,33 @@
+
+# Przetwarzanie Dźwięku (Speech-to-Text) (01_04_audio)
+
+Transkrypcja i analiza audio oraz text-to-speech integrujące Gemini z MCP file tools.
+
+## 📝 Opis
+Agent interaktywny (REPL) mogący transkrybować audio, analizować treść dźwiękową, generować speech-to-text. Integruje Gemini do obsługi audio, ElevenLabs do TTS, MCP files-mcp do czytania/pisania z workspace/input/ i workspace/output/. Obsługuje zarówno lokalne pliki jak YouTube URLs. Każdy query resetuje conversation context, można wyjść lub wyczyścić.
+
+## 🎯 Zastosowania
+- Asystenci mogący analizować call recordings dla QA
+- Systemy note-taking które konwertują voice memos do tekstu i streszczenia
+- Generowanie podcastów z napisów — text-to-speech dla różnych głosów
+- Analiza meeting recordings automatycznie ekstrahuje action items
+
+## 💡 Zapamiętaj
+- Gemini nativnie wspiera audio analysis — nie trzeba whisper → parse pipeline
+- ElevenLabs TTS — naturalny głos, ponad 500 voice'ów, streaming
+- REPL interface z `clear` i `exit` commands — użytkownik controls flow
+- MCP files tool obsługuje YouTube URLs bezpośrednio — Gemini je pobiera
+
+## 🔧 Szczegóły
+- **Lekcja**: [S01E04 - Wsparcie multimodalności oraz załączników](../../index.html#S01E04)
+- **Tagi**: `audio`, `tts`, `speech-to-text`, `gemini`, `elevenlabs`, `mcp`
+- **Narzędzia**: `Gemini`, `@elevenlabs/elevenlabs-js`, `@modelcontextprotocol/sdk`, `Node.js`
+- **Uruchomienie**: `npm run lesson4:audio`
+
+---
+
+## 🛠️ Technical Details / Jak to działa
+
 # 01_04_audio
 
 Audio transcription, analysis, and text-to-speech with Gemini plus MCP file tools.

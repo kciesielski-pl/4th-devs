@@ -1,3 +1,33 @@
+
+# Image Generation & Editing z Quality Checks (01_04_image_editing)
+
+Generowanie i edytowanie obrazów z automatyczną analizą jakości i adherence.
+
+## 📝 Opis
+Agent czyta style-guide.md, generuje nowe obrazy lub edytuje reference images, następnie automatycznie analizuje rezultat pod kątem zgodności z prompt i problemów jakościowych (blocking issues, style consistency). Iteruje jeśli trzeba. Saves do workspace/output/.
+
+## 🎯 Zastosowania
+- QA pipeline dla AI-generated assets przed publikacją
+- Iterative design — agent edytuje aż do spełnienia kryteriów
+- Brand consistency checks — obrazy muszą pasować do style guide
+- Content moderation — detekt inappropriate visual elements
+
+## 💡 Zapamiętaj
+- Quality check loop: generate → analyze → if (issues) iterate else save
+- Vision analysis post-generation — Gemini ewaluuje output, daje feedback
+- Style guide reading upfront — agent zna kryteria zanim generuje
+- Fallback to text report jeśli visual analysis fails — graceful degradation
+
+## 🔧 Szczegóły
+- **Lekcja**: [S01E04 - Wsparcie multimodalności oraz załączników](../../index.html#S01E04)
+- **Tagi**: `image-editing`, `image-generation`, `quality-check`, `gemini`, `agent`
+- **Narzędzia**: `Gemini`, `OpenRouter`, `@modelcontextprotocol/sdk`, `Node.js`
+- **Uruchomienie**: `npm run lesson4:image_editing`
+
+---
+
+## 🛠️ Technical Details / Jak to działa
+
 # 01_04_image_editing
 
 Interactive image generation and editing with quality checks.

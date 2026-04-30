@@ -1,3 +1,31 @@
+
+# Events — wieloagentowa architektura z heartbeatem (03_02_events)
+
+Pętla heartbeat przypisuje zadania specjalistom; pamięć observer/reflector; pauzy dla człowieka.
+
+## 📝 Opis
+Czyta kontrakt celu z workspace/goal.md i skanuje szablony agentów. Planner LLM generuje plan zadań i materializuje go jako pliki MD. Pętla heartbeat przypisuje zadania, wysyła je do specjalistycznych agentów (researcher, planner, writer, editor, designer) i wykrywa ukończenie. Każda sesja używa kompaktowania pamięci observer/reflector. Human-in-the-loop pauzuje przez request_human z utrzymanymi stanami oczekiwania. Generuje artefakty w workspace/project/.
+
+## 🎯 Zastosowania
+- Autonomiczna realizacja złożonych zadań wielofazowych
+- Koordynacja specjalistów (research, writing, design) przez orkiestratora
+- Generowanie raportów z punktami zatwierdzania przez człowieka
+
+## 💡 Zapamiętaj
+- Architektura heartbeat to alternatywa dla streaming agent loop
+- Observer/reflector skutecznie kompresuje pamięć długich sesji
+- Human-in-the-loop z stanem oczekiwania — kluczowe dla produkcji
+
+## 🔧 Szczegóły
+- **Lekcja**: [S03E02 - Ograniczenia modeli na etapie założeń projektu](../../index.html#S03E02)
+- **Tagi**: `multi-agent`, `heartbeat`, `memory`, `human-in-the-loop`, `observer-reflector`
+- **Narzędzia**: `MCP SDK`, `marked`, `gray-matter`, `OpenAI / OpenRouter / Gemini`
+- **Uruchomienie**: `npm run lesson12:events`
+
+---
+
+## 🛠️ Technical Details / Jak to działa
+
 # 03_02_events
 
 Multi-agent event architecture with heartbeat loop, observer/reflector memory, and human-in-the-loop.

@@ -1,3 +1,37 @@
+
+# Autonomiczny Agent Server API (01_05_agent)
+
+Full-featured agent server z multi-provider support, MCP integration, agent templates.
+
+## 📝 Opis
+Kompleksowy serwer (Hono) do uruchamiania agents z auto-routing na OpenAI/Gemini, MCP server integration (stdio/HTTP), markdown-based agent templates, SQLite session management, Langfuse tracing. Endpoints: /api/chat/completions (run agent), /api/mcp/servers (list MCP), /health. Agentów definiuje się w workspace/agents/*.agent.md z frontmatter (model, tools) i system prompt w body.
+
+## 🎯 Zastosowania
+- Production AI agent platform z persistence i tracing
+- Multi-tenant system — każdy tenant own agent template
+- API serwer dla AI agents z auth i rate limiting
+- Unified interface dla multiple LLM providers
+- Logging i monitoring agentic loops w Langfuse
+
+## 💡 Zapamiętaj
+- Agent templates (markdown frontmatter) — deklaratywne configuration bez restartów
+- Multi-provider routing — request może specify model lub agent, auto-resolve
+- MCP servers configurable w `.mcp.json` — stdio i HTTP transport naraz
+- OAuth flow automatic — HTTP servers vrti 401 → OAuth → tokens saved
+- Streaming responses (SSE) — client widzi token stream w real-time
+- Session persistence — sessionId tracks conversation state w DB
+- Tool waiting pattern — status `waiting` jeśli agent czeka na human tool delivery
+
+## 🔧 Szczegóły
+- **Lekcja**: [S01E05 - Zarządzanie jawnymi oraz niejawnymi limitami modeli](../../index.html#S01E05)
+- **Tagi**: `agent-api`, `multi-provider`, `mcp`, `tool-execution`, `multi-turn`
+- **Narzędzia**: `Hono`, `@modelcontextprotocol/sdk`, `Drizzle ORM`, `@libsql/client`, `Langfuse`, `Pino`, `OpenAI`, `Gemini`
+- **Uruchomienie**: `npm run dev`
+
+---
+
+## 🛠️ Technical Details / Jak to działa
+
 # Agent API
 
 Multi-provider AI agent server with tool execution, MCP integration, and markdown-based agent templates.

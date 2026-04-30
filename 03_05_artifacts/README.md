@@ -1,3 +1,31 @@
+
+# Artifacts — agent tworzenia artefaktów z live preview (03_05_artifacts)
+
+CLI tworzący artefakty (Preact, Chart.js, D3, Tailwind) z live preview przez WebSocket.
+
+## 📝 Opis
+Otwiera kartę przeglądarki i streamuje stan apki przez WebSocket. Trasuje prompty między tools chat i create/edit artifact. Generuje artefakty z capability packs (Preact, Chart.js, D3, Tailwind, Zod, day.js, papaparse, xlsx). Wsparcie search/replace dla edycji istniejących artefaktów. Agent celowo żąda packs based on wymagania artefaktu.
+
+## 🎯 Zastosowania
+- Generowanie interaktywnych wizualizacji danych w czacie
+- Tworzenie dashboardów i raportów ad-hoc
+- Real-time iteracja nad artefaktami z preview
+
+## 💡 Zapamiętaj
+- Capability packs — modularny, opt-in zestaw bibliotek dla artefaktów
+- WebSocket sync dla real-time preview bez page reload
+- Search/replace edit pattern dla inkrementacyjnych zmian
+
+## 🔧 Szczegóły
+- **Lekcja**: [S03E05 - Niedeterministyczna natura modeli jako przewaga](../../index.html#S03E05)
+- **Tagi**: `artifacts`, `live-preview`, `websocket`, `capability-packs`, `preact`, `charts`
+- **Narzędzia**: `Preact`, `D3`, `Chart.js`, `Tailwind`, `papaparse`, `xlsx`, `OpenAI / OpenRouter`
+- **Uruchomienie**: `npm run lesson15:artifacts`
+
+---
+
+## 🛠️ Technical Details / Jak to działa
+
 # 03_05_artifacts
 
 CLI artifact agent with live browser preview, WebSocket sync, and capability packs.

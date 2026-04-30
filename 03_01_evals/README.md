@@ -1,3 +1,31 @@
+
+# Evals — ocena jakości użycia narzędzi (03_01_evals)
+
+Serwer agenta z syntetyczną ewaluacją użycia narzędzi i poprawności odpowiedzi.
+
+## 📝 Opis
+Rozszerzenie observability o Responses API i folder experiments/ do programowej ewaluacji. Zawiera dwa zestawy: tool-use eval (czy agent poprawnie używa narzędzi) i response-correctness eval (czy odpowiedź spełnia wymagania). Eksperymenty seedują datasety w Langfuse, uruchamiają dataset.runExperiment(...) z per-case evaluatorami i zapisują wyniki na poziomie pojedynczych przypadków oraz całego runa.
+
+## 🎯 Zastosowania
+- Automatyczna ewaluacja celności użycia narzędzi przez agenta
+- Mierzenie dokładności odpowiedzi w wielu scenariuszach
+- Porównanie wydajności różnych wersji promptu / modelu
+
+## 💡 Zapamiętaj
+- Responses API ułatwia kontrolę przepływu i tool use
+- Programowa ewaluacja z per-case + run-level metrykami
+- Datasety Langfuse umożliwiają iteracyjne, regresyjne testy promptów
+
+## 🔧 Szczegóły
+- **Lekcja**: [S03E01 - Obserwowanie i ewaluacja](../../index.html#S03E01)
+- **Tagi**: `langfuse`, `evals`, `responses-api`, `synthetic-evaluation`, `tool-use`
+- **Narzędzia**: `Langfuse Client`, `Responses API`, `OpenAI / OpenRouter`
+- **Uruchomienie**: `npm run lesson11:evals`
+
+---
+
+## 🛠️ Technical Details / Jak to działa
+
 # 03_01_evals
 
 Agent server with Langfuse tracing and a synthetic tool-use evaluation suite.

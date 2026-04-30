@@ -1,3 +1,31 @@
+
+# Language — coach angielskiego z Gemini ASR/TTS (03_03_language)
+
+Trener angielskiego: transkrybuje audio, analizuje wymowę i generuje feedback audio (TTS).
+
+## 📝 Opis
+Czyta profil ucznia z workspace/profile.json (cele, słabe obszary). Transkrybuje i analizuje nagranie audio przez Gemini API — wyłapuje błędy gramatyki, problemy z wymową, słowa-spacze, rytm mowy. Generuje spersonalizowany feedback jako tekst i audio (Gemini TTS). Zapisuje notatki sesji, transkrypcję i artefakty. Lifecycle hooks (beforeToolCall, afterToolResult, beforeFinish) wymuszają pełny przepływ coachingu.
+
+## 🎯 Zastosowania
+- Personalizowany coaching wymowy i gramatyki
+- Automatyczne lekcje językowe na podstawie profilu
+- Aplikacje edukacyjne z feedbackiem audio
+
+## 💡 Zapamiętaj
+- Lifecycle hooks wymuszają sekwencję działań agenta
+- Multimodal pipeline (audio in → audio out) w jednym agencie
+- Profil-driven personalizacja z trwałym postępem
+
+## 🔧 Szczegóły
+- **Lekcja**: [S03E03 - Kontekstowy feedback wspierający skuteczność agentów](../../index.html#S03E03)
+- **Tagi**: `gemini`, `asr`, `tts`, `pronunciation`, `audio`, `lifecycle-hooks`
+- **Narzędzia**: `Gemini API`, `@google/genai`
+- **Uruchomienie**: `npm run lesson13:language`
+
+---
+
+## 🛠️ Technical Details / Jak to działa
+
 # 03_03_language
 
 English coaching agent with Gemini for ASR, pronunciation scoring, drills, and TTS.

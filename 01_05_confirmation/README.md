@@ -1,3 +1,33 @@
+
+# File & Email Agent z Confirmacją (01_05_confirmation)
+
+Agent z wysyłaniem emaili poprzedzonym manual confirmation i whitelist enforcement.
+
+## 📝 Opis
+Interaktywny agent (REPL) mogący czytać/pisać pliki (MCP), wysyłać emaili (Resend API). Kluczowa funkcja: send_email zwraca special status, pyta użytkownika w terminalu czy potwierdzić. Whitelist w workspace/whitelist.json kontroluje które emaili mogą być wysłane. Demonstruje safety pattern — agent nie może działać bez approval.
+
+## 🎯 Zastosowania
+- Email agents które muszą mieć human approval przed wysłaniem
+- File generation z approval workflow
+- Systemy z audit trail — każda akcja tracked i confirmed
+- Agenci dostępni mniej zaawansowanym użytkowników — safety guard
+
+## 💡 Zapamiętaj
+- Whitelist pattern — `user@example.com` exact, `@example.com` domain-level
+- Terminal confirmation — `rl.question()` blocks agentic loop, czeka na approval
+- Tool result + confirmation status — agent widzi rejection, może retry z innym adresem
+- Resend API — dedicated email service, better deliverability niż mailgun/sendgrid dla mass
+
+## 🔧 Szczegóły
+- **Lekcja**: [S01E05 - Zarządzanie jawnymi oraz niejawnymi limitami modeli](../../index.html#S01E05)
+- **Tagi**: `agent-loop`, `file-operations`, `email-sending`, `confirmation`, `whitelist`, `safety`
+- **Narzędzia**: `@modelcontextprotocol/sdk`, `Resend API`, `Node.js`
+- **Uruchomienie**: `npm run lesson5:confirmation`
+
+---
+
+## 🛠️ Technical Details / Jak to działa
+
 # 01_05_confirmation
 
 Interactive file-and-email agent with whitelist enforcement and a terminal confirmation step before sending email.

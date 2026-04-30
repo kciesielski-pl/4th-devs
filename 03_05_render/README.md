@@ -1,3 +1,31 @@
+
+# Render — guardrailed rendering UI z component packs (03_05_render)
+
+Agent generuje strukturyzowane specy UI ograniczone do dozwolonych komponentów analitycznych.
+
+## 📝 Opis
+Otwiera browser preview z WebSocket state sync. Trasuje prompty między chat i render intent. Generuje strukturyzowane UI specs ograniczone do allowed component packs (analytics-core, analytics-viz, analytics-table, analytics-insight, analytics-controls). Renderuje specs SSR-em dla deterministycznego preview z inspectable JSON. Output ograniczony do katalogów komponentów — agent nie tworzy dowolnego HTML.
+
+## 🎯 Zastosowania
+- Generowanie dashboardów analitycznych z ograniczonego designu
+- Deterministyczne UI rendering bez ryzyka HTML injection
+- Brand-safe component selection dla aplikacji firmowych
+
+## 💡 Zapamiętaj
+- Component guardrails (whitelist) > swobodny HTML — bezpieczeństwo i konsystencja
+- Server-side rendering specs daje deterministyczny output
+- Structured specs z Zod — walidacja przed renderem
+
+## 🔧 Szczegóły
+- **Lekcja**: [S03E05 - Niedeterministyczna natura modeli jako przewaga](../../index.html#S03E05)
+- **Tagi**: `component-guardrails`, `live-preview`, `structured-specs`, `analytics`, `zod`
+- **Narzędzia**: `Zod`, `OpenAI / OpenRouter`
+- **Uruchomienie**: `npm run lesson15:render`
+
+---
+
+## 🛠️ Technical Details / Jak to działa
+
 # 03_05_render
 
 Component-guardrailed rendering agent with live preview and structured specs.

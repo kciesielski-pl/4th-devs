@@ -1,3 +1,33 @@
+
+# Generowanie Wideo (Frame-Based Animation) (01_04_video_generation)
+
+Generowanie framów start/end i animacja do wideo via Kling i Replicate.
+
+## 📝 Opis
+Agent generuje start frame i end frame dla sceny używając OpenRouter/Gemini, następnie animuje transition via Kling (Replicate API). Workflow: template.json → copies to prompts/ → edit subject section → generate frames → animate. Saves do workspace/output/. REPL dla multi-turn prompting.
+
+## 🎯 Zastosowania
+- Generowanie product demo videos z text descriptions
+- Story-driven content creation — scene transitions
+- Marketing explainer videos bez scenarzystów
+- Visual storyboarding tool dla filmowców
+
+## 💡 Zapamiętaj
+- Kling API dostępny przez Replicate — long context video, smooth transitions
+- Dwa frame approach (start/end) lepszy niż single keyframe dla transition quality
+- JSON prompts reusable — edit subject, style stays — token efficient
+- Replicate polling pattern — wait for job completion asynchronously
+
+## 🔧 Szczegóły
+- **Lekcja**: [S01E04 - Wsparcie multimodalności oraz załączników](../../index.html#S01E04)
+- **Tagi**: `video-generation`, `kling`, `replicate`, `image-generation`, `agent`
+- **Narzędzia**: `replicate`, `@modelcontextprotocol/sdk`, `Gemini`, `OpenRouter`, `Node.js`
+- **Uruchomienie**: `npm run lesson4:video_generation`
+
+---
+
+## 🛠️ Technical Details / Jak to działa
+
 # 01_04_video_generation
 
 Frame-based video generation with OpenRouter or Gemini for frames and Kling via Replicate for animation.

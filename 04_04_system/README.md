@@ -1,3 +1,31 @@
+
+# Multi-agent system sterowany Markdownem (04_04_system)
+
+Alice (orkiestrator) deleguje fazy do specjalistów Ellie/Tony/Rose, wszystko zdefiniowane w MD.
+
+## 📝 Opis
+System multi-agentowy gdzie zachowanie agentów, workflowy i szablony są zdefiniowane wyłącznie w notatkach Markdown — nie w kodzie. Alice (orkiestrator) deleguje do Ellie (research), Tony (assemble), Rose (deliver) w trybie turn-based z limitem ~10 kroków. Knowledge base w workspace/ jest podzielony na: notatki użytkownika, świata, craft i operacji. Wsparcie dla daily-news i wielu przykładowych zapytań.
+
+## 🎯 Zastosowania
+- Pipeline przetwarzania informacji (research → write → deliver)
+- Delegacja zadań między specjalistami AI bez kodowania nowej logiki
+- Konfigurowalny przez non-developera (edytor MD)
+
+## 💡 Zapamiętaj
+- Workflow i playbooki w Markdown zamiast w kodzie — niski próg edycji
+- Profile agentów: model + tools + system prompt w jednym MD
+- Constrainty na delegację (np. nie eksploruj, ufaj ścieżkom) — kluczowe
+
+## 🔧 Szczegóły
+- **Lekcja**: [S04E04 - Projektowanie własnej bazy wiedzy dla AI](../../index.html#S04E04)
+- **Tagi**: `multi-agent`, `delegation`, `knowledge-base`, `workflows`, `markdown-driven`
+- **Narzędzia**: `MCP filesystem`, `MCP web search`, `Firecrawl`, `gray-matter`
+- **Uruchomienie**: `npm run lesson19:system`
+
+---
+
+## 🛠️ Technical Details / Jak to działa
+
 # 04_04_system
 
 Multi-agent system where a markdown knowledge base drives agent behavior. Workflows, templates, rules, and agent identities are all vault notes — not code.

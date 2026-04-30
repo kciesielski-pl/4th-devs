@@ -1,3 +1,31 @@
+
+# Review — komentarze inline anchored do tekstu (04_05_review)
+
+Agent przegląda dokument blok po bloku; komentarze są zakotwiczone do dokładnych cytatów.
+
+## 📝 Opis
+Document-centered UI z tooltipami inline-komentarzy. Agent przegląda blokami (lub całość naraz), komentarze anchored do dokładnych fragmentów tekstu. Frontend Svelte 5, backend Node z agent loop. Proponowane zmiany można accept (patch MD), reject lub revert. Streaming progress przez NDJSON.
+
+## 🎯 Zastosowania
+- Recenzja dokumentacji technicznej / propozycji
+- Korekta stylu i merytoryki z transparentną historią zmian
+- QA dla treści marketingowej / blogposts
+
+## 💡 Zapamiętaj
+- Anchoring komentarzy do tekstu (nie do całego dokumentu) — UX win
+- NDJSON streaming progress — alternative dla SSE
+- Concurrency control przy blokowym przetwarzaniu
+
+## 🔧 Szczegóły
+- **Lekcja**: [S04E05 - Projektowanie rozwiązań wewnątrzfirmowych](../../index.html#S04E05)
+- **Tagi**: `document-review`, `svelte-ui`, `agent-review`, `inline-comments`, `markdown-editing`
+- **Narzędzia**: `remark`, `marked`, `OpenAI Responses API`, `gray-matter`, `Svelte 5`
+- **Uruchomienie**: `npm run lesson20:review`
+
+---
+
+## 🛠️ Technical Details / Jak to działa
+
 # 04_05_review
 
 Markdown review lab. A document-centered UI with inline comment tooltips, powered by a review agent that anchors suggestions to exact text.

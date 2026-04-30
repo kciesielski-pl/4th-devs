@@ -1,3 +1,31 @@
+
+# Strategie chunkowania tekstu (02_02_chunking)
+
+Cztery strategie dzielenia tekstów na fragmenty dla baz wektorowych — porównanie side-by-side.
+
+## 📝 Opis
+Projekt porównuje cztery podejścia do chunkowania: stałej długości (characters), separatory strukturalne (headings, paragraphs), kontekst wzbogacony przez LLM (context-enriched) oraz tematyczne granice znalezione przez AI (topics). Każda strategia zapisywana jest w JSONL. Pierwsze dwie są lokalne, ostatnie dwie zużywają tokeny API. Rezultaty zawierają metadata o sekcji i indeksach.
+
+## 🎯 Zastosowania
+- Optymalizacja RAG przez eksperymentację ze strategiami chunkowania
+- Poprawa jakości retrieval dla specjalistycznych dokumentów (manuały, naukowe)
+- Benchmark różnych technik fragmentacji dla oceny coverage i relevance
+
+## 💡 Zapamiętaj
+- Chunking semantyczny zwykle daje lepsze wyniki niż stały rozmiar
+- LLM-generated kontekstowe prefiksy pomagają w retrievalu
+- Wybór strategii wpływa drastycznie na jakość odpowiedzi systemu RAG
+
+## 🔧 Szczegóły
+- **Lekcja**: [S02E02 - Zewnętrzny kontekst — narzędzia i dokumenty](../../index.html#S02E02)
+- **Tagi**: `chunking`, `text-processing`, `semantic`, `rag-prep`
+- **Narzędzia**: `OpenAI API`, `LLM enrichment`, `JSONL`
+- **Uruchomienie**: `npm run lesson7:chunking`
+
+---
+
+## 🛠️ Technical Details / Jak to działa
+
 # 02_02_chunking
 
 Four text chunking strategies compared side-by-side.

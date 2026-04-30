@@ -1,3 +1,31 @@
+
+# Browser — automatyzacja przeglądarki z Playwright (03_03_browser)
+
+Agent z Playwrightem, persystencją cookies sesji i narzędziami MCP do plików.
+
+## 📝 Opis
+Uruchamia Playwright (headless lub normal) z trwałymi cookies. Łączy się z MCP fs server. Agent działa w pętli z narzędziami przeglądarki (navigate, screenshot, click, type, extract) i fs. Konwersacja przez previous_response_id. Demo: scrap Goodreads — login zapisuje cookies do reuse.
+
+## 🎯 Zastosowania
+- Scraping i ekstrakcja danych z autoryzowanych witryn
+- Automatyzacja zadań w aplikacjach webowych bez API
+- Boty zachowujące sesję między uruchomieniami
+
+## 💡 Zapamiętaj
+- Persystencja cookies eliminuje kosztowny re-login
+- Playwright + MCP — czyste rozdzielenie warstwy browser i FS
+- Previous_response_id zachowuje historię bez wysyłania pełnego kontekstu
+
+## 🔧 Szczegóły
+- **Lekcja**: [S03E03 - Kontekstowy feedback wspierający skuteczność agentów](../../index.html#S03E03)
+- **Tagi**: `playwright`, `browser-automation`, `session-persistence`, `mcp`, `goodreads`
+- **Narzędzia**: `Playwright`, `MCP SDK`, `jsonrepair`, `OpenAI / OpenRouter`
+- **Uruchomienie**: `npm run lesson13:browser`
+
+---
+
+## 🛠️ Technical Details / Jak to działa
+
 # 03_03_browser
 
 Browser automation agent with Playwright, session persistence, and MCP file tools.

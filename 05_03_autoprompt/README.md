@@ -1,3 +1,31 @@
+
+# Autoprompt — optymalizacja promptów hill-climbing (05_03_autoprompt)
+
+Iteracyjne ulepszanie promptu: generuj K kandydatów, oceniaj LLM judgem, wybieraj najlepszego.
+
+## 📝 Opis
+Hill-climbing loop nad promptem. Każda iteracja: generuje K kandydatów (balanced, coverage, simplify, boundary, salience), uruchamia ekstrakcję, ocenia LLM judgem i porównuje z best-so-far. Historia poprzednich prób feeduje następną rundę. Separacja train/verify cases. Pure-Node — wystarczy prompt seed, test cases i JSON schema.
+
+## 🎯 Zastosowania
+- Optymalizacja promptów ekstrakcyjnych (NER, klasyfikacja)
+- Iteracyjna poprawa dokładności bez ręcznego tuningu
+- Regression testing promptów przed deploymentem
+
+## 💡 Zapamiętaj
+- Best-of-N candidates per iteration > pojedynczy variant
+- LLM judge daje miękkie metryki (jakość) niemożliwe deterministycznie
+- Strukturyzowany prompt (role, objective, context, rules) — łatwiej mutować
+
+## 🔧 Szczegóły
+- **Lekcja**: [S05E03 - Rozwój funkcjonalności](../../index.html#S05E03)
+- **Tagi**: `prompt-optimization`, `hill-climbing`, `llm-judge`, `evaluation`, `iteration`
+- **Narzędzia**: `OpenAI / OpenRouter`, `Zod`
+- **Uruchomienie**: `npm run lesson23:autoprompt`
+
+---
+
+## 🛠️ Technical Details / Jak to działa
+
 # autoprompt
 
 Automated prompt optimization loop. Give it a seed prompt, test cases with expected outputs, and a JSON schema — it iteratively improves the prompt by generating candidate changes, evaluating them with an LLM judge, and keeping only what beats the current best.

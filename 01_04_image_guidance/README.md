@@ -1,3 +1,33 @@
+
+# Pose-Guided Image Generation (01_04_image_guidance)
+
+Generowanie obrazów z kontrolą pozy przez reference image.
+
+## 📝 Opis
+Agent czyta pose reference (walking, running) z workspace/reference/, edytuje subject section w JSON template, generuje finalny obraz w controlled pose. Pozwala na reproducible generations z consistent framing. Workflow: copy template → edit subject → load reference → generate with guidance.
+
+## 🎯 Zastosowania
+- Generowanie fashion lookbooks z consistent poses
+- Character design sheets z różnymi postawami
+- Video asset generation — consistent characters across frames
+- E-commerce product shots — items w standardowych pozach
+
+## 💡 Zapamiętaj
+- Pose-guided generation — reference image wpływa na output pose bez full inpainting
+- JSON template reusability — zmienia się tylko subject, style preserved
+- Comparison reference ↔ output — agent może iterate jeśli pose nie pasuje
+- Base64 encoding reference images — inline w API requests
+
+## 🔧 Szczegóły
+- **Lekcja**: [S01E04 - Wsparcie multimodalności oraz załączników](../../index.html#S01E04)
+- **Tagi**: `image-generation`, `pose-guided`, `gemini`, `mcp`, `controlled-generation`
+- **Narzędzia**: `Gemini`, `OpenRouter`, `@modelcontextprotocol/sdk`, `Node.js`
+- **Uruchomienie**: `npm run lesson4:image_guidance`
+
+---
+
+## 🛠️ Technical Details / Jak to działa
+
 # 01_04_image_guidance
 
 Pose-guided image generation from JSON templates and reference images.

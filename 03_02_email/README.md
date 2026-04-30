@@ -1,3 +1,31 @@
+
+# Email — dwufazowy agent triage + draft (03_02_email)
+
+Faza 1: triage z etykietami. Faza 2: izolowane sesje draftu odpowiedzi z scoped KB.
+
+## 📝 Opis
+Faza 1 (Triage): czyta wszystkie nieprzeczytane emaile, sprawdza bazę wiedzy, przypisuje etykiety i flaguje wymagające odpowiedzi (bez generowania draftu). Faza 2 (Draft): dla każdego flagowanego maila uruchamia izolowaną sesję z bazą wiedzy ograniczoną do nadawcy i tworzy draft (tylko completion, bez tools). Zawiera lokalne evals dla triażu, izolacji, języka, bezpieczeństwa.
+
+## 🎯 Zastosowania
+- Automatyzacja sortowania i kategoryzacji emaili
+- Generowanie draftów odpowiedzi z kontekstem konkretnego nadawcy
+- Ewaluacja bezpieczeństwa agent-generated content (PII leak, prompt injection)
+
+## 💡 Zapamiętaj
+- Podział na fazy (triage → draft) izoluje błędy między etapami
+- Izolacja sesji per-nadawca ogranicza wyciek danych z KB
+- Wielowymiarowe evals: triage / język / izolacja / bezpieczeństwo
+
+## 🔧 Szczegóły
+- **Lekcja**: [S03E02 - Ograniczenia modeli na etapie założeń projektu](../../index.html#S03E02)
+- **Tagi**: `email`, `triage`, `knowledge-base`, `isolation`, `evals`
+- **Narzędzia**: `Langfuse`, `Zod`, `OpenAI / OpenRouter`
+- **Uruchomienie**: `npm run lesson12:email`
+
+---
+
+## 🛠️ Technical Details / Jak to działa
+
 # 03_02_email
 
 Two-phase email agent: triage with labels, then isolated KB-scoped draft sessions.

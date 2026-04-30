@@ -1,3 +1,31 @@
+
+# Hybrydowy RAG (FTS5 + sqlite-vec) (02_02_hybrid_rag)
+
+Łączenie wyszukiwania słów kluczowych (BM25) z wektorowym i fuzja przez Reciprocal Rank Fusion.
+
+## 📝 Opis
+System łączy dwa podejścia: wyszukiwanie pełnotekstowe (FTS5) dla trafności słów kluczowych i wektorowe (sqlite-vec) dla semantyki. Na etapie queryingu oba wyniki łączone są Reciprocal Rank Fusion (RRF) dla optymalnego rankingu. Dokumenty z workspace/ są automatycznie indeksowane w SQLite. Agent wykonuje agentic loop z historią konwersacji. Baza jest lokalna — bez dodatkowej infrastruktury.
+
+## 🎯 Zastosowania
+- Production RAG dla małych i średnich zbiorów dokumentów
+- Wyszukiwanie o wysokiej precyzji w dokumentach korporacyjnych
+- Systemy QA offline bez zależności od dedykowanej bazy wektorowej
+
+## 💡 Zapamiętaj
+- Hybrid search (keyword + vector) daje znacznie lepsze wyniki niż każda metoda osobno
+- RRF jest eleganckim podejściem do fuzji rankingów z różnych źródeł
+- SQLite wystarczy dla efektywnego RAG bez kosztów setupu dodatkowych baz
+
+## 🔧 Szczegóły
+- **Lekcja**: [S02E02 - Zewnętrzny kontekst — narzędzia i dokumenty](../../index.html#S02E02)
+- **Tagi**: `hybrid-rag`, `sqlite`, `fts5`, `vector-search`, `rrf`
+- **Narzędzia**: `better-sqlite3`, `sqlite-vec`, `@modelcontextprotocol/sdk`
+- **Uruchomienie**: `npm run lesson7:hybrid_rag`
+
+---
+
+## 🛠️ Technical Details / Jak to działa
+
 # 02_02_hybrid_rag
 
 Hybrid RAG agent with SQLite FTS5 full-text search and sqlite-vec vector similarity.

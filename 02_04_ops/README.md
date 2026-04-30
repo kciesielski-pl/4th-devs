@@ -1,3 +1,31 @@
+
+# Generator daily ops z delegacją (02_04_ops)
+
+Orchestrator deleguje zadania specjalistom: agent poczty, kalendarza, notatek.
+
+## 📝 Opis
+System multi-agentic z orkiestratorem, który czyta workflow z pliku i deleguje zadania do specjalistycznych agentów (poczta, kalendarz, zadania, notatki). Każdy agent ma własną instancję konwersacji z limitem głębokości 3. Szablony agentów definiowane w frontmatter markdown (model, tools, system prompt). Wynik syntetyzowany jest w daily ops summary.
+
+## 🎯 Zastosowania
+- Automatyczne generowanie dziennych raportów biznesowych
+- Delegacja złożonych procesów do wyspecjalizowanych agentów
+- Orkiestracja multi-step workflows z hierarchią decyzji
+
+## 💡 Zapamiętaj
+- Multi-agent system wymaga jasnej specjalizacji każdego agenta
+- Delegacja z limitem głębokości zapobiega nieskończonym pętlom
+- Markdown frontmatter to elegancki sposób definiowania konfiguracji agenta
+
+## 🔧 Szczegóły
+- **Lekcja**: [S02E04 - Organizowanie kontekstu dla wielu wątków](../../index.html#S02E04)
+- **Tagi**: `multi-agent`, `delegation`, `orchestration`, `automation`
+- **Narzędzia**: `gray-matter`, `openai`
+- **Uruchomienie**: `npm run lesson9:ops`
+
+---
+
+## 🛠️ Technical Details / Jak to działa
+
 # 02_04_ops
 
 Multi-agent daily ops generator with task delegation.

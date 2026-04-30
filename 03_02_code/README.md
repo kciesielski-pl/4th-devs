@@ -1,3 +1,31 @@
+
+# Code — wykonywanie kodu w sandboxie Deno (03_02_code)
+
+Agent generujący i wykonujący TypeScript w izolowanym sandboxie Deno z dostępem do plików via MCP.
+
+## 📝 Opis
+Agent łączy się z MCP fs serverem do odczytu/zapisu w workspace. Wykorzystuje subprocess sandboxa Deno (execute_code) z konfigurowalnymi poziomami uprawnień: safe / standard / network / full. Most HTTP udostępnia narzędzia MCP po stronie hosta do kodu działającego w sandboxie. Domyślne demo: generowanie raportu kosztów PDF z surowych danych.
+
+## 🎯 Zastosowania
+- Generowanie dokumentów (PDF, raporty) na bazie surowych danych
+- Bezpieczne wykonywanie kodu LLM-generated w izolowanym środowisku
+- Przetwarzanie danych z kontrolowanym dostępem do FS
+
+## 💡 Zapamiętaj
+- Sandbox Deno daje pełną izolację bez kosztu kontenerów
+- Granularny system uprawnień (safe/standard/network/full)
+- HTTP bridge między sandboxem a tools hosta — istotny wzorzec
+
+## 🔧 Szczegóły
+- **Lekcja**: [S03E02 - Ograniczenia modeli na etapie założeń projektu](../../index.html#S03E02)
+- **Tagi**: `deno-sandbox`, `mcp`, `code-execution`, `permission-levels`, `pdf`
+- **Narzędzia**: `Deno`, `MCP SDK`, `HTTP bridge`, `OpenAI / OpenRouter`
+- **Uruchomienie**: `npm run lesson12:code`
+
+---
+
+## 🛠️ Technical Details / Jak to działa
+
 # 03_02_code
 
 Code execution agent with a Deno sandbox and MCP file tools.

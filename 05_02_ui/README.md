@@ -1,3 +1,31 @@
+
+# Chat UI — Svelte 5 z SSE streamingiem (05_02_ui)
+
+Production-ready Svelte 5 chat z streamingiem SSE, tool cards, artifact preview, virtual list.
+
+## 📝 Opis
+Zaawansowany frontend dla długich historii czatu z event-sourced renderingiem. Serwer Bun streamuje tury asystenta przez SSE. UI obsługuje tool calls, thinking blocks, artifact previews. Wirtualizacja konwersacji dla wydajności. Seeding długich wątków do testów. Domyślny model gpt-4.1, override przez LIVE_UI_MODEL.
+
+## 🎯 Zastosowania
+- Bazowy chat UI dla własnego AI agenta
+- Streaming odpowiedzi LLM z tool cards i artifactami
+- Wsparcie długich konwersacji bez zamulenia UI
+
+## 💡 Zapamiętaj
+- Event-sourced materialization — odporność na network blips
+- SSE > WebSocket dla większości chat UI (prostsza infrastruktura)
+- Wirtualizacja listy wiadomości dla performance
+
+## 🔧 Szczegóły
+- **Lekcja**: [S05E02 - Zestaw narzędzi](../../index.html#S05E02)
+- **Tagi**: `svelte-ui`, `sse-streaming`, `chat-interface`, `tool-cards`, `virtualization`
+- **Narzędzia**: `Svelte 5`, `Vite`, `Bun`, `markdown-it`, `highlight.js`, `DOMPurify`
+- **Uruchomienie**: `npm run lesson22:ui`
+
+---
+
+## 🛠️ Technical Details / Jak to działa
+
 # 05_02_ui
 
 A focused example of a **high-quality Svelte 5 chat UI** backed by a **simple Bun-powered streaming server**.

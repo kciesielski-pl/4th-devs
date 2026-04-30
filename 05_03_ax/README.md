@@ -1,3 +1,31 @@
+
+# Email classifier z Ax (DSPy w TS) + few-shot bootstrap (05_03_ax)
+
+Klasyfikator maili z Ax (DSPy dla TypeScript), BootstrapFewShot do auto-tuningu demo.
+
+## 📝 Opis
+Używa Ax do definiowania signature: (emailFrom, emailSubject, emailBody) → (labels[], priority, needsReply, summary). BootstrapFewShot optimizer zbiera successful traces z training set jako optimized demos zapisywane w demos.json. Fallback na ręczne examples. Demo'y są auto-loaded jeśli istnieją.
+
+## 🎯 Zastosowania
+- Klasyfikacja inboxu (priority, kategorie, needs-reply)
+- Few-shot learning z auto-tuningiem demo
+- Bazowy szablon dla DSPy-style applications w TS
+
+## 💡 Zapamiętaj
+- Signature-based code generation — deklaratywnie, bez ręcznych promptów
+- BootstrapFewShot automatycznie wybiera najlepsze demo z trainingu
+- Metric-driven evaluation jako gate dla optimized demo
+
+## 🔧 Szczegóły
+- **Lekcja**: [S05E03 - Rozwój funkcjonalności](../../index.html#S05E03)
+- **Tagi**: `email-classification`, `dspy`, `few-shot`, `bootstrap`, `ax-llm`
+- **Narzędzia**: `@ax-llm/ax`, `OpenAI`
+- **Uruchomienie**: `npm run lesson23:ax`
+
+---
+
+## 🛠️ Technical Details / Jak to działa
+
 # 05_03_ax — Email classifier with Ax
 
 Classifies developer inbox emails with labels using [Ax](https://github.com/ax-llm/ax) (DSPy for TypeScript). Demonstrates signatures, few-shot examples, and BootstrapFewShot optimization.

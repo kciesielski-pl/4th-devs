@@ -1,3 +1,31 @@
+
+# Agent z inżynierią kontekstu (observer/reflector) (02_05_agent)
+
+Agent kompresuje starą historię do obserwacji, obserwacje do refleksji — oszczędza tokeny.
+
+## 📝 Opis
+HTTP server (Hono) z sesyjnymi konwersacjami. Gdy rozmowa rośnie, Observer kompresuje starsze wiadomości w strukturyzowane Observations. Gdy Observations są duże, Reflector je dalej destyluje. Kontekst agenta zawsze zawiera: skompresowaną historię (observations) + świeże raw messages. Pamięć persystuje do workspace/memory/. Endpointy: POST /api/chat, GET /api/sessions, GET /api/sessions/:id/memory, POST /api/sessions/:id/flush.
+
+## 🎯 Zastosowania
+- Długie konwersacje bez eksplozji zużycia tokenów
+- Chatboty o nieskończonym horyzoncie czasowym
+- Systemy z samoświadością historii rozmowy
+
+## 💡 Zapamiętaj
+- Observer-Reflector pattern skutecznie redukuje zużycie tokenów w długich sesjach
+- Kompresja musi zachowywać informacje krytyczne dla zrozumienia kontekstu
+- Sesyjna architektura umożliwia skalę wielu jednoczesnych konwersacji
+
+## 🔧 Szczegóły
+- **Lekcja**: [S02E05 - Projektowanie agentów](../../index.html#S02E05)
+- **Tagi**: `context-engineering`, `memory-compression`, `observer-reflector`, `token-optimization`
+- **Narzędzia**: `hono`, `@hono/node-server`, `openai`
+- **Uruchomienie**: `npm run lesson10:agent`
+
+---
+
+## 🛠️ Technical Details / Jak to działa
+
 # 02_05_agent
 
 Context engineering agent with observational memory (observer/reflector pattern).

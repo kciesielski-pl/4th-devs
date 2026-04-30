@@ -1,3 +1,31 @@
+
+# Gmail — natywne narzędzia z OAuth + Promptfoo (03_04_gmail)
+
+Agent Gmail z 5 natywnymi narzędziami, OAuth i kompletnymi eval suites Promptfoo.
+
+## 📝 Opis
+Łączy się z Gmail przez OAuth z 5 narzędziami: gmail_search, gmail_read, gmail_send, gmail_modify, gmail_attachment. Wszystkie wyniki narzędzi mają strukturalną kopertę {data, hint} ze statusem, sugestiami recovery i propozycjami next-action. Discovery-first: search → read → act (nigdy nie wymyśla zawartości). gmail_send auto-drafts gdy odbiorcy spoza whitelist. Eval suites Promptfoo: tool behavior + multi-turn (mocked + live).
+
+## 🎯 Zastosowania
+- Łączenie agenta z Gmailem do triage'u maili i automatycznych odpowiedzi
+- Asystenci wykonawczy odpowiadający na maile z whitelist
+- Bazowy szablon dla Gmail-powered agentów (newsletter triage, follow-upy)
+
+## 💡 Zapamiętaj
+- Native API tools > MCP gdy potrzebny pełen kontrol nad responsem
+- Structured output envelope {data, hint} dramatycznie ułatwia recovery
+- Whitelist + auto-draft to bezpieczny default dla send
+
+## 🔧 Szczegóły
+- **Lekcja**: [S03E04 - Budowanie narzędzi na podstawie danych testowych](../../index.html#S03E04)
+- **Tagi**: `gmail-api`, `oauth`, `zod`, `promptfoo`, `native-tools`, `evals`
+- **Narzędzia**: `Gmail API`, `googleapis`, `Zod`, `Promptfoo`, `OpenAI / OpenRouter`
+- **Uruchomienie**: `npm run lesson14:gmail`
+
+---
+
+## 🛠️ Technical Details / Jak to działa
+
 # 03_04_gmail
 
 Native Gmail tools agent with OAuth, Zod schemas, and Promptfoo evals.

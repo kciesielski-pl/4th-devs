@@ -1,3 +1,33 @@
+
+# Wykorzystanie Narzędzi (Tool Use) (01_02_tool_use)
+
+Pętla Myśl→Działaj→Obserwuj (ReAct) z sandboxed filesystem tools.
+
+## 📝 Opis
+Pokazuje pełny workflow tool-callingu: model otrzymuje definicje tools (list_files, read_file, write_file, delete_file, create_directory, file_info), decyduje którą użyć i z jakimi argumentami. Aplikacja wykonuje tool, zwraca rezultat, model analizuje i decyduje czy potrzebuje kolejny tool call. Wszystkie operacje są sandboxed — blokowana jest traversal ścieżek. Maksimalnie 5 kroków tool-callingu.
+
+## 🎯 Zastosowania
+- Agenci przeglądający lokalne systemy plików w bezpieczny sposób
+- Asystenci mogący czytać i pisać konfiguracje aplikacji
+- Sandbox dla GPT'a gdzie może eksperymentować bez dostępu do systemu
+- Automatyzacja zadań wymagających wielu operacji plikowych
+
+## 💡 Zapamiętaj
+- ReAct loop: ask model → get tool_calls → execute → append results → repeat
+- Sandboxing wymaga aktywnego blokowania path traversal (`../` patterns) w handlerkach
+- MAX_TOOL_STEPS failsafe zapobiega nieskończonym pętlom — kluczowe dla produkcji
+- Tool results muszą być natychmiast appendowane do conversation, by model mógł się do nich odnosić
+
+## 🔧 Szczegóły
+- **Lekcja**: [S01E02 - Techniki łączenia modelu z narzędziami](../../index.html#S01E02)
+- **Tagi**: `function-calling`, `tool-use`, `react-pattern`, `sandboxed-fs`, `node`
+- **Narzędzia**: `OpenAI Responses API`, `Node.js filesystem`, `function calling`, `Zod`
+- **Uruchomienie**: `npm run lesson2:tool_use`
+
+---
+
+## 🛠️ Technical Details / Jak to działa
+
 # 01_02_tool_use
 
 Function calling with sandboxed filesystem tools — the model lists, reads, writes, and deletes files through tool definitions.

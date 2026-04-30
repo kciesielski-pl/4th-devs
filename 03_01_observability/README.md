@@ -1,3 +1,31 @@
+
+# Observability — śledzenie agentów z Langfuse (03_01_observability)
+
+Minimalny serwer agenta z Langfuse — tracing requestów, narzędzi i generowania na granicy adaptera.
+
+## 📝 Opis
+Serwer HTTP (Hono) z wieloturnowym pętlem agenta i narzędziami get_current_time oraz sum_numbers. Każde żądanie opakowywane jest w ślad Langfuse z hierarchią: chat-request → agent → generation#N / tool#N. Ślady są flushowane po requestach i przy zamknięciu serwera, by minimalizować stratę danych. Tracing inicjalizowany raz przy starcie i degraduje gracefully bez kredencjałów Langfuse.
+
+## 🎯 Zastosowania
+- Monitorowanie wydajności wieloturnowych agentów w produkcji
+- Diagnozowanie problemów w łańcuchu zapytań i narzędzi
+- Audytowalność ścieżek wykonania agenta dla compliance
+
+## 💡 Zapamiętaj
+- Integracja tracingu na granicy adaptera daje holistyczne pokrycie
+- Hierarchia spanów odzwierciedla strukturę agenta (turn → tool / generation)
+- Graceful degradation bez konfiguracji tracingu — nie blokuje developmentu
+
+## 🔧 Szczegóły
+- **Lekcja**: [S03E01 - Obserwowanie i ewaluacja](../../index.html#S03E01)
+- **Tagi**: `langfuse`, `tracing`, `opentelemetry`, `agent-server`, `hono`
+- **Narzędzia**: `Hono`, `Langfuse`, `OpenTelemetry`, `OpenAI / OpenRouter`
+- **Uruchomienie**: `npm run lesson11:observability`
+
+---
+
+## 🛠️ Technical Details / Jak to działa
+
 # 03_01_observability
 
 Minimal agent server with Langfuse tracing wired at the adapter boundary.

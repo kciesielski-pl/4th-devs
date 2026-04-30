@@ -1,3 +1,31 @@
+
+# Agentic RAG z multi-step retrieval (02_01_agentic_rag)
+
+Agent decyduje sam, które fragmenty dokumentów przeszukać i kiedy iteracyjnie pogłębić query.
+
+## 📝 Opis
+Projekt demonstruje inteligentne wyszukiwanie informacji z dokumentów poprzez agentic loop. Model autonomicznie decyduje, jakie pliki i fragmenty są mu potrzebne do odpowiedzi. System utrzymuje historię rozmowy dla pytań uzupełniających i iteruje przez różne kąty wyszukiwania (synonimy, powiązane terminy). Wyniki przechowywane są z dostępem przez MCP file server.
+
+## 🎯 Zastosowania
+- Asystent dokumentacji dla dużych zbiorów tekstowych
+- Wyszukiwanie analityczne w bazach wiedzy korporacyjnej
+- Chatbot wewnętrzny dla zespołów zarządzających kompleksowymi procesami
+
+## 💡 Zapamiętaj
+- Model może autonomicznie decydować o kolejnych krokach wyszukiwania
+- MCP tools integrują się z agentic loop dla dynamicznego dostępu do plików
+- Historia konwersacji umożliwia naturalne follow-upy bez powtarzania kontekstu
+
+## 🔧 Szczegóły
+- **Lekcja**: [S02E01 - Zarządzanie kontekstem w konwersacji](../../index.html#S02E01)
+- **Tagi**: `rag`, `multi-step`, `mcp-tools`, `conversational`, `iterative-search`
+- **Narzędzia**: `@modelcontextprotocol/sdk`, `OpenAI API`
+- **Uruchomienie**: `npm run lesson6:agentic_rag`
+
+---
+
+## 🛠️ Technical Details / Jak to działa
+
 # 02_01_agentic_rag
 
 Agentic RAG with multi-step retrieval over MCP file tools.

@@ -1,3 +1,31 @@
+
+# Macierz podobieństwa embedingów (REPL) (02_02_embedding)
+
+Interaktywna macierz pokazująca, które teksty są do siebie semantycznie podobne.
+
+## 📝 Opis
+REPL umożliwiający eksperymentowanie z modelami embeddingu (text-embedding-3-small). Każdy wpisany tekst jest embeddowany, a po co najmniej dwóch wpisach pojawia się pełna macierz podobieństwa (cosine similarity). Kolory pokazują stopień podobieństwa: zielony (≥0.60), żółty (≥0.35), czerwony (<0.35). Łatwo widać, które wejścia grupują się razem.
+
+## 🎯 Zastosowania
+- Nauka semantyki wektorowej i miary podobieństwa
+- Debugowanie jakości embeddingów dla własnych danych
+- Testowanie klastrowania tekstów przed wdrożeniem w produkcji
+
+## 💡 Zapamiętaj
+- Cosine similarity to standardowa metryka podobieństwa wektorów
+- Wizualizacja macierzy pomaga w intuicyjnym rozumieniu klastrów semantycznych
+- Różne modele embeddingów dają różne wyniki — warto je porównywać
+
+## 🔧 Szczegóły
+- **Lekcja**: [S02E02 - Zewnętrzny kontekst — narzędzia i dokumenty](../../index.html#S02E02)
+- **Tagi**: `embedding`, `vector-similarity`, `repl`, `visualization`
+- **Narzędzia**: `text-embedding-3-small`, `OpenAI API`
+- **Uruchomienie**: `npm run lesson7:embedding`
+
+---
+
+## 🛠️ Technical Details / Jak to działa
+
 # 02_02_embedding
 
 Interactive embedding demo with a pairwise similarity matrix.

@@ -1,3 +1,31 @@
+
+# MCP Apps — sandboxowane UI w iframe'ach (04_05_apps)
+
+Remote MCP zwraca ui:// resources, host montuje aplikacje w sandboxowanych iframe'ach.
+
+## 📝 Opis
+Architektura z trzema rolami: MCP server (rejestruje tools + UI resources), browser host (renderuje czat i montuje apki w iframe'ach), embedded apps (SDK MCP Apps, działają lokalnie w iframe). Zamiast płaskiej listy tooli, operacje grupowane są w workflowy biznesowe (kampanie, kupony, newslettery, sales, Stripe).
+
+## 🎯 Zastosowania
+- Marketing-ops dashboardy w czacie (todo, newslettery, sale)
+- Zarządzanie zamówieniami / kuponami / Stripe przez agenta
+- Workflow-focused interfejsy zamiast listy 100 tooli
+
+## 💡 Zapamiętaj
+- Rozdzielenie tooli app-only od model-visible — czystszy system prompt
+- AppBridge: kanał host ↔ app dla state sync
+- Sandboxing iframes = bezpieczna domyślna izolacja UI
+
+## 🔧 Szczegóły
+- **Lekcja**: [S04E05 - Projektowanie rozwiązań wewnątrzfirmowych](../../index.html#S04E05)
+- **Tagi**: `mcp-apps`, `embedded-ui`, `sandboxing`, `marketing-ops`, `iframes`
+- **Narzędzia**: `MCP Apps SDK`, `@modelcontextprotocol/ext-apps`, `Zod`, `AppBridge`
+- **Uruchomienie**: `npm run lesson20:apps`
+
+---
+
+## 🛠️ Technical Details / Jak to działa
+
 # 04_05 Apps
 
 `04_05_apps` is a workflow-first MCP Apps example for the course.
